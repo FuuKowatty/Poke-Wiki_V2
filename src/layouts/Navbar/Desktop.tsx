@@ -1,11 +1,14 @@
+import { Searchbar } from './Searchbar';
+import { StyledLogo } from 'styles/Navbar/StyledNavbar';
+
 
 
 export function Desktop() {
 
     return (
       <>
-      <div>POKEWIKI</div>
-      <input type="text" />
+        <StyledLogo>POKEWIKI</StyledLogo>
+        <Searchbar />
       </>
     )
   }

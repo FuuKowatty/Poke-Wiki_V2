@@ -1,18 +1,15 @@
 import { Desktop } from './Desktop';
 import { Mobile } from './Mobile';
-import { StyledNavbar } from 'styles/StyledNavbar';
-import { useViewport } from 'hooks/useViewport';
+import { StyledNavbar } from 'styles/Navbar/StyledNavbar';
+import { useAppContext } from 'hooks/useAppContext';
 
-function Navbar() {
+export function Navbar() {
 
-  const isMobile = useViewport()
+  const isMobile = useAppContext()
 
   return (
-    
-    <StyledNavbar>
+    <StyledNavbar isMobile={isMobile}>
       {isMobile ? <Mobile /> : <Desktop />}
     </StyledNavbar>
   )
 }
-
-export {Navbar}
