@@ -1,6 +1,8 @@
+import { Banner } from 'components/Banner';
+
 export function Home() {
     return (
-      <div>Home</div>
+      <Banner />
     )
   }
 
