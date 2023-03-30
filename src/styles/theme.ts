@@ -1,4 +1,4 @@
-export const theme = {
+export const Theme = {
     colors: {
         primary: '#EEEEEE',
         secondary: '#393E46',
@@ -8,6 +8,18 @@ export const theme = {
         standsOut: '#FAD61D',
     },
     fonts: {
-
+        headerPlus: '3.5em',
+        headerOne: '2.6em',
+        headerTwo: '2em',
+        headerThree: '1.5em',
+        headerFour: '1.25em',
+        normal: '1em'
+    },
+    spacing: {
+        5: '3em',
+        4: '2em',
+        3: '1.25em',
+        2: '0.75em',
+        1: '0.25em'
     }
 }
