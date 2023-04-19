@@ -1,19 +1,13 @@
-import { StyledInput, StyledSearch } from 'styles/Navbar/StyledNavbar';
-import { SearchIcon } from 'styles/StyledContainer';
-import { Theme } from 'styles/Theme';
-import {AiOutlineSearch} from 'react-icons/ai'
-import {GrFormClose} from 'react-icons/gr'
+import { SearchIcon, StyledInput, StyledSearch } from 'styles/Navbar/StyledNavbar'
+import { RiSearchLine } from 'react-icons/ri'
 
 export function Searchbar() {
   return (
     <StyledSearch>
-    <SearchIcon type='submit' >
-      <AiOutlineSearch color={Theme.colors.secondary} />
-    </SearchIcon>
-    <StyledInput placeholder='Search...' type='search'/>
-    <SearchIcon type='reset'>
-    <GrFormClose color={Theme.colors.secondary} />
-    </SearchIcon>
-  </StyledSearch>
+      <StyledInput placeholder='Search...' type='search' />
+      <SearchIcon type='submit'>
+        <RiSearchLine />
+      </SearchIcon>
+    </StyledSearch>
   )
 }
