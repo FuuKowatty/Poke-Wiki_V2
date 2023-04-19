@@ -1,7 +1,5 @@
-import { Theme } from 'styles/Theme';
-import { createGlobalStyle } from 'styled-components';
-
-
+import { Theme } from 'styles/Theme'
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
     * {
@@ -15,4 +13,4 @@ export const GlobalStyles = createGlobalStyle`
         font-family: Roboto, sans-serif;
         font-size: ${Theme.fonts.normal}
     }
-`;
+`
