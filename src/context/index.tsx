@@ -1,25 +1,22 @@
 import { useViewport } from 'hooks/useViewport'
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode } from 'react'
 
 export const Context = createContext({
+  browserWidth: 0,
   isMobile: false,
-  isMobileSearchbarToggled: false,
-  toggleMobileSearchbar: () => {
-    console.log('siema')
-  },
 })
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const isMobile = useViewport()
-  const [isMobileSearchbarToggled, setIsMobileSearchbarToggled] = useState(false)
-
-  const toggleMobileSearchbar = () => {
-    console.log(isMobileSearchbarToggled)
-    setIsMobileSearchbarToggled((prev) => !prev)
-  }
+  const browserWidth = useViewport()
+  const isMobile = browserWidth < 620
 
   return (
-    <Context.Provider value={{ isMobile, isMobileSearchbarToggled, toggleMobileSearchbar }}>
+    <Context.Provider
+      value={{
+        browserWidth,
+        isMobile,
+      }}
+    >
       {children}
     </Context.Provider>
   )
