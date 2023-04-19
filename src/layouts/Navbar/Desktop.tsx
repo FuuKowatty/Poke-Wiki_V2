@@ -1,15 +1,11 @@
-import { Searchbar } from './Searchbar';
-import { StyledLogo } from 'styles/Navbar/StyledNavbar';
-
-
+import { Searchbar } from './Searchbar'
+import { StyledLogo } from 'styles/Navbar/StyledNavbar'
 
 export function Desktop() {
-
-    return (
-      <>
-        <StyledLogo>POKEWIKI</StyledLogo>
-        <Searchbar />
-      </>
-    )
-  }
-  
+  return (
+    <>
+      <StyledLogo>POKEWIKI</StyledLogo>
+      <Searchbar />
+    </>
+  )
+}
