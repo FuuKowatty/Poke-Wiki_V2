@@ -16,6 +16,7 @@ export const StyledPromotion = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: default;
 
   @media ${device.desktop} {
     padding: ${Theme.spacing[5]} 0;
