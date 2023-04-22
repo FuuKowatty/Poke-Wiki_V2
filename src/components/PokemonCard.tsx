@@ -1,4 +1,5 @@
 import { SkeletonLoading, StyledCard, StyledCardImg } from 'styles/PokemonTypes'
+import alternativeImg from 'assets/default_image.svg'
 import { useEffect, useState } from 'react'
 
 interface PokemonSpecs {
@@ -25,7 +26,6 @@ interface PokemonSpecs {
 
 export function PokemonCard({ url }: { url: string }) {
   const [data, setData] = useState<null | PokemonSpecs>(null)
-  const alternativeImg = 'https://www.svgrepo.com/show/276264/pokeball-pokemon.svg'
 
   useEffect(() => {
     const fetchPokemonSpec = async () => {
