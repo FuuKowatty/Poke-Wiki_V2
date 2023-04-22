@@ -103,17 +103,26 @@ export const BannerDescription = styled.div`
   }
 `
 
-export const BannerButton = styled.button`
-  width: 90%;
-  cursor: pointer;
-  background: ${Theme.colors.standsOut};
+export const Button = styled.button`
   border: none;
-  padding: ${Theme.spacing[3]};
-  color: ${Theme.colors.darkBlue};
-  font-weight: bold;
-  font-size: ${Theme.fonts.normal};
+  background: ${Theme.colors.standsOut};
+  padding: ${Theme.spacing[2]};
   text-transform: uppercase;
   border-radius: ${Theme.spacing[1]};
+  cursor: pointer;
+  color: ${Theme.colors.darkBlue};
+  font-weight: bold;
+
+  &:hover {
+    background: ${Theme.colors.primary};
+    color: ${Theme.colors.darkBlue};
+  }
+`
+
+export const BannerButton = styled(Button)`
+  width: 90%;
+  padding: ${Theme.spacing[3]};
+  font-size: ${Theme.fonts.normal};
 
   @media ${device.tablet} {
     padding: ${Theme.spacing[2]};
@@ -129,111 +138,4 @@ export const BannerButton = styled.button`
   @media ${device.desktop} {
     padding: ${Theme.spacing[3]};
   }
-
-  &:hover {
-    background: ${Theme.colors.primary};
-    color: ${Theme.colors.darkBlue};
-  }
 `
-
-// export const BannerContainer = styled(Box)(({ theme }) => ({
-//     display: 'flex',
-//     justifyContent: 'center',
-//     width: '100%',
-//     background: Colors.darker_blue,
-//     [theme.breakpoints.down('sm')]: {
-//       flexDirection: 'column',
-//       alignItems: 'center',
-//     },
-//   }));
-
-//   export const BannerContent = styled(Box)(({ theme }) => ({
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//     alignItems: 'left',
-//     maxWidth: 420,
-//     padding: '0 30px',
-//     gap: '20px',
-//     [theme.breakpoints.down('md')]: {
-//       padding: '15px 0',
-//       alignItems: 'center',
-//     },
-//     [theme.breakpoints.down('sm')]: {
-//       padding: '15px 0',
-//       maxWidth: 250,
-//       alignItems: 'center',
-//       gap: '10px',
-//     },
-//   }));
-
-//   export const BannerImage = styled('img')(({ src, theme }) => ({
-//     src: `url(${src})`,
-//     width: '600px',
-//     [theme.breakpoints.down('lg')]: {
-//       width: '450px',
-//     },
-//     [theme.breakpoints.down('md')]: {
-//       width: '350px',
-//     },
-//     [theme.breakpoints.down('sm')]: {
-//       padding: '10px',
-//     },
-//   }));
-
-//   export const BannerTitle = styled(Typography)(({ theme }) => ({
-//     '&::before': {
-//       content: '"THE WIKIPEDIA OF"',
-//       fontSize: 24,
-//       color: Colors.standsOut,
-//       fontWeight: 'bold',
-//       display: 'block',
-//       postion: 'absolute',
-//       height: '.5rem',
-//       [theme.breakpoints.down('lg')]: {
-//         fontSize: '16px',
-//       },
-//     },
-//     textAlign: 'left',
-//     fontWeight: 'bold',
-//     lineHeight: 1.25,
-//     fontFamily: 'Golos Text',
-//     [theme.breakpoints.down('lg')]: {
-//       fontSize: 56,
-//     },
-//     [theme.breakpoints.down('md')]: {
-//       fontSize: 42,
-//     },
-//   }));
-
-//   export const BannerDescription = styled(Typography)(({ theme }) => ({
-//     lineHeight: 1.25,
-//     letterSpacing: 1.25,
-//     [theme.breakpoints.down('md')]: {
-//       lineHeight: 1.15,
-//       letterSpacing: 1.15,
-//       padding: '0 20px',
-//       textAlign: 'left',
-//     },
-//     [theme.breakpoints.down('sm')]: {
-//       padding: '15px 0',
-//     },
-//   }));
-
-//   export const BannerShopButton = styled(Button)(({ theme }) => ({
-//     background: Colors.body_bg,
-//     '&:hover': {
-//       background: Colors.primary,
-//       color: darken(0.1, Colors.dark_blue),
-//     },
-//     width: '100%',
-//     padding: '20px 0px',
-//     color: Colors.primary,
-//     fontWeight: 'bold',
-//     fontSize: 16,
-//     [theme.breakpoints.down('md')]: {
-//       maxWidth: '250px',
-//       padding: '15px 0px',
-//       fontSize: 14,
-//     },
-//   }));
