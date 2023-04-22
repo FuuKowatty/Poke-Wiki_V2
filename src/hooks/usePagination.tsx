@@ -1,10 +1,23 @@
 import { useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-interface paginationArgs {
+interface PaginationArgs {
   totalCount: number
   pageSize: number
   siblingCount: number
   currentPage: number
+}
+
+interface paginationElement {
+  pageNumber: number | string
+  id: string
+}
+
+interface PaginationObject {
+  paginationRange: Array<paginationElement>
+  onPageChange: (number: number) => void
+  onNext: () => void
+  onPrevious: () => void
 }
 
 export const DOTS = '...'
@@ -14,14 +27,18 @@ const range = (start: number, end: number) => {
   return Array.from({ length }, (_, idx) => idx + start)
 }
 
+const generateUniqueId = (): string => {
+  return crypto.randomUUID()
+}
+
 export const usePagination = ({
   totalCount,
   pageSize,
   siblingCount = 1,
   currentPage,
-}: paginationArgs) => {
-  const paginationRange: (string | number)[] = useMemo(() => {
-    const totalPageCount = Math.ceil(totalCount / pageSize)
+}: PaginationArgs): PaginationObject => {
+  const paginationRange: Array<paginationElement> = useMemo(() => {
+    const lastPageIndex = Math.ceil(totalCount / pageSize)
 
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     const totalPageNumbers = siblingCount + 5
@@ -30,12 +47,12 @@ export const usePagination = ({
       If the number of pages is less than the page numbers we want to show in our
       paginationComponent, we return the range [1..totalPageCount]
     */
-    if (totalPageNumbers >= totalPageCount) {
-      return range(1, totalPageCount)
+    if (totalPageNumbers >= lastPageIndex) {
+      return range(1, lastPageIndex).map((pageNumber) => ({ pageNumber, id: generateUniqueId() }))
     }
 
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
-    const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPageCount)
+    const rightSiblingIndex = Math.min(currentPage + siblingCount, lastPageIndex)
 
     /*
       We do not want to show dots if there is only one position left 
@@ -43,31 +60,76 @@ export const usePagination = ({
       component size which we do not want
     */
     const shouldShowLeftDots = leftSiblingIndex > 2
-    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2
+    const shouldShowRightDots = rightSiblingIndex < lastPageIndex - 2
 
     const firstPageIndex = 1
-    const lastPageIndex = totalPageCount
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
       const leftItemCount = 3 + 2 * siblingCount
-      const leftRange = range(1, leftItemCount)
+      const leftRange = range(1, leftItemCount).map((pageNumber) => ({
+        pageNumber,
+        id: generateUniqueId(),
+      }))
 
-      return [...leftRange, DOTS, totalPageCount]
+      return [
+        ...leftRange,
+        { pageNumber: DOTS, id: generateUniqueId() },
+        { pageNumber: lastPageIndex, id: generateUniqueId() },
+      ]
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
       const rightItemCount = 3 + 2 * siblingCount
-      const rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount)
-      return [firstPageIndex, DOTS, ...rightRange]
+      const rightRange = range(lastPageIndex - rightItemCount + 1, lastPageIndex).map(
+        (pageNumber) => ({ pageNumber, id: generateUniqueId() }),
+      )
+      return [
+        { pageNumber: firstPageIndex, id: generateUniqueId() },
+        { pageNumber: DOTS, id: generateUniqueId() },
+        ...rightRange,
+      ]
     }
 
     if (shouldShowLeftDots && shouldShowRightDots) {
-      const middleRange = range(leftSiblingIndex, rightSiblingIndex)
-      return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex]
+      const middleRange = range(leftSiblingIndex, rightSiblingIndex).map((pageNumber) => ({
+        pageNumber,
+        id: generateUniqueId(),
+      }))
+      return [
+        { pageNumber: firstPageIndex, id: generateUniqueId() },
+        { pageNumber: DOTS, id: generateUniqueId() },
+        ...middleRange,
+        { pageNumber: DOTS, id: generateUniqueId() },
+        { pageNumber: lastPageIndex, id: generateUniqueId() },
+      ]
     }
 
     return []
   }, [totalCount, pageSize, siblingCount, currentPage])
 
-  return paginationRange
+  const navigate = useNavigate()
+
+  const changePage = (number: number) => {
+    navigate(`/types?page=${number}`)
+  }
+
+  const onPageChange = (number: number) => {
+    if (number < 1 || number > Math.ceil(totalCount / pageSize)) return
+    changePage(number)
+  }
+
+  const onNext = () => {
+    onPageChange(currentPage + 1)
+  }
+
+  const onPrevious = () => {
+    onPageChange(currentPage - 1)
+  }
+
+  return {
+    paginationRange,
+    onPageChange,
+    onNext,
+    onPrevious,
+  }
 }

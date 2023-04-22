@@ -13,13 +13,12 @@ interface Pagination {
   contentPerPage: number
   count: number
   currentPage: number
-  onPageChange: (numb: number) => void
 }
 
-export function Pagination({ contentPerPage, count, currentPage, onPageChange }: Pagination) {
+export function Pagination({ contentPerPage, count, currentPage }: Pagination) {
   const { isMobile } = useAppContext()
 
-  const paginationRange = usePagination({
+  const { paginationRange, onPageChange, onNext, onPrevious } = usePagination({
     currentPage: currentPage,
     totalCount: count,
     siblingCount: isMobile ? 0 : 2,
@@ -30,48 +29,44 @@ export function Pagination({ contentPerPage, count, currentPage, onPageChange }:
     return null
   }
 
-  const onNext = () => {
-    onPageChange(currentPage + 1)
-  }
-
-  const onPrevious = () => {
-    onPageChange(currentPage - 1)
-  }
-
   return (
     <StyledPagination>
       <StyledListItem>
-        <PaginationButtonNumber onClick={() => onPrevious()}>
+        <PaginationButtonNumber
+          disabled={currentPage === 1 ? true : false}
+          onClick={() => onPrevious()}
+        >
           <MdArrowBack />
         </PaginationButtonNumber>
       </StyledListItem>
       {paginationRange.map((pageNumber) => {
-        if (pageNumber === DOTS && typeof pageNumber === 'string') {
+        if (pageNumber.pageNumber === DOTS && typeof pageNumber.pageNumber === 'string') {
           return (
-            <StyledListItem key={pageNumber}>
-              <PaginationButton>&#8230;</PaginationButton>
+            <StyledListItem key={pageNumber.id}>
+              <PaginationButton disabled>&#8230;</PaginationButton>
             </StyledListItem>
           )
         } else {
           return (
-            <>
-              {pageNumber === currentPage ? (
-                <StyledListItem key={pageNumber}>
-                  <PaginationButtonActive>{pageNumber}</PaginationButtonActive>
-                </StyledListItem>
+            <StyledListItem key={pageNumber.id}>
+              {pageNumber.pageNumber === currentPage ? (
+                <PaginationButtonActive>{pageNumber.pageNumber}</PaginationButtonActive>
               ) : (
-                <StyledListItem key={pageNumber}>
-                  <PaginationButtonNumber onClick={() => onPageChange(pageNumber as number)}>
-                    {pageNumber}
-                  </PaginationButtonNumber>
-                </StyledListItem>
+                <PaginationButtonNumber
+                  onClick={() => onPageChange(pageNumber.pageNumber as number)}
+                >
+                  {pageNumber.pageNumber}
+                </PaginationButtonNumber>
               )}
-            </>
+            </StyledListItem>
           )
         }
       })}
       <StyledListItem>
-        <PaginationButtonNumber onClick={() => onNext()}>
+        <PaginationButtonNumber
+          disabled={currentPage === 65 ? true : false}
+          onClick={() => onNext()}
+        >
           <MdArrowForward />
         </PaginationButtonNumber>
       </StyledListItem>
