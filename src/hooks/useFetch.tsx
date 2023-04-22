@@ -2,7 +2,6 @@ import { LRUCache } from 'lru-cache'
 import { useState, useEffect, useCallback } from 'react'
 
 interface FetchState<TData> {
-  status: 'idle' | 'pending' | 'success' | 'error'
   data?: TData
   error?: Error
   isLoading: boolean
@@ -10,7 +9,6 @@ interface FetchState<TData> {
 
 export function useFetch<TData extends object = object>(url: string): FetchState<TData> {
   const [state, setState] = useState<FetchState<TData>>({
-    status: 'idle',
     data: undefined,
     error: undefined,
     isLoading: false,
@@ -22,17 +20,17 @@ export function useFetch<TData extends object = object>(url: string): FetchState
   })
 
   const cacheKey = url
-  const { status, data, error, isLoading } = state
+  const { data, error, isLoading } = state
 
   const execute = useCallback(async () => {
     const cachedResult = cache.get(cacheKey)
 
     if (cachedResult) {
-      setState({ status: 'success', data: cachedResult, error: undefined, isLoading: false })
+      setState({ data: cachedResult, error: undefined, isLoading: false })
       return
     }
 
-    setState({ status: 'pending', data: undefined, error: undefined, isLoading: true })
+    setState({ data: undefined, error: undefined, isLoading: true })
 
     try {
       const response = await fetch(url)
@@ -45,10 +43,9 @@ export function useFetch<TData extends object = object>(url: string): FetchState
 
       // caching data
       cache.set(cacheKey, data)
-      setState({ status: 'success', data, error: undefined, isLoading: false })
+      setState({ data, error: undefined, isLoading: false })
     } catch (error) {
       setState({
-        status: 'error',
         data: undefined,
         error: error instanceof Error ? error : new Error(String(error)),
         isLoading: false,
@@ -60,5 +57,5 @@ export function useFetch<TData extends object = object>(url: string): FetchState
     execute()
   }, [execute])
 
-  return { status, data, error, isLoading }
+  return { data, error, isLoading }
 }
