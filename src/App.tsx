@@ -3,7 +3,7 @@ import { Container } from 'styles/StyledContainer'
 import { GlobalStyles } from 'styles/Global'
 import { Navbar } from 'layouts/Navbar'
 import { AppProvider } from 'context'
-import { PokemonTypes } from 'pages/PokemonTypes'
+import { PokemonList } from 'pages/PokemonList'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export function App() {
@@ -15,7 +15,7 @@ export function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/types' element={<PokemonTypes />} />
+            <Route path='/pokemons' element={<PokemonList />} />
           </Routes>
         </Container>
       </AppProvider>
