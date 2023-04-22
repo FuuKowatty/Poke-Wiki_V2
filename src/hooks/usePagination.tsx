@@ -110,7 +110,7 @@ export const usePagination = ({
   const navigate = useNavigate()
 
   const changePage = (number: number) => {
-    navigate(`/types?page=${number}`)
+    navigate(`/pokemons?page=${number}`)
   }
 
   const onPageChange = (number: number) => {
