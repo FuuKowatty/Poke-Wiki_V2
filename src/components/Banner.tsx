@@ -30,7 +30,7 @@ export function Banner() {
           pokemons, their specific info or some fun fact.
         </BannerDescription>
 
-        <BannerButton onClick={() => navigate('/types')}>Get Started</BannerButton>
+        <BannerButton onClick={() => navigate('/pokemons')}>Get Started</BannerButton>
       </BannerContent>
     </BannerContainer>
   )
