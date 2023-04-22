@@ -1,12 +1,15 @@
 import { Theme } from 'styles/Theme'
 import { device } from 'styles/Breakpoints'
 import { IconButton } from 'styles/StyledContainer'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const StyledPokemonTypes = styled.div`
   display: grid;
+  min-height: 100vh;
   grid-template-columns: repeat(1, auto);
-  width: 100%;
+  padding: ${Theme.spacing[3]};
+  position: relative;
+  gap: ${Theme.spacing[3]};
 
   @media ${device.desktop} {
     grid-template-columns: repeat(4, auto);
@@ -14,13 +17,35 @@ export const StyledPokemonTypes = styled.div`
 `
 export const StyledCard = styled.div`
   height: 400px;
+  width: 335px;
   background: ${Theme.colors.bannerColor};
-  padding: 0 50px;
+  display: flex;
+  align-items: center;
 `
 
 export const StyledCardImg = styled.img`
   width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  padding: ${Theme.spacing[5]};
+  box-sizing: border-box;
+`
+
+const shimmer = keyframes`
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+`
+
+export const SkeletonLoading = styled.div`
+  width: 100%;
   height: 100%;
+  background-image: linear-gradient(45deg, #003367, #123049);
+  background-size: 400% 400%;
+  animation: ${shimmer} 1s ease-out forwards infinite;
 `
 
 export const StyledPagination = styled.ul`
@@ -48,6 +73,7 @@ export const PaginationButtonNumber = styled(PaginationButton)`
   border: 1px solid ${Theme.colors.secondary};
   border-radius: ${Theme.spacing[1]};
   cursor: pointer;
+  display: ${({ disabled }) => (disabled ? 'none' : 'block')};
 
   &:hover {
     background: ${Theme.colors.standsOut};
