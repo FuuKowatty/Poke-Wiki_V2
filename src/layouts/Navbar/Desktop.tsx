@@ -1,11 +1,9 @@
-import { Searchbar } from './Searchbar'
-import { StyledLogo } from 'styles/Navbar/StyledNavbar'
+import { LogoTypography } from './Navbar.styled'
 
 export function Desktop() {
   return (
     <>
-      <StyledLogo>POKEWIKI</StyledLogo>
-      <Searchbar />
+      <LogoTypography>POKEWIKI</LogoTypography>
     </>
   )
 }
