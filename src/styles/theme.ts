@@ -1,4 +1,4 @@
-export const Theme = {
+export const theme = {
   colors: {
     primary: '#EEEEEE',
     secondary: '#393E46',
@@ -8,19 +8,21 @@ export const Theme = {
     standsOut: '#FAD61D',
     bannerColor: 'linear-gradient(45deg, #003367, #123049)',
   },
-  fonts: {
-    headerPlus: '3.5em',
-    headerOne: '2.6em',
-    headerTwo: '2em',
-    headerThree: '1.5em',
-    headerFour: '1.25em',
-    normal: '1em',
+  size: {
+    '4xl': '3.5em',
+    '3xl': '2.6em',
+    '2xl': '2em',
+    xl: '1.5em',
+    lg: '1.25em',
+    md: '1em',
+    sm: '0.875em',
+    xs: '0.75em',
   },
   spacing: {
-    5: '3em',
-    4: '2em',
-    3: '1.25em',
-    2: '0.75em',
-    1: '0.25em',
+    '5': '3em',
+    '4': '2em',
+    '3': '1.25em',
+    '2': '0.75em',
+    '1': '0.25em',
   },
 }
