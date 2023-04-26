@@ -1,135 +1,133 @@
-import { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useCallback, useMemo, useState } from 'react'
 
-interface PaginationArgs {
-  totalCount: number
+const DOTS = '...'
+
+interface UsePaginationParams<T> {
+  data: T[]
   pageSize: number
-  siblingCount: number
-  currentPage: number
+  siblingCount?: number
 }
 
-interface paginationElement {
-  pageNumber: number | string
+interface PaginationRangeItem {
   id: string
+  pageNumber: number | string
 }
 
-interface PaginationObject {
-  paginationRange: Array<paginationElement>
-  onPageChange: (number: number) => void
+interface UsePaginationReturn<T> {
+  paginationRange: PaginationRangeItem[]
+  currentPage: number
+  currentData: T[]
+  onPageChange: (pageNumber: number) => void
   onNext: () => void
   onPrevious: () => void
+  totalPageCount: number
 }
 
-export const DOTS = '...'
+function generateUniqueId(): string {
+  const uniqueId = Math.random().toString(36).substring(2)
+  return uniqueId
+}
 
-const range = (start: number, end: number) => {
+const range = (start: number, end: number): number[] => {
   const length = end - start + 1
   return Array.from({ length }, (_, idx) => idx + start)
 }
 
-const generateUniqueId = (): string => {
-  return crypto.randomUUID()
-}
-
-export const usePagination = ({
-  totalCount,
+export function usePagination<T>({
+  data,
   pageSize,
   siblingCount = 1,
-  currentPage,
-}: PaginationArgs): PaginationObject => {
-  const paginationRange: Array<paginationElement> = useMemo(() => {
-    const lastPageIndex = Math.ceil(totalCount / pageSize)
+}: UsePaginationParams<T>): UsePaginationReturn<T> {
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPageCount = Math.ceil(data.length / pageSize)
 
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
+  const paginationRange = useMemo(() => {
+    
+
     const totalPageNumbers = siblingCount + 5
 
-    /*
-      If the number of pages is less than the page numbers we want to show in our
-      paginationComponent, we return the range [1..totalPageCount]
-    */
-    if (totalPageNumbers >= lastPageIndex) {
-      return range(1, lastPageIndex).map((pageNumber) => ({ pageNumber, id: generateUniqueId() }))
+    if (totalPageNumbers >= totalPageCount) {
+      return range(1, totalPageCount).map((pageNumber) => ({
+        id: generateUniqueId(),
+        pageNumber,
+      }))
     }
 
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
-    const rightSiblingIndex = Math.min(currentPage + siblingCount, lastPageIndex)
+    const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPageCount)
 
-    /*
-      We do not want to show dots if there is only one position left 
-      after/before the left/right page count as that would lead to a change if our Pagination
-      component size which we do not want
-    */
     const shouldShowLeftDots = leftSiblingIndex > 2
-    const shouldShowRightDots = rightSiblingIndex < lastPageIndex - 2
+    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2
 
     const firstPageIndex = 1
+    const lastPageIndex = totalPageCount
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
       const leftItemCount = 3 + 2 * siblingCount
       const leftRange = range(1, leftItemCount).map((pageNumber) => ({
-        pageNumber,
         id: generateUniqueId(),
+        pageNumber,
       }))
 
       return [
         ...leftRange,
-        { pageNumber: DOTS, id: generateUniqueId() },
-        { pageNumber: lastPageIndex, id: generateUniqueId() },
+        { id: generateUniqueId(), pageNumber: DOTS },
+        { id: generateUniqueId(), pageNumber: totalPageCount },
       ]
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
       const rightItemCount = 3 + 2 * siblingCount
-      const rightRange = range(lastPageIndex - rightItemCount + 1, lastPageIndex).map(
-        (pageNumber) => ({ pageNumber, id: generateUniqueId() }),
+      const rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount).map(
+        (pageNumber) => ({
+          id: generateUniqueId(),
+          pageNumber,
+        }),
       )
+
       return [
-        { pageNumber: firstPageIndex, id: generateUniqueId() },
-        { pageNumber: DOTS, id: generateUniqueId() },
+        { id: generateUniqueId(), pageNumber: firstPageIndex },
+        { id: generateUniqueId(), pageNumber: DOTS },
         ...rightRange,
       ]
     }
 
     if (shouldShowLeftDots && shouldShowRightDots) {
       const middleRange = range(leftSiblingIndex, rightSiblingIndex).map((pageNumber) => ({
-        pageNumber,
         id: generateUniqueId(),
+        pageNumber,
       }))
+
       return [
-        { pageNumber: firstPageIndex, id: generateUniqueId() },
-        { pageNumber: DOTS, id: generateUniqueId() },
+        { id: generateUniqueId(), pageNumber: firstPageIndex },
+        { id: generateUniqueId(), pageNumber: DOTS },
         ...middleRange,
-        { pageNumber: DOTS, id: generateUniqueId() },
-        { pageNumber: lastPageIndex, id: generateUniqueId() },
+        { id: generateUniqueId(), pageNumber: DOTS },
+        { id: generateUniqueId(), pageNumber: lastPageIndex },
       ]
     }
 
     return []
-  }, [totalCount, pageSize, siblingCount, currentPage])
+  }, [data.length, pageSize, siblingCount, currentPage])
 
-  const navigate = useNavigate()
+  const currentData = useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSize
+    const endIndex = startIndex + pageSize
 
-  const changePage = (number: number) => {
-    navigate(`/pokemons?page=${number}`)
-  }
+    return data.slice(startIndex, endIndex)
+  }, [currentPage, data, pageSize])
 
-  const onPageChange = (number: number) => {
-    if (number < 1 || number > Math.ceil(totalCount / pageSize)) return
-    changePage(number)
-  }
+  const onPageChange = useCallback((pageNumber: number) => {
+    setCurrentPage(pageNumber)
+  }, [])
 
-  const onNext = () => {
-    onPageChange(currentPage + 1)
-  }
+  const onNext = useCallback(() => {
+    setCurrentPage((prevPage) => prevPage + 1)
+  }, [])
 
-  const onPrevious = () => {
-    onPageChange(currentPage - 1)
-  }
+  const onPrevious = useCallback(() => {
+    setCurrentPage((prevPage) => prevPage - 1)
+  }, [])
 
-  return {
-    paginationRange,
-    onPageChange,
-    onNext,
-    onPrevious,
-  }
+  return { paginationRange, currentPage, currentData, onPageChange, onNext, onPrevious, totalPageCount }
 }
