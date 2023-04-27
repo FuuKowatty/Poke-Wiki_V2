@@ -5,9 +5,8 @@ import styled from 'styled-components'
 export const SearchbarForm = styled.form`
   position: relative;
   display: flex;
-  min-width: 275px;
+  min-width: 280px;
   gap: ${theme.spacing[1]};
-  max-width: 320px;
   height: 35px;
 `
 
