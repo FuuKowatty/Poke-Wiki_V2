@@ -26,7 +26,7 @@ export function Pagination({
   onPageChange,
   onNext,
   onPrevious,
-  totalPageCount
+  totalPageCount,
 }: PaginationProps) {
   return (
     <PaginationContainer>

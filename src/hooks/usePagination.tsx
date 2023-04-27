@@ -1,3 +1,4 @@
+import { useAppContext } from './useAppContext'
 import { useCallback, useMemo, useState } from 'react'
 
 const DOTS = '...'
@@ -5,7 +6,6 @@ const DOTS = '...'
 interface UsePaginationParams<T> {
   data: T[]
   pageSize: number
-  siblingCount?: number
 }
 
 interface PaginationRangeItem {
@@ -36,14 +36,13 @@ const range = (start: number, end: number): number[] => {
 export function usePagination<T>({
   data,
   pageSize,
-  siblingCount = 1,
 }: UsePaginationParams<T>): UsePaginationReturn<T> {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPageCount = Math.ceil(data.length / pageSize)
+  const { isMobile } = useAppContext()
+  const siblingCount = isMobile ? 0 : 2
 
   const paginationRange = useMemo(() => {
-    
-
     const totalPageNumbers = siblingCount + 5
 
     if (totalPageNumbers >= totalPageCount) {
@@ -129,5 +128,13 @@ export function usePagination<T>({
     setCurrentPage((prevPage) => prevPage - 1)
   }, [])
 
-  return { paginationRange, currentPage, currentData, onPageChange, onNext, onPrevious, totalPageCount }
+  return {
+    paginationRange,
+    currentPage,
+    currentData,
+    onPageChange,
+    onNext,
+    onPrevious,
+    totalPageCount,
+  }
 }
