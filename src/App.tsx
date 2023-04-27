@@ -7,6 +7,7 @@ import { PokemonType } from 'pages/PokemonType/PokemonType'
 import { PokemonList } from 'pages/PokemonList/PokemonList'
 import { FetchError } from 'components/common/FetchErrors/FetchError'
 import { PokemonSearch } from 'pages/PokemonSearch/PokemonSearch'
+import { PokemonBerries } from 'pages/PokemonBerries/PokemonBerries'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export function App() {
@@ -18,9 +19,12 @@ export function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/pokemons/all' element={<PokemonList />} />
-            <Route path='/pokemons/search' element={<PokemonSearch />} />
-            <Route path='/pokemons/type/:typeName' element={<PokemonType />} />
+            <Route path='pokemons'>
+              <Route path='type/:typeName' element={<PokemonType />} />
+              <Route path='all' element={<PokemonList />} />
+              <Route path='search' element={<PokemonSearch />} />
+            </Route>
+            <Route path='berries' element={<PokemonBerries />} />
             <Route path='*' element={<FetchError />} />
           </Routes>
         </Container>
