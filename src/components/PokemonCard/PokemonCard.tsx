@@ -26,9 +26,11 @@ interface PokemonSpecs {
 
 export function PokemonCard({ name }: { name: string }) {
   const [data, setData] = useState<null | PokemonSpecs>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchPokemonSpec = async () => {
+      setIsLoading(true)
       try {
         const PokemonSpec = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
         const PokemonSpecJson = await PokemonSpec.json()
@@ -41,17 +43,33 @@ export function PokemonCard({ name }: { name: string }) {
     fetchPokemonSpec()
   }, [])
 
+  const handleImageLoad = () =>  {
+    setIsLoading(false)
+  }
+
+  const setAlternativeImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.currentTarget;
+    img.src = alternativeImg;
+  }
+
   const checkImage = () => {
-    if (data?.sprites.other.dream_world.front_default) {
-      return data.sprites.other.dream_world.front_default
-    } else {
+    if(data?.sprites.other.dream_world.front_default === null) {
       return alternativeImg
+    } else {
+      return data?.sprites.other.dream_world.front_default
     }
   }
 
   return (
     <PokemonCardContainer>
-      {data ? <PokemonCardImage src={checkImage()} alt={data.name} loading='lazy'/> : <SkeletonLoading />}
+      {isLoading && <SkeletonLoading />}
+      <PokemonCardImage
+        src={checkImage()}
+        alt={name}
+        onLoad={handleImageLoad}
+        onError={setAlternativeImg}
+        style={{ display: isLoading ? 'none' : 'block' }}
+      />
     </PokemonCardContainer>
   )
 }
