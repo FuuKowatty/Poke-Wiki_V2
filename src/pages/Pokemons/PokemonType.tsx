@@ -48,7 +48,11 @@ export function PokemonType() {
   }
 
   return (
-    <PokemonBuildPage state={state} pagination={pagination} isPaginationVisible={isPaginationVisible}>
+    <PokemonBuildPage
+      state={state}
+      pagination={pagination}
+      isPaginationVisible={isPaginationVisible}
+    >
       {data &&
         currentData.map((dataElement) => {
           return <PokemonCard key={dataElement.pokemon.name} name={dataElement.pokemon.name} />

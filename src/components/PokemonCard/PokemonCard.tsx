@@ -43,17 +43,17 @@ export function PokemonCard({ name }: { name: string }) {
     fetchPokemonSpec()
   }, [])
 
-  const handleImageLoad = () =>  {
+  const handleImageLoad = () => {
     setIsLoading(false)
   }
 
   const setAlternativeImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const img = e.currentTarget;
-    img.src = alternativeImg;
+    const img = e.currentTarget
+    img.src = alternativeImg
   }
 
   const checkImage = () => {
-    if(data?.sprites.other.dream_world.front_default === null) {
+    if (data?.sprites.other.dream_world.front_default === null) {
       return alternativeImg
     } else {
       return data?.sprites.other.dream_world.front_default

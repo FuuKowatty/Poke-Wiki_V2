@@ -73,7 +73,7 @@ export function BerryCard({ url }: { url: string }) {
 
   useEffect(() => {
     const fetchBerrySpec = async () => {
-        setIsLoading(true)
+      setIsLoading(true)
       try {
         const BerriesSpecs = await fetch(url)
         const BerriesSpecsJson = await BerriesSpecs.json()
@@ -102,18 +102,17 @@ export function BerryCard({ url }: { url: string }) {
     }
   }, [dataSpec])
 
-
-  const handleImageLoad = () =>  {
+  const handleImageLoad = () => {
     setIsLoading(false)
   }
 
   const setAlternativeImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const img = e.currentTarget;
-    img.src = alternativeImg;
+    const img = e.currentTarget
+    img.src = alternativeImg
   }
 
   const checkImage = () => {
-    if(dataItemSpec?.sprites.default === null) {
+    if (dataItemSpec?.sprites.default === null) {
       return alternativeImg
     } else {
       return dataItemSpec?.sprites.default

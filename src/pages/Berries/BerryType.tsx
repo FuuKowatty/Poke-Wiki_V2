@@ -30,7 +30,7 @@ export function BerryType() {
     onNext,
     onPrevious,
     totalPageCount,
-  } = usePagination({ data: data.berries , pageSize: contentPerPage })
+  } = usePagination({ data: data.berries, pageSize: contentPerPage })
 
   const isPaginationVisible = data.berries.length > 20
   const state = { data, error, isLoading }
@@ -46,11 +46,11 @@ export function BerryType() {
 
   return (
     <PokemonBuildPage
-    state={state}
-    pagination={pagination}
-    isPaginationVisible={isPaginationVisible}
-    isBerryPage={true}
-  >
+      state={state}
+      pagination={pagination}
+      isPaginationVisible={isPaginationVisible}
+      isBerryPage={true}
+    >
       {data &&
         currentData.map((dataElement) => {
           return <BerryCard key={dataElement.name} url={dataElement.url} />

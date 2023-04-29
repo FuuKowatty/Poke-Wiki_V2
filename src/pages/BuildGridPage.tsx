@@ -2,9 +2,8 @@ import { Pagination } from 'components/Pagination/Pagination'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
 import { FetchError } from 'components/common/FetchErrors/FetchError'
 import { GridContainer } from 'styles/globalComponents'
-import { FiltersPokemon } from 'components/Filters/FiltersPokemons'
 import { NoDataInfo } from 'components/common/NoDataInfo/NoDataInfo'
-import { FiltersBerry } from 'components/Filters/FiltersBerry'
+import { Filters } from 'components/Filters/Filters'
 import { useEffect, useRef } from 'react'
 
 interface state {
@@ -41,7 +40,7 @@ export function PokemonBuildPage({
   state,
   pagination,
   isPaginationVisible = true,
-  isBerryPage = false
+  isBerryPage = false,
 }: PokemonBuildPageProps) {
   const { isLoading, error } = state
   const {
@@ -64,7 +63,19 @@ export function PokemonBuildPage({
 
   return (
     <>
-    {isBerryPage ? <FiltersBerry /> : <FiltersPokemon />}      
+      {isBerryPage ? (
+        <Filters
+          queryRoute='/berries/search?query='
+          typeRoute='/berries'
+          apiEndpoint='https://pokeapi.co/api/v2/berry-firmness/'
+        />
+      ) : (
+        <Filters
+          queryRoute='/pokemons/search?query='
+          typeRoute='/pokemons'
+          apiEndpoint='https://pokeapi.co/api/v2/type/'
+        />
+      )}
       <GridContainer ref={gridContainerRef}>
         <LoadingState isLoading={isLoading}>{children}</LoadingState>
         {error && <FetchError />}

@@ -1,4 +1,3 @@
-
 import { useFetch } from 'hooks/useFetch'
 import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'
@@ -43,8 +42,6 @@ export function BerriesSearch() {
     onPrevious,
     totalPageCount,
   } = usePagination({ data: filteredData || [], pageSize: contentPerPage })
-
-  
 
   const state = { data, error, isLoading }
   const pagination = {
