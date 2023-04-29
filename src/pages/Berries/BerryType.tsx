@@ -1,7 +1,7 @@
 import { useFetch } from 'hooks/useFetch'
 import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'
-import { PokemonBuildPage } from 'pages/PokemonBuildPage'
+import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { BerryCard } from 'components/BerryCard/BerryCard'
 import { useParams } from 'react-router-dom'
 

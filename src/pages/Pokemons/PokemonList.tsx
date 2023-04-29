@@ -1,4 +1,4 @@
-import { PokemonBuildPage } from 'pages/PokemonBuildPage'
+import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { useFetch } from 'hooks/useFetch'
 import { usePagination } from 'hooks/usePagination'
 import { PokemonCard } from 'components/PokemonCard/PokemonCard'

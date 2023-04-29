@@ -2,7 +2,7 @@ import { PokemonCard } from 'components/PokemonCard/PokemonCard'
 import { useFetch } from 'hooks/useFetch'
 import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'
-import { PokemonBuildPage } from 'pages/PokemonBuildPage'
+import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { useLocation } from 'react-router-dom'
 
 interface Pokemon {
