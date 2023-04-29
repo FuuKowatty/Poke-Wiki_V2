@@ -13,7 +13,7 @@ interface PokemonType {
   results: Array<pokemonType>
 }
 
-export function Filters() {
+export function FiltersPokemon() {
   const [query, setQuery] = useState('')
   const [types, setTypes] = useState<null | PokemonType>(null)
   const [selectedType] = useState('')

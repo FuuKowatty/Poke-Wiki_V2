@@ -1,5 +1,5 @@
 import { ArrowIcon, SelectInputContainer, SelectInputStyled } from './SelectInput.styled'
-import { pokemonType } from '../Filters'
+import { pokemonType } from '../FiltersPokemons'
 
 interface SelectInputProps {
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
