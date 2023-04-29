@@ -3,7 +3,7 @@ import {
   PokemonCardContainer,
   PokemonCardImage,
   SkeletonLoading,
-} from 'components/PokemonCard/PokemonCard.styled'
+} from 'components/Card/Card.styled'
 import { useEffect, useState } from 'react'
 
 interface flavor {
@@ -127,7 +127,7 @@ export function BerryCard({ url }: { url: string }) {
         alt={dataItemSpec?.name}
         onLoad={handleImageLoad}
         onError={setAlternativeImg}
-        style={{ display: isLoading ? 'none' : 'block' }}
+        style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
     </PokemonCardContainer>
   )

@@ -1,4 +1,4 @@
-import { PokemonCard } from 'components/PokemonCard/PokemonCard'
+import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { useFetch } from 'hooks/useFetch'
 import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'

@@ -1,4 +1,4 @@
-import { SkeletonLoading, PokemonCardContainer, PokemonCardImage } from './PokemonCard.styled'
+import { SkeletonLoading, PokemonCardContainer, PokemonCardImage } from '../Card.styled'
 import alternativeImg from 'assets/default_image.svg'
 import { useEffect, useState } from 'react'
 
@@ -68,7 +68,7 @@ export function PokemonCard({ name }: { name: string }) {
         alt={name}
         onLoad={handleImageLoad}
         onError={setAlternativeImg}
-        style={{ display: isLoading ? 'none' : 'block' }}
+        style={{ display: isLoading || !data ? 'none' : 'block' }}
       />
     </PokemonCardContainer>
   )

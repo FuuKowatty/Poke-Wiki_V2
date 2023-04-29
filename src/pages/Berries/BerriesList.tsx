@@ -2,7 +2,7 @@ import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { useFetch } from 'hooks/useFetch'
 import { usePagination } from 'hooks/usePagination'
 import { useAppContext } from 'hooks/useAppContext'
-import { BerryCard } from 'components/BerryCard/BerryCard'
+import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 
 interface Pokemon {
   name: string
