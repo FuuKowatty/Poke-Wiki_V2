@@ -1,49 +1,40 @@
-import { theme } from 'styles/theme'
-import {AiFillHome} from 'react-icons/ai'
-import {MdCatchingPokemon, MdFavorite} from 'react-icons/md'
-import {GiStrawberry} from 'react-icons/gi'
-import styled from 'styled-components'
+import { MobileMenuContainer, MobileMenuIconContainer, StyledLink } from './Navbar.styled'
+import { AiFillHome } from 'react-icons/ai'
+import { MdCatchingPokemon, MdFavorite } from 'react-icons/md'
+import { GiStrawberry } from 'react-icons/gi'
+import { useLocation } from 'react-router-dom'
 
 export function MobileMenu() {
+  const pathname = useLocation().pathname
+  const isPokemonActive = pathname.startsWith('/pokemons')
+  const isBerryActive = pathname.startsWith('/berries')
+
   return (
     <MobileMenuContainer>
-        <MobileMenuIconContainer>
-            <AiFillHome/>
+      <StyledLink to="/">
+        <MobileMenuIconContainer isActive={pathname === '/'}>
+          <AiFillHome />
         </MobileMenuIconContainer>
-        <MobileMenuIconContainer>
-            <MdCatchingPokemon/>
+      </StyledLink>
+      <StyledLink
+        to="/pokemons/all"
+      >
+        <MobileMenuIconContainer isActive={isPokemonActive}>
+          <MdCatchingPokemon />
         </MobileMenuIconContainer>
-        <MobileMenuIconContainer>
-            <GiStrawberry/>
-        </MobileMenuIconContainer>  
-        <MobileMenuIconContainer>
-            <MdFavorite/>
+      </StyledLink>
+      <StyledLink to="/berries/all">
+        <MobileMenuIconContainer isActive={isBerryActive}>
+          <GiStrawberry />
         </MobileMenuIconContainer>
+      </StyledLink>
+      <StyledLink to="/favorites">
+        <MobileMenuIconContainer isActive={pathname === '/favorites'}>
+          <MdFavorite />
+        </MobileMenuIconContainer>
+      </StyledLink>
     </MobileMenuContainer>
   )
 }
 
 
-const MobileMenuContainer = styled.div`
-    border-top: 1px solid ${theme.colors['darkerBlue']};
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: ${theme.spacing['4']};
-    background-color: ${theme.colors['bodyBg']};
-    justify-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    font-size: ${theme.size['xl']};
-    z-index: 999;
-`
-
-const MobileMenuIconContainer = styled.span`
-    width: 100%; 
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-`
