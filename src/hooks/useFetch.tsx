@@ -32,8 +32,10 @@ export function useFetch<TData extends object = object>(url: string): FetchState
 
     setState({ data: undefined, error: undefined, isLoading: true })
 
+    const controller = new AbortController()
+
     try {
-      const response = await fetch(url)
+      const response = await fetch(url, { signal: controller.signal })
 
       if (!response.ok) {
         throw new Error(response.statusText)
@@ -51,6 +53,8 @@ export function useFetch<TData extends object = object>(url: string): FetchState
         isLoading: false,
       })
     }
+
+    return controller.abort()
   }, [url, cacheKey])
 
   useEffect(() => {
