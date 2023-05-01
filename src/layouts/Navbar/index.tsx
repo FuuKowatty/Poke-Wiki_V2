@@ -1,10 +1,12 @@
-import { Desktop } from './Desktop'
-import { Mobile } from './Mobile'
-import { NavbarContainer } from './Navbar.styled'
-import { useAppContext } from 'hooks/useAppContext'
+import { MobileMenu } from './MobileMenu'
+import { NavbarContainer, LogoTypography } from './Navbar.styled'
 
 export function Navbar() {
-  const { isMobile } = useAppContext()
 
-  return <NavbarContainer>{isMobile ? <Mobile /> : <Desktop />}</NavbarContainer>
+  return (
+    <NavbarContainer>
+     <LogoTypography>POKEWIKI</LogoTypography>
+     <MobileMenu />
+    </NavbarContainer>
+    )
 }
