@@ -8,7 +8,7 @@ export const PaginationContainer = styled.ul`
   align-items: center;
   justify-content: center;
   list-style-type: none;
-  padding: ${theme.spacing[3]};
+  padding: ${theme.spacing[2]} 0 ${theme.spacing[5]} 0;
 `
 
 export const PaginationButton = styled(IconButton)`

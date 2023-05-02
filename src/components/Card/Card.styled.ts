@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components'
 
 export const PokemonCardContainer = styled.div`
   width: 100%;
+  position: relative;
   max-width: 320px;
   aspect-ratio: 32/38;
   background: ${theme.colors['bannerColor']};

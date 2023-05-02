@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const NavbarContainer = styled.div`
-  background: ${theme.colors['bodyBg']};
   min-height: 50px;
   display: flex;
   justify-content: center;
@@ -18,10 +17,6 @@ export const NavbarContainer = styled.div`
 
   @media ${device['laptop']} { 
     justify-content: space-between;
-    position: sticky;
-    z-index: 99;
-    top: 0;
-    left: 0;
   }
 
   @media ${device['desktop']} {
