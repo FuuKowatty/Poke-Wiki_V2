@@ -17,8 +17,9 @@ export function App() {
     <BrowserRouter>
       <GlobalStyles />
       <AppProvider>
-      <Navbar />
+
         <Container>
+          <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='pokemons'>

@@ -71,11 +71,10 @@ export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
 
     @media ${device['laptop']} {
       font-size: ${theme.size['lg']};
-      border-right: 1px solid ${theme.colors['darkBlue']};
+      background-color: ${theme.colors['bodyBg']};
+      color: ${theme.colors['primary']};
+      border-bottom: 3px solid ${props => (props.isActive? theme.colors['standsOut'] : theme.colors['bodyBg'])} 
 
-      &:first-child {
-        border-left: 1px solid ${theme.colors['darkBlue']};
-      }
     }
 `
 
