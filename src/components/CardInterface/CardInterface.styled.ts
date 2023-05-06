@@ -1,14 +1,11 @@
 import { theme } from 'styles/theme'
 import styled from 'styled-components'
 
-
-
 export const Options = styled.span`
   position: absolute;
   top: 0;
   right: 0;
   padding: ${theme.spacing['1']};
-
 `
 
 export const OptionsItem = styled.div`
@@ -27,11 +24,13 @@ export const OptionsItem = styled.div`
     background: ${theme.colors['standsOut']};
     color: ${theme.colors['darkBlue']};
   }
-
 `
 
 export const Name = styled.div`
   position absolute;
+  width: 80%;
+  border-radius: ${theme.spacing[1]};
+  text-align: center;
   left: 50%;
   transform: translateX(-50%);
   top: 80%;

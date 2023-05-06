@@ -4,6 +4,7 @@ import {
   PokemonCardImage,
   SkeletonLoading,
 } from 'components/Card/Card.styled'
+import { CardInterface } from 'components/CardInterface/CardInterface'
 import { useEffect, useState } from 'react'
 
 interface flavor {
@@ -70,6 +71,7 @@ export function BerryCard({ url }: { url: string }) {
   const [dataSpec, setDataSpec] = useState<null | BerrySpecs>(null)
   const [dataItemSpec, setDataItemSpec] = useState<null | BerryItemSpec>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const fetchBerrySpec = async () => {
@@ -120,7 +122,10 @@ export function BerryCard({ url }: { url: string }) {
   }
 
   return (
-    <PokemonCardContainer>
+    <PokemonCardContainer
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {isLoading && <SkeletonLoading />}
       <PokemonCardImage
         src={checkImage()}
@@ -129,6 +134,7 @@ export function BerryCard({ url }: { url: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
+      {dataSpec && !isLoading && <CardInterface isHovered={isHovered} name={dataItemSpec?.name} />}
     </PokemonCardContainer>
   )
 }

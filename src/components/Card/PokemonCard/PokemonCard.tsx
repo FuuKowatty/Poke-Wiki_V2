@@ -1,10 +1,7 @@
 import { SkeletonLoading, PokemonCardContainer, PokemonCardImage } from '../Card.styled'
 import alternativeImg from 'assets/default_image.svg'
-import { useAppContext } from 'hooks/useAppContext'
-import {  CardInterface } from 'components/CardInterface/CardInterface'
-import { Name } from 'components/CardInterface/CardInterface.styled'
+import { CardInterface } from 'components/CardInterface/CardInterface'
 import { useEffect, useState } from 'react'
-import { animated, useSpring } from '@react-spring/web'
 
 interface PokemonSpecs {
   name: string
@@ -32,9 +29,6 @@ export function PokemonCard({ name }: { name: string }) {
   const [data, setData] = useState<null | PokemonSpecs>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-  const {browserWidth} = useAppContext();
-  const isMobile = browserWidth < 1024;
-
 
   useEffect(() => {
     const fetchPokemonSpec = async () => {
@@ -67,16 +61,13 @@ export function PokemonCard({ name }: { name: string }) {
       return data?.sprites.other.dream_world.front_default
     }
   }
-  
-  const props = useSpring({
-    opacity: isHovered ? 1 : 0,
-  });
+
 
 
   return (
-    <PokemonCardContainer 
-      onMouseEnter={() => setIsHovered(true)} 
-      onMouseLeave={()=> setIsHovered(false)}
+    <PokemonCardContainer
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {isLoading && <SkeletonLoading />}
       <PokemonCardImage
@@ -86,17 +77,7 @@ export function PokemonCard({ name }: { name: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !data ? 'none' : 'block' }}
       />
-      {isMobile ? (
-          <CardInterface />
-      ) : (
-        <animated.div style={props}>
-          <CardInterface />
-        </animated.div>
-      )}
-      <Name>{name}</Name>
-      
+      {data && !isLoading && <CardInterface isHovered={isHovered} name={name} />} 
     </PokemonCardContainer>
   )
 }
-
-

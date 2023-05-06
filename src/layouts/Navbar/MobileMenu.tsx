@@ -10,28 +10,26 @@ export function MobileMenu() {
   const isPokemonActive = pathname.startsWith('/pokemons')
   const isBerryActive = pathname.startsWith('/berries')
   const { browserWidth } = useAppContext()
-  const isMobileMenu = browserWidth >= 1024;
+  const isMobileMenu = browserWidth >= 1024
 
   return (
     <MobileMenuContainer>
-      <StyledLink to="/">
+      <StyledLink to='/'>
         <MobileMenuIconContainer isActive={pathname === '/'}>
-           <AiFillHome /> {isMobileMenu && 'HOME'}
+          <AiFillHome /> {isMobileMenu && 'HOME'}
         </MobileMenuIconContainer>
       </StyledLink>
-      <StyledLink
-        to="/pokemons/all"
-      >
+      <StyledLink to='/pokemons/all'>
         <MobileMenuIconContainer isActive={isPokemonActive}>
           <MdCatchingPokemon /> {isMobileMenu && 'POKEMONS'}
         </MobileMenuIconContainer>
       </StyledLink>
-      <StyledLink to="/berries/all">
+      <StyledLink to='/berries/all'>
         <MobileMenuIconContainer isActive={isBerryActive}>
           <GiStrawberry /> {isMobileMenu && 'BERRIES'}
         </MobileMenuIconContainer>
       </StyledLink>
-      <StyledLink to="/favorites">
+      <StyledLink to='/favorites'>
         <MobileMenuIconContainer isActive={pathname === '/favorites'}>
           <MdFavorite /> {isMobileMenu && 'FAVORITES'}
         </MobileMenuIconContainer>
@@ -39,5 +37,3 @@ export function MobileMenu() {
     </MobileMenuContainer>
   )
 }
-
-
