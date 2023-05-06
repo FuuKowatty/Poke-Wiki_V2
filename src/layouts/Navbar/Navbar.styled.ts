@@ -57,6 +57,7 @@ export const MobileMenuContainer = styled.div`
 
 export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
+  font-family: 'Golos Text', sans-serif;
   font-size: ${theme.size['xl']};
   box-sizing: border-box;
   width: 100%;
