@@ -23,6 +23,11 @@ export const OptionsItem = styled.div`
   border-radius: ${theme.spacing[3]};
   margin-top: ${theme.spacing[1]};
 
+  &:hover {
+    background: ${theme.colors['standsOut']};
+    color: ${theme.colors['darkBlue']};
+  }
+
 `
 
 export const Name = styled.div`
