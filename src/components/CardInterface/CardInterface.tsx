@@ -1,10 +1,15 @@
-import { Name, Options, OptionsItem } from 'components/CardInterface/CardInterface.styled'
+import { Options, OptionsItem } from 'components/CardInterface/CardInterface.styled'
 import { useAppContext } from 'hooks/useAppContext';
 import { animated, useSpring } from '@react-spring/web';
 import { HiViewfinderCircle } from 'react-icons/hi2';
 import { MdFavoriteBorder } from 'react-icons/md';
 
-export function CardInterface({isHovered, name} : {isHovered : boolean, name: string | undefined}) {
+interface favItem {
+  name: string;
+  type: string;
+}
+
+export function CardInterface({isHovered, handleAddFavorite, name} : {isHovered : boolean , handleAddFavorite: () => void, name: string}) {
 
   const { browserWidth } = useAppContext()
   const isMobile = browserWidth < 1024
@@ -13,26 +18,31 @@ export function CardInterface({isHovered, name} : {isHovered : boolean, name: st
     opacity: isHovered ? 1 : 0,
   })
 
+  const favArr = JSON.parse(localStorage.getItem('favorite') as string) || [];
+  const favNames = favArr.map((fav: favItem) => fav.name)
+  const isFav = favNames.indexOf(name) === -1 ? false : true;
+
   return (
     <>
       {
         isMobile 
-        ? <CardItems />
+        ? <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav}/>
         : 
         <animated.div style={props}>
-          <CardItems  />
+          <CardItems  handleAddFavorite={handleAddFavorite} isFav={isFav}/>
         </animated.div>
         }
-        <Name>{name}</Name>
     </>
   )
 }
 
 
-function CardItems() {
+
+
+function CardItems({handleAddFavorite, isFav} : {handleAddFavorite : () => void, isFav : boolean}) {
   return(
     <Options>
-    <OptionsItem>
+    <OptionsItem onClick={() => handleAddFavorite()} isActive={isFav}>
       <MdFavoriteBorder />
     </OptionsItem>
     <OptionsItem>

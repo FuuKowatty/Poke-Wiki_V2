@@ -1,6 +1,7 @@
 import { SkeletonLoading, PokemonCardContainer, PokemonCardImage } from '../Card.styled'
 import alternativeImg from 'assets/default_image.svg'
 import { CardInterface } from 'components/CardInterface/CardInterface'
+import { Name } from 'components/CardInterface/CardInterface.styled'
 import { useEffect, useState } from 'react'
 
 interface PokemonSpecs {
@@ -62,6 +63,15 @@ export function PokemonCard({ name }: { name: string }) {
     }
   }
 
+  const handleAddFavorite = () => {
+    const fav = JSON.parse(localStorage.getItem('favorite') as string) || [];
+    const newFav = {
+      type: 'pokemon',
+      name: name
+    }
+    localStorage.setItem('favorite', JSON.stringify([...fav, newFav]))
+   }
+
 
 
   return (
@@ -77,7 +87,8 @@ export function PokemonCard({ name }: { name: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !data ? 'none' : 'block' }}
       />
-      {data && !isLoading && <CardInterface isHovered={isHovered} name={name} />} 
+      {data && !isLoading && <CardInterface isHovered={isHovered} handleAddFavorite={handleAddFavorite} name={name} />} 
+      <Name>{name}</Name>
     </PokemonCardContainer>
   )
 }

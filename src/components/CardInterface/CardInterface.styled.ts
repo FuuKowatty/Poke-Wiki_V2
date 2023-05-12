@@ -8,15 +8,16 @@ export const Options = styled.span`
   padding: ${theme.spacing['1']};
 `
 
-export const OptionsItem = styled.div`
+export const OptionsItem = styled.div<{isActive?: boolean}>`
   padding: 0.42em;
-  color: ${theme.colors['primary']};
+  color: ${props => props.isActive ? theme.colors['darkBlue'] : theme.colors['primary']};
   font-size: ${theme.size['2xl']};
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${theme.colors['bodyBg']};
+  background: ${props => props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg']};
+
   border-radius: ${theme.spacing[3]};
   margin-top: ${theme.spacing[1]};
 
