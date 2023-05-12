@@ -10,6 +10,7 @@ import { BerriesList } from 'pages/Berries/BerriesList'
 import { FetchError } from 'components/common/FetchErrors/FetchError'
 import { BerryType } from 'pages/Berries/BerryType'
 import { BerriesSearch } from 'pages/Berries/BerriesSearch'
+import { Favorites } from 'pages/Favorites/Favorites'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export function App() {
@@ -31,6 +32,7 @@ export function App() {
               <Route path='all' element={<BerriesList />} />
               <Route path='search' element={<BerriesSearch />} />
             </Route>
+            <Route path='/favorites' element={<Favorites />}/>
             <Route path='*' element={<FetchError />} />
           </Routes>
         </Container>

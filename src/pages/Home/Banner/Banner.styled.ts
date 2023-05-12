@@ -90,7 +90,7 @@ export const BannerTitleTextWhite = styled.span`
 
 export const BannerDescription = styled.div`
   line-height: ${theme.size['md']};
-  padding: ${theme.spacing[3]};
+  padding: ${theme.spacing[3]} ${theme.spacing[5]};
   text-align: left;
 
   @media ${device['tablet']} {
@@ -105,8 +105,7 @@ export const BannerDescription = styled.div`
 `
 
 export const BannerButton = styled(Button)`
-  width: 90%;
-  padding: ${theme.spacing[3]};
+  padding: ${theme.spacing[3]} ${theme.spacing[5]};
   font-size: ${theme.size['md']};
 
   @media ${device['tablet']} {

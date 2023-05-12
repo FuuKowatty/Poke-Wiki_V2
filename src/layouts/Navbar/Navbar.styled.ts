@@ -69,12 +69,17 @@ export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
     props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg']};
   color: ${(props) => (props.isActive ? theme.colors['darkBlue'] : theme.colors['primary'])};
 
+
   @media ${device['laptop']} {
     font-size: ${theme.size['lg']};
     background-color: ${theme.colors['bodyBg']};
     color: ${theme.colors['primary']};
     border-bottom: 3px solid
       ${(props) => (props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg'])};
+
+    &:hover {
+      background: ${theme.colors['darkerBlue']};
+    };
   }
 `
 
