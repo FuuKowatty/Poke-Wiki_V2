@@ -5,6 +5,7 @@ import {
   SkeletonLoading,
 } from 'components/Card/Card.styled'
 import { CardInterface } from 'components/CardInterface/CardInterface'
+import { handleAddFavorite } from 'utils/handleLocalStorage'
 import { useEffect, useState } from 'react'
 
 interface flavor {
@@ -121,14 +122,7 @@ export function BerryCard({ url }: { url: string }) {
     }
   }
 
-  const handleAddFavorite = () => {
-    const fav = JSON.parse(localStorage.getItem('favorite') as string) || [];
-    const newFav = {
-      type: 'berry',
-      name: dataItemSpec?.name
-    }
-    localStorage.setItem('favorite', JSON.stringify([...fav, newFav]))
-   }
+  const handleAddFavoriteBerry = () => handleAddFavorite('berry', dataItemSpec?.name as string);
 
   return (
     <PokemonCardContainer
@@ -143,7 +137,7 @@ export function BerryCard({ url }: { url: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
-      {dataItemSpec && !isLoading && <CardInterface isHovered={isHovered} handleAddFavorite={handleAddFavorite} name={dataItemSpec?.name} />}
+      {dataItemSpec && !isLoading && <CardInterface isHovered={isHovered} handleAddFavorite={handleAddFavoriteBerry} name={dataItemSpec?.name} />}
     </PokemonCardContainer>
   )
 }
