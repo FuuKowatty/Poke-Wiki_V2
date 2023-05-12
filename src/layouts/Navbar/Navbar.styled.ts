@@ -69,7 +69,6 @@ export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
     props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg']};
   color: ${(props) => (props.isActive ? theme.colors['darkBlue'] : theme.colors['primary'])};
 
-
   @media ${device['laptop']} {
     font-size: ${theme.size['lg']};
     background-color: ${theme.colors['bodyBg']};
@@ -79,7 +78,7 @@ export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
 
     &:hover {
       background: ${theme.colors['darkerBlue']};
-    };
+    }
   }
 `
 

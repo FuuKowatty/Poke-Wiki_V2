@@ -28,28 +28,25 @@ const MenuItems = [
   },
 ]
 
-
 export function MobileMenu() {
   const pathname = useLocation().pathname
   const { browserWidth } = useAppContext()
   const isDesktopMenu = browserWidth >= 1024
 
-  const checkIsActive = (path : string) => {
-      if(path === '/') {
-        return pathname === path ? true : false
-      } else {
-        return pathname.startsWith(path)? true : false
-      }
-      
+  const checkIsActive = (path: string) => {
+    if (path === '/') {
+      return pathname === path ? true : false
+    } else {
+      return pathname.startsWith(path) ? true : false
     }
-  
+  }
 
   return (
     <MobileMenuContainer>
-      {MenuItems.map(item => (
+      {MenuItems.map((item) => (
         <StyledLink to={item.path} key={item.title}>
-          <MobileMenuIconContainer isActive={checkIsActive(item.path) }>
-             {isDesktopMenu ? item.title.toUpperCase() : item.icon}
+          <MobileMenuIconContainer isActive={checkIsActive(item.path)}>
+            {isDesktopMenu ? item.title.toUpperCase() : item.icon}
           </MobileMenuIconContainer>
         </StyledLink>
       ))}
