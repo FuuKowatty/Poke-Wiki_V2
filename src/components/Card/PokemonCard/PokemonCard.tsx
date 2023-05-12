@@ -64,7 +64,7 @@ export function PokemonCard({ name }: { name: string }) {
     }
   }
 
-  const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name);
+  const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)
 
   return (
     <PokemonCardContainer
@@ -79,7 +79,13 @@ export function PokemonCard({ name }: { name: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !data ? 'none' : 'block' }}
       />
-      {data && !isLoading && <CardInterface isHovered={isHovered} handleAddFavorite={handleAddFavoritePokemon} name={name} />} 
+      {data && !isLoading && (
+        <CardInterface
+          isHovered={isHovered}
+          handleAddFavorite={handleAddFavoritePokemon}
+          name={name}
+        />
+      )}
       <Name>{name}</Name>
     </PokemonCardContainer>
   )

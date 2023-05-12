@@ -32,7 +32,7 @@ export function App() {
               <Route path='all' element={<BerriesList />} />
               <Route path='search' element={<BerriesSearch />} />
             </Route>
-            <Route path='/favorites' element={<Favorites />}/>
+            <Route path='/favorites' element={<Favorites />} />
             <Route path='*' element={<FetchError />} />
           </Routes>
         </Container>

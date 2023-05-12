@@ -122,7 +122,7 @@ export function BerryCard({ url }: { url: string }) {
     }
   }
 
-  const handleAddFavoriteBerry = () => handleAddFavorite('berry', dataItemSpec?.name as string);
+  const handleAddFavoriteBerry = () => handleAddFavorite('berry', dataItemSpec?.name as string)
 
   return (
     <PokemonCardContainer
@@ -137,7 +137,13 @@ export function BerryCard({ url }: { url: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
-      {dataItemSpec && !isLoading && <CardInterface isHovered={isHovered} handleAddFavorite={handleAddFavoriteBerry} name={dataItemSpec?.name} />}
+      {dataItemSpec && !isLoading && (
+        <CardInterface
+          isHovered={isHovered}
+          handleAddFavorite={handleAddFavoriteBerry}
+          name={dataItemSpec?.name}
+        />
+      )}
     </PokemonCardContainer>
   )
 }
