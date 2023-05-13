@@ -21,7 +21,7 @@ export const FlexContainer = styled(GridContainer)`
 
 export const FilterFavoriteContainer = styled(FiltersContainer)`
   justify-content: start;
-  gap: ${theme.spacing['3']};
+  gap: ${theme.spacing['3']}
 `
 
 export const FilterButton = styled.button`
