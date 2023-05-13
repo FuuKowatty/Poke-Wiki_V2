@@ -4,12 +4,12 @@ import { usePagination } from 'hooks/usePagination'
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { useAppContext } from 'hooks/useAppContext'
 
-interface Pokemon {
+export interface Pokemon {
   name: string
   url: string
 }
 
-interface PokemonListProps {
+export interface PokemonListProps {
   count: number
   next: null | string
   previous: null | string

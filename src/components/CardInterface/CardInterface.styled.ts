@@ -20,11 +20,6 @@ export const OptionsItem = styled.div<{ isActive?: boolean }>`
 
   border-radius: ${theme.spacing[3]};
   margin-top: ${theme.spacing[1]};
-
-  &:hover {
-    background: ${theme.colors['primary']};
-    color: ${theme.colors['darkBlue']};
-  }
 `
 
 export const Name = styled.div`
