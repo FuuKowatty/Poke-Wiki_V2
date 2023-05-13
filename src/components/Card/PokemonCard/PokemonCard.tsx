@@ -1,8 +1,7 @@
-import { SkeletonLoading, PokemonCardContainer, PokemonCardImage } from '../Card.styled'
+import { SkeletonLoading, CardContainer, PokemonCardImage } from '../Card.styled'
 import alternativeImg from 'assets/default_image.svg'
 import { CardInterface } from 'components/CardInterface/CardInterface'
-import { Name } from 'components/CardInterface/CardInterface.styled'
-import { handleAddFavorite } from 'utils/handleLocalStorage'
+import { useFavorites } from 'hooks/useFavorites'
 import { useEffect, useState } from 'react'
 
 interface PokemonSpecs {
@@ -64,13 +63,11 @@ export function PokemonCard({ name }: { name: string }) {
     }
   }
 
+  const { handleAddFavorite } = useFavorites()
   const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)
 
   return (
-    <PokemonCardContainer
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
       <PokemonCardImage
         src={checkImage()}
@@ -86,7 +83,6 @@ export function PokemonCard({ name }: { name: string }) {
           name={name}
         />
       )}
-      <Name>{name}</Name>
-    </PokemonCardContainer>
+    </CardContainer>
   )
 }

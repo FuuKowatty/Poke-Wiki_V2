@@ -2,7 +2,7 @@ import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import styled, { keyframes } from 'styled-components'
 
-export const PokemonCardContainer = styled.div`
+export const CardContainer = styled.div`
   width: 100%;
   position: relative;
   max-width: 320px;

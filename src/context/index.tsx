@@ -1,12 +1,30 @@
 import { useViewport } from 'hooks/useViewport'
-import { createContext, ReactNode } from 'react'
+import { useState, createContext, ReactNode } from 'react'
 
-export const Context = createContext({
+interface ContextProps {
+  browserWidth: number
+  isMobile: boolean
+  favorites: any
+  setFavorites: React.Dispatch<React.SetStateAction<{ type: string; name: string }[]>>
+}
+
+interface FavoritesProps {
+  type: string
+  name: string
+}
+
+export const Context = createContext<ContextProps>({
   browserWidth: 0,
   isMobile: false,
+  favorites: [],
+  setFavorites: () => {
+    console.log('milego')
+  },
 })
 
 export function AppProvider({ children }: { children: ReactNode }) {
+  const [favorites, setFavorites] = useState<FavoritesProps[] | []>([])
+
   const browserWidth = useViewport()
   const isMobile = browserWidth < 620
 
@@ -15,6 +33,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       value={{
         browserWidth,
         isMobile,
+        favorites,
+        setFavorites,
       }}
     >
       {children}

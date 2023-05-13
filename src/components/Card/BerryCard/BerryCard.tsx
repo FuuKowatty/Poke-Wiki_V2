@@ -1,11 +1,7 @@
 import alternativeImg from 'assets/default_image.svg'
-import {
-  PokemonCardContainer,
-  PokemonCardImage,
-  SkeletonLoading,
-} from 'components/Card/Card.styled'
+import { CardContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
 import { CardInterface } from 'components/CardInterface/CardInterface'
-import { handleAddFavorite } from 'utils/handleLocalStorage'
+import { useFavorites } from 'hooks/useFavorites'
 import { useEffect, useState } from 'react'
 
 interface flavor {
@@ -122,13 +118,11 @@ export function BerryCard({ url }: { url: string }) {
     }
   }
 
-  const handleAddFavoriteBerry = () => handleAddFavorite('berry', dataItemSpec?.name as string)
+  const { handleAddFavorite } = useFavorites()
+  const handleAddFavoriteBerry = () => handleAddFavorite('berry', url)
 
   return (
-    <PokemonCardContainer
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
       <PokemonCardImage
         src={checkImage()}
@@ -142,8 +136,9 @@ export function BerryCard({ url }: { url: string }) {
           isHovered={isHovered}
           handleAddFavorite={handleAddFavoriteBerry}
           name={dataItemSpec?.name}
+          url={url}
         />
       )}
-    </PokemonCardContainer>
+    </CardContainer>
   )
 }
