@@ -11,6 +11,7 @@ export const useFavorites = () => {
   }, [])
 
   function handleAddFavorite(type: string, name: string) {
+    if(favorites.length === 20) return
     const favArr = JSON.parse(localStorage.getItem('favorites') as string) || []
     const favNames = favArr.map((fav: favItem) => fav.name)
     if (favNames.indexOf(name) === -1) {
