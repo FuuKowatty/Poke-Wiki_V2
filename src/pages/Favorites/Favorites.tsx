@@ -11,13 +11,14 @@ import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 import { GridContainer } from 'styles/globalComponents'
 import { useFavorites } from 'hooks/useFavorites'
 import { useAppContext } from 'hooks/useAppContext'
+import { FavoritesProps } from 'context'
 import { useEffect, useState } from 'react'
 
 export function Favorites() {
   const { favorites, handleClearItems } = useFavorites()
   const { favoriteItemsLimit } = useAppContext()
   const [acutallFilters, setacutallFilters] = useState('all')
-  const [arr, setArr] = useState([])
+  const [arr, setArr] = useState<FavoritesProps[] | []>([])
 
   const filtersButtonText = ['all', 'pokemons', 'berries']
 

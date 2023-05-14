@@ -4,12 +4,12 @@ import { useState, createContext, ReactNode } from 'react'
 interface ContextProps {
   browserWidth: number
   isMobile: boolean
-  favorites: any
-  setFavorites: React.Dispatch<React.SetStateAction<{ type: string; name: string }[]>>
+  favorites: FavoritesProps[] | []
+  setFavorites: React.Dispatch<React.SetStateAction<FavoritesProps[] | []>>
   favoriteItemsLimit: number
 }
 
-interface FavoritesProps {
+export interface FavoritesProps {
   type: string
   name: string
 }
