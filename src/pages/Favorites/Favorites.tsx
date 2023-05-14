@@ -1,13 +1,21 @@
-import { FilterButton, FilterFavoriteContainer } from './Favorites.styled'
+import {
+  ClearItemsButton,
+  FavoriteItemsCount,
+  FilterButton,
+  FilterFavoriteContainer,
+  TypeFiltersContainer,
+} from './Favorites.styled'
 import { favItem } from 'components/CardInterface/CardInterface'
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 import { GridContainer } from 'styles/globalComponents'
 import { useFavorites } from 'hooks/useFavorites'
+import { useAppContext } from 'hooks/useAppContext'
 import { useEffect, useState } from 'react'
 
 export function Favorites() {
-  const { favorites } = useFavorites()
+  const { favorites, handleClearItems } = useFavorites()
+  const { favoriteItemsLimit } = useAppContext()
   const [acutallFilters, setacutallFilters] = useState('all')
   const [arr, setArr] = useState([])
 
@@ -32,11 +40,22 @@ export function Favorites() {
   return (
     <>
       <FilterFavoriteContainer>
-        {filtersButtonText.map((text) => (
-          <FilterButton key={text} data-value={text} onClick={(e) => handleFilter(e)}>
-            {text}
-          </FilterButton>
-        ))}
+        <TypeFiltersContainer>
+          {filtersButtonText.map((text) => (
+            <FilterButton
+              key={text}
+              data-value={text}
+              onClick={(e) => handleFilter(e)}
+              isActive={text === acutallFilters}
+            >
+              {text}
+            </FilterButton>
+          ))}
+        </TypeFiltersContainer>
+        <ClearItemsButton onClick={handleClearItems}>Clear all</ClearItemsButton>
+        <FavoriteItemsCount>
+          {favorites.length} / {favoriteItemsLimit}
+        </FavoriteItemsCount>
       </FilterFavoriteContainer>
       <GridContainer>
         {arr.map((fav: favItem) => {

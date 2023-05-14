@@ -6,6 +6,7 @@ interface ContextProps {
   isMobile: boolean
   favorites: any
   setFavorites: React.Dispatch<React.SetStateAction<{ type: string; name: string }[]>>
+  favoriteItemsLimit: number
 }
 
 interface FavoritesProps {
@@ -20,11 +21,12 @@ export const Context = createContext<ContextProps>({
   setFavorites: () => {
     console.log('milego')
   },
+  favoriteItemsLimit: 20,
 })
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<FavoritesProps[] | []>([])
-
+  const favoriteItemsLimit = 20
   const browserWidth = useViewport()
   const isMobile = browserWidth < 620
 
@@ -35,6 +37,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         isMobile,
         favorites,
         setFavorites,
+        favoriteItemsLimit,
       }}
     >
       {children}

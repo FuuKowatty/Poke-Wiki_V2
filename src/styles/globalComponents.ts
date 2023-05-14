@@ -61,7 +61,7 @@ export const InfoParagraph = styled.p`
 export const Button = styled.button`
   border: none;
   background: ${theme.colors['standsOut']};
-  padding: ${theme.spacing[2]};
+  padding: ${theme.spacing['2']} ${theme.spacing['4']};
   text-transform: uppercase;
   border-radius: ${theme.spacing[1]};
   cursor: pointer;

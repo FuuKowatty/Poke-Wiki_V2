@@ -4,14 +4,20 @@ import { useEffect } from 'react'
 
 export const useFavorites = () => {
   const { favorites, setFavorites } = useAppContext()
+  const { favoriteItemsLimit } = useAppContext()
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites') as string) || []
     setFavorites(storedFavorites)
   }, [])
 
+  const handleClearItems = () => {
+    setFavorites([])
+    localStorage.removeItem('favorites')
+  }
+
   function handleAddFavorite(type: string, name: string) {
-    if(favorites.length === 20) return
+    if (favorites.length === favoriteItemsLimit) return
     const favArr = JSON.parse(localStorage.getItem('favorites') as string) || []
     const favNames = favArr.map((fav: favItem) => fav.name)
     if (favNames.indexOf(name) === -1) {
@@ -28,5 +34,5 @@ export const useFavorites = () => {
     }
   }
 
-  return { favorites, handleAddFavorite }
+  return { favorites, handleAddFavorite, handleClearItems }
 }

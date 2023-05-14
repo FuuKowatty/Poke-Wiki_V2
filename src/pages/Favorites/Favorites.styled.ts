@@ -1,5 +1,4 @@
-import { GridContainer } from 'styles/globalComponents'
-import { device } from 'utils/breakpoints'
+import { Button } from 'styles/globalComponents'
 import { theme } from 'styles/theme'
 import { FiltersContainer } from 'components/Filters/Filters.styled'
 import styled from 'styled-components'
@@ -9,26 +8,31 @@ export const FavoritesContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
-  gap: ${theme.spacing['5']};
 `
 
-export const FlexContainer = styled(GridContainer)`
-  @media ${device['desktop']} {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 720px;
-  }
-`
-
-export const FilterFavoriteContainer = styled(FiltersContainer)`
-  justify-content: start;
+export const TypeFiltersContainer = styled.div`
+  display: flex;
   gap: ${theme.spacing['3']};
 `
 
-export const FilterButton = styled.button`
-  padding: ${theme.spacing['2']} ${theme.spacing['4']};
+export const FavoriteItemsCount = styled.p`
+  font-size: ${theme.size['md']};
+  font-weight: bold;
+`
+
+export const ClearItemsButton = styled(Button)`
+  margin-left: auto;
+`
+
+export const FilterFavoriteContainer = styled(FiltersContainer)`
+  gap: ${theme.spacing['3']};
+`
+
+export const FilterButton = styled(Button)<{ isActive: boolean }>`
   border-radius: 10px;
-  background: ${theme.colors['bannerColor']};
-  border: 1px solid ${theme.colors['primary']};
-  color: ${theme.colors['primary']};
-  font-weight: 900;
+  background: ${({ isActive }) =>
+    isActive ? theme.colors['standsOut'] : theme.colors['bannerColor']};
+  border: 1px solid
+    ${({ isActive }) => (isActive ? theme.colors['darkBlue'] : theme.colors['primary'])};
+  color: ${({ isActive }) => (isActive ? theme.colors['darkBlue'] : theme.colors['primary'])};
 `
