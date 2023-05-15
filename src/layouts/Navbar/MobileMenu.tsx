@@ -34,10 +34,14 @@ export function MobileMenu() {
   const isDesktopMenu = browserWidth >= 1024
 
   const checkIsActive = (path: string) => {
-    if (path === '/') {
-      return pathname === path ? true : false
+    // It returns for example /pokemons/all => /pokemons
+    const baseUrl = path.split('/').slice(0, -1).join('/');
+
+    // !baseUrl return for home page
+    if (!baseUrl) {
+      return pathname === path
     } else {
-      return pathname.startsWith(path) ? true : false
+      return pathname.startsWith(baseUrl)
     }
   }
 

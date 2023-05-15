@@ -19,8 +19,6 @@ export const PokemonStatsContainer = styled.div`
     gap: ${theme.spacing['2']};
 `
 
-
-
 export const BarContainer = styled.div`
     display: flex;
     gap: ${theme.spacing['1']};
