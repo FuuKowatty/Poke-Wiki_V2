@@ -11,6 +11,7 @@ import { FetchError } from 'components/common/FetchErrors/FetchError'
 import { BerryType } from 'pages/Berries/BerryType'
 import { BerriesSearch } from 'pages/Berries/BerriesSearch'
 import { Favorites } from 'pages/Favorites/Favorites'
+import { PokemonDetail } from 'pages/Pokemons/PokemonDetail'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export function App() {
@@ -26,6 +27,7 @@ export function App() {
               <Route path='type/:typeName' element={<PokemonType />} />
               <Route path='all' element={<PokemonList />} />
               <Route path='search' element={<PokemonSearch />} />
+              <Route path=':name/details' element={<PokemonDetail />} />
             </Route>
             <Route path='berries'>
               <Route path='type/:typeName' element={<BerryType />} />

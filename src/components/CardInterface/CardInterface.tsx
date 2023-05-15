@@ -4,6 +4,13 @@ import { animated, useSpring } from '@react-spring/web'
 import { HiViewfinderCircle } from 'react-icons/hi2'
 import { MdFavoriteBorder } from 'react-icons/md'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+interface CardItemsProps {
+  handleAddFavorite: () => void
+  isFav: boolean
+  name: string
+}
 
 export interface favItem {
   name: string
@@ -25,10 +32,12 @@ export function CardInterface({
   const isMobile = browserWidth < 1024
   const { favorites } = useAppContext()
 
+
   const props = useSpring({
     opacity: isHovered ? 1 : 0,
   })
 
+  // check if card is favorite
   const itemName = url || name
   const favNames = favorites.map((fav: favItem) => fav.name)
   const isFav = favNames.indexOf(itemName) === -1 ? false : true
@@ -36,10 +45,10 @@ export function CardInterface({
   return (
     <>
       {isMobile ? (
-        <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} />
+        <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name} />
       ) : (
         <animated.div style={props}>
-          <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} />
+          <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name}/>
         </animated.div>
       )}
       <Name>{name}</Name>
@@ -50,26 +59,30 @@ export function CardInterface({
 function CardItems({
   handleAddFavorite,
   isFav,
-}: {
-  handleAddFavorite: () => void
-  isFav: boolean
-}) {
+  name
+}: CardItemsProps) {
   const [active, setActive] = useState(isFav)
+  const navigate = useNavigate()
+
   useEffect(() => {
     setActive(isFav)
   }, [isFav])
 
-  const handleClick = () => {
+  const onAddFavorite = () => {
     handleAddFavorite()
     setActive(!active)
   }
 
+  const onViewDetails = () => {
+    navigate(`/pokemons/${name}/details`)
+  }
+
   return (
     <Options>
-      <OptionsItem onClick={handleClick} isActive={active}>
+      <OptionsItem onClick={onAddFavorite} isActive={active}>
         <MdFavoriteBorder />
       </OptionsItem>
-      <OptionsItem>
+      <OptionsItem onClick={onViewDetails}>
         <HiViewfinderCircle />
       </OptionsItem>
     </Options>
