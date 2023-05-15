@@ -4,19 +4,39 @@ import { CardInterface } from 'components/CardInterface/CardInterface'
 import { useFavorites } from 'hooks/useFavorites'
 import { useEffect, useState } from 'react'
 
-interface PokemonSpecs {
-  name: string
-  sprites: {
-    other: {
-      dream_world: {
-        front_default: string
-      }
-    }
+interface PokemonType {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
   }
 }
 
-interface PokemonSpecs {
+interface AbilityInfo {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+  slot: number;
+}
+
+interface statsInfo {
+  base_stat: number;
+  effor: number
+  stat: {
+    name: string;
+  }
+}
+
+export interface PokemonSpecs {
+  id: number
+  abilities: AbilityInfo[]
+  base_experience: number
+  heights: number
   name: string
+  types: PokemonType[]
+  weigth: number
   sprites: {
     other: {
       dream_world: {
@@ -24,6 +44,8 @@ interface PokemonSpecs {
       }
     }
   }
+  stats: statsInfo[]
+
 }
 
 export function PokemonCard({ name }: { name: string }) {
