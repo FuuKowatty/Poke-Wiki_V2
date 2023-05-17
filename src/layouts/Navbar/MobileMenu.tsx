@@ -35,7 +35,7 @@ export function MobileMenu() {
 
   const checkIsActive = (path: string) => {
     // It returns for example /pokemons/all => /pokemons
-    const baseUrl = path.split('/').slice(0, -1).join('/');
+    const baseUrl = path.split('/').slice(0, -1).join('/')
 
     // !baseUrl return for home page
     if (!baseUrl) {

@@ -5,38 +5,60 @@ import { useFavorites } from 'hooks/useFavorites'
 import { useEffect, useState } from 'react'
 
 interface PokemonType {
-  slot: number;
+  slot: number
   type: {
-    name: string;
-    url: string;
+    name: string
+    url: string
   }
 }
 
 interface AbilityInfo {
   ability: {
-    name: string;
-    url: string;
-  };
-  is_hidden: boolean;
-  slot: number;
+    name: string
+    url: string
+  }
+  is_hidden: boolean
+  slot: number
 }
 
 interface statsInfo {
-  base_stat: number;
+  base_stat: number
   effor: number
   stat: {
-    name: string;
+    name: string
   }
+}
+
+interface MoveVersionGroupDetails {
+  level_learned_at: number
+  move_learn_method: {
+    name: string
+    url: string
+  }
+  version_group: {
+    name: string
+    url: string
+  }
+}
+
+interface Move {
+  name: string
+  url: string
+}
+
+export interface MoveData {
+  move: Move
+  version_group_details: MoveVersionGroupDetails[]
 }
 
 export interface PokemonSpecs {
   id: number
   abilities: AbilityInfo[]
   base_experience: number
-  heights: number
+  height: number
   name: string
   types: PokemonType[]
-  weigth: number
+  weight: number
   sprites: {
     other: {
       dream_world: {
@@ -45,7 +67,7 @@ export interface PokemonSpecs {
     }
   }
   stats: statsInfo[]
-
+  moves: MoveData[]
 }
 
 export function PokemonCard({ name }: { name: string }) {

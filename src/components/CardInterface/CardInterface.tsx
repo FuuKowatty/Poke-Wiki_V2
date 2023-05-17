@@ -32,7 +32,6 @@ export function CardInterface({
   const isMobile = browserWidth < 1024
   const { favorites } = useAppContext()
 
-
   const props = useSpring({
     opacity: isHovered ? 1 : 0,
   })
@@ -48,7 +47,7 @@ export function CardInterface({
         <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name} />
       ) : (
         <animated.div style={props}>
-          <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name}/>
+          <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name} />
         </animated.div>
       )}
       <Name>{name}</Name>
@@ -56,11 +55,7 @@ export function CardInterface({
   )
 }
 
-function CardItems({
-  handleAddFavorite,
-  isFav,
-  name
-}: CardItemsProps) {
+function CardItems({ handleAddFavorite, isFav, name }: CardItemsProps) {
   const [active, setActive] = useState(isFav)
   const navigate = useNavigate()
 
