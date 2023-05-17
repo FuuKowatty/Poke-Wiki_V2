@@ -21,7 +21,7 @@ interface AbilityInfo {
   slot: number
 }
 
-interface statsInfo {
+export interface statsInfo {
   base_stat: number
   effor: number
   stat: {

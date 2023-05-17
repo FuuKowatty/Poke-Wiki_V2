@@ -44,12 +44,8 @@ export const ProgressBar = styled.span<{ width: string; color: string }>`
   height: 100%;
   z-index: -1;
 `
-export const DetailsHeader = styled.h1``
-
-export const DetailsHeaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const DetailsHeader = styled.h1`
+  text-align: center;
 `
 
 export const DetailsTypeImage = styled.img`

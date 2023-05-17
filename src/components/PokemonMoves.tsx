@@ -5,7 +5,7 @@ interface props {
   linksArr: string[]
 }
 
-export function JakMoveDetails({ linksArr }: props) {
+export function PokemonMoves({ linksArr }: props) {
   const [moveDetails, setMoveDetails] = useState<moveDetailsProps[] | null>(null)
   useEffect(() => {
     const fetchMoveDetails = async () => {
@@ -25,7 +25,7 @@ export function JakMoveDetails({ linksArr }: props) {
   return (
     <>
       <h2>TOP MOVES</h2>
-      {moveDetails && moveDetails.map((move) => <p key={move.name}>{move.name}</p>)}
+      {moveDetails && moveDetails.map((move) => <span key={move.name}>{move.name}</span>)}
     </>
   )
 }

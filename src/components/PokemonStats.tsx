@@ -1,4 +1,6 @@
+import { statsInfo } from './Card/PokemonCard/PokemonCard'
 import { BarContainer, BarStats, ProgressBar } from 'pages/Pokemons/PokemonDetail.styled'
+import { calculateTotalStats } from 'utils/calculateMeasures'
 import { GiRabbit } from 'react-icons/gi'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { TbSword } from 'react-icons/tb'
@@ -39,10 +41,10 @@ const Stats = [
   },
 ]
 
-export function PokemonStats({ data }: { data: any }) {
+export function PokemonStats({ stats }: { stats: statsInfo[] }) {
   return (
     <>
-      {data.stats.map((stat: any) => {
+      {stats.map((stat) => {
         const statAccesories = Stats.filter((accesories) => accesories.name === stat.stat.name)
         const statX = { ...statAccesories[0] }
         return (
@@ -54,7 +56,7 @@ export function PokemonStats({ data }: { data: any }) {
           </BarContainer>
         )
       })}
-      <p>Total: {data.stats.reduce((acc: any, stat: any) => acc + stat.base_stat, 0)}</p>
+      <p>Total: {calculateTotalStats(stats)}</p>
     </>
   )
 }

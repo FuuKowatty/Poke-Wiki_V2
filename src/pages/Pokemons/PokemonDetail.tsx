@@ -1,17 +1,16 @@
 import {
-  BarContainer,
-  BarStats,
   PokemonDetailImage,
   PokemonDetailsContainer,
   PokemonStatsContainer,
-  ProgressBar,
   DetailsHeader,
-  DetailsHeaderContainer, 
-  DetailsTypeImage} from './PokemonDetail.styled'
-import { MoveData, PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
+} from './PokemonDetail.styled'
+import { PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
-import { JakMoveDetails } from 'hooks/useMoveDetails'
+import { PokemonMoves } from 'components/PokemonMoves'
 import { PokemonStats } from 'components/PokemonStats'
+import { PokemonTable } from 'components/PokemonTable'
+import { checkDescription, checkHabitat } from 'utils/checkData'
+import { sliceArray } from 'utils/sliceArray'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -29,17 +28,15 @@ export interface moveDetailsProps {
     drain: number | null
     healing: number | null
   }
-  name: string;
+  name: string
 }
 
-
-
-interface iconTypesProps {
+export interface iconTypesProps {
   name: string
   url: string
 }
 
-interface flavor_text {
+export interface flavorText {
   flavor_text: string
   language: {
     name: string
@@ -51,7 +48,7 @@ interface pokemonSpeciesProps {
   habitat: {
     name: string
   } | null
-  flavor_text_entries: flavor_text[]
+  flavor_text_entries: flavorText[]
 }
 
 export function PokemonDetail() {
@@ -93,63 +90,28 @@ export function PokemonDetail() {
     fetchData()
   }, [])
 
-  const types = pokemonData?.types.map((type) => type.type.name)
-  const filteredIconTypes = iconTypes?.filter((iconType) => types?.includes(iconType.name))
-
   return (
     <PokemonDetailsContainer>
       <LoadingState isLoading={isLoading}>
-        <div>
-        <DetailsHeaderContainer>
-            <DetailsHeader>{pokemonData?.name}</DetailsHeader>
-          </DetailsHeaderContainer>
+          <DetailsHeader>{pokemonData?.name}</DetailsHeader>
           <PokemonDetailImage src={pokemonData?.sprites.other.dream_world.front_default} />
-          
           <PokemonStatsContainer>
             {pokemonData && (
               <>
-              <PokemonStats data={pokemonData}/>
-
-                {calculateWeight(pokemonData.weight) + ' ' + calculateHeight(pokemonData.height)}
+                <PokemonStats stats={pokemonData.stats} />
+                {iconTypes && pokemonSpecies && <PokemonTable data={pokemonData} icons={iconTypes} habitat={checkHabitat(pokemonSpecies.habitat)} />}
               </>
             )}
           </PokemonStatsContainer>
-          {filteredIconTypes?.map((icon) => (
-              <DetailsTypeImage src={icon.url} alt={icon.name} key={icon.name} />
-            ))}
-          {pokemonData && <JakMoveDetails linksArr={sliceArray(pokemonData.moves)} />}
-
+          {pokemonData && <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />}
           {pokemonSpecies && (
             <>
-              habitat: {pokemonSpecies.habitat ? pokemonSpecies.habitat.name : 'NO DATA'}
               desc: {checkDescription(pokemonSpecies.flavor_text_entries)}
             </>
           )}
-        </div>
-        <div></div>
       </LoadingState>
     </PokemonDetailsContainer>
   )
 }
 
-function sliceArray(arr: MoveData[]) {
-  const linksArr = arr.map((move) => move.move.url)
-  const slicedLinksArr = linksArr.slice(0, 5)
-
-  return slicedLinksArr
-}
-
-function calculateWeight(weight: number) {
-  return weight / 10 + 'kg'
-}
-
-function calculateHeight(height: number) {
-  return height / 10 + 'm'
-}
-
-
-function checkDescription(descriptionsArr: flavor_text[]) {
-  const description = descriptionsArr.find((desc) => desc.language.name === 'en')
-  return description ? description.flavor_text : 'NO DATA'
-}
 
