@@ -1,4 +1,4 @@
-import { useViewport } from './useViewport'
+import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
 import { useCallback, useMemo, useState } from 'react'
 
 const DOTS = '...'
@@ -33,13 +33,13 @@ const range = (start: number, end: number): number[] => {
   return Array.from({ length }, (_, idx) => idx + start)
 }
 
-export function usePagination<T>({
+export const usePagination = <T,>({
   data,
   pageSize,
-}: UsePaginationParams<T>): UsePaginationReturn<T> {
+}: UsePaginationParams<T>): UsePaginationReturn<T> => {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPageCount = Math.ceil(data.length / pageSize)
-  const { isMobile } = useViewport()
+  const { isMobile } = useViewportContext()
   const siblingCount = isMobile ? 0 : 2
 
   const paginationRange = useMemo(() => {

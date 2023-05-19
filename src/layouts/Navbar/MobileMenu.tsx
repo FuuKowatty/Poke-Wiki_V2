@@ -30,7 +30,7 @@ const MenuItems = [
 
 export function MobileMenu() {
   const pathname = useLocation().pathname
-  const { isTablet } = useViewport()
+  const { isTablet, isMobile } = useViewport()
 
   const checkIsActive = (path: string) => {
     // It returns for example /pokemons/all => /pokemons
@@ -49,7 +49,7 @@ export function MobileMenu() {
       {MenuItems.map((item) => (
         <StyledLink to={item.path} key={item.title}>
           <MobileMenuIconContainer isActive={checkIsActive(item.path)}>
-            {isTablet? item.icon : item.title.toUpperCase()}
+            {isTablet || isMobile ? item.icon : item.title.toUpperCase()}
           </MobileMenuIconContainer>
         </StyledLink>
       ))}

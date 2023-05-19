@@ -1,4 +1,5 @@
 import { moveDetailsProps } from 'pages/Pokemons/PokemonDetail'
+import { DetailsHeader, MovesList, MovesListItem } from 'pages/Pokemons/PokemonDetail.styled'
 import { useEffect, useState } from 'react'
 
 interface props {
@@ -17,15 +18,16 @@ export function PokemonMoves({ linksArr }: props) {
         console.error('Error fetching move details:', error)
       }
     }
-    console.log(linksArr)
-
     fetchMoveDetails()
   }, [linksArr])
 
   return (
-    <>
-      <h2>TOP MOVES</h2>
-      {moveDetails && moveDetails.map((move) => <span key={move.name}>{move.name}</span>)}
-    </>
+    <section>
+      <DetailsHeader>TOP MOVES</DetailsHeader>
+      <MovesList>
+        {moveDetails &&
+          moveDetails.map((move) => <MovesListItem key={move.name}>{move.name}</MovesListItem>)}
+      </MovesList>
+    </section>
   )
 }

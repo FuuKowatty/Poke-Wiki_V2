@@ -9,33 +9,24 @@ import { favItem } from 'components/CardInterface/CardInterface'
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 import { GridContainer } from 'styles/globalComponents'
-import { useFavorites } from 'hooks/useFavorites'
-import { useAppContext } from 'hooks/useAppContext'
-import { FavoritesProps } from 'context'
-import { useEffect, useState } from 'react'
+import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
+import { useState } from 'react'
+
+const filtersButtonText = ['all', 'pokemons', 'berries']
 
 export function Favorites() {
-  const { favorites, handleClearItems } = useFavorites()
-  const { favoriteItemsLimit } = useAppContext()
-  const [acutallFilters, setacutallFilters] = useState('all')
-  const [arr, setArr] = useState<FavoritesProps[] | []>([])
+  const { favorites, handleClearItems, favoriteItemsLimit } = useFavoriteContext()
+  const [acutallFilters, setAcutallFilters] = useState('all')
 
-  const filtersButtonText = ['all', 'pokemons', 'berries']
-
-  useEffect(() => {
-    if (acutallFilters === 'all') {
-      setArr(favorites)
-    } else if (acutallFilters === 'pokemons') {
-      setArr(favorites.filter((fav: favItem) => fav.type === 'pokemon'))
-    } else if (acutallFilters === 'berries') {
-      setArr(favorites.filter((fav: favItem) => fav.type === 'berry'))
-    }
-  }, [favorites, acutallFilters])
+  const filteredFavorites =
+    acutallFilters === 'all'
+      ? favorites
+      : favorites.filter((fav: favItem) => fav.type === acutallFilters)
 
   const handleFilter = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const target = event.target as HTMLButtonElement
     const value = target.getAttribute('data-value') as string
-    setacutallFilters(value)
+    setAcutallFilters(value)
   }
 
   return (
@@ -46,7 +37,7 @@ export function Favorites() {
             <FilterButton
               key={text}
               data-value={text}
-              onClick={(e) => handleFilter(e)}
+              onClick={handleFilter}
               isActive={text === acutallFilters}
             >
               {text}
@@ -55,11 +46,11 @@ export function Favorites() {
         </TypeFiltersContainer>
         <ClearItemsButton onClick={handleClearItems}>Clear all</ClearItemsButton>
         <FavoriteItemsCount>
-          {favorites.length} / {favoriteItemsLimit}
+          {filteredFavorites.length} / {favoriteItemsLimit}
         </FavoriteItemsCount>
       </FilterFavoriteContainer>
       <GridContainer>
-        {arr.map((fav: favItem) => {
+        {filteredFavorites.map((fav: favItem) => {
           const { name, type } = fav
           if (type === 'pokemon') {
             return <PokemonCard key={name} name={name} />

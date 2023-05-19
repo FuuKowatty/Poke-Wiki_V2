@@ -4,13 +4,12 @@ import {
   PokemonStatsContainer,
   DetailsHeader,
 } from './PokemonDetail.styled'
-import { PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
+import { MoveData, PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
 import { PokemonMoves } from 'components/PokemonMoves'
 import { PokemonStats } from 'components/PokemonStats'
 import { PokemonTable } from 'components/PokemonTable'
 import { checkDescription, checkHabitat } from 'utils/checkData'
-import { sliceArray } from 'utils/sliceArray'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -62,6 +61,13 @@ export function PokemonDetail() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
+  const sliceArray = (arr: MoveData[]) => {
+    const linksArr = arr.map((move) => move.move.url)
+    const slicedLinksArr = linksArr.slice(0, 5)
+
+    return slicedLinksArr
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -91,27 +97,27 @@ export function PokemonDetail() {
   }, [])
 
   return (
-    <PokemonDetailsContainer>
-      <LoadingState isLoading={isLoading}>
-          <DetailsHeader>{pokemonData?.name}</DetailsHeader>
-          <PokemonDetailImage src={pokemonData?.sprites.other.dream_world.front_default} />
-          <PokemonStatsContainer>
-            {pokemonData && (
-              <>
-                <PokemonStats stats={pokemonData.stats} />
-                {iconTypes && pokemonSpecies && <PokemonTable data={pokemonData} icons={iconTypes} habitat={checkHabitat(pokemonSpecies.habitat)} />}
-              </>
-            )}
-          </PokemonStatsContainer>
-          {pokemonData && <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />}
-          {pokemonSpecies && (
+    <LoadingState isLoading={isLoading}>
+      <PokemonDetailsContainer>
+        <PokemonDetailImage src={pokemonData?.sprites.other.dream_world.front_default} />
+        <DetailsHeader>{pokemonData?.name}</DetailsHeader>
+        <PokemonStatsContainer>
+          {pokemonData && (
             <>
-              desc: {checkDescription(pokemonSpecies.flavor_text_entries)}
+              <PokemonStats stats={pokemonData.stats} />
+              {iconTypes && pokemonSpecies && (
+                <PokemonTable
+                  data={pokemonData}
+                  icons={iconTypes}
+                  habitat={checkHabitat(pokemonSpecies.habitat)}
+                />
+              )}
             </>
           )}
-      </LoadingState>
-    </PokemonDetailsContainer>
+        </PokemonStatsContainer>
+        {pokemonData && <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />}
+        {pokemonSpecies && <>desc: {checkDescription(pokemonSpecies.flavor_text_entries)}</>}
+      </PokemonDetailsContainer>
+    </LoadingState>
   )
 }
-
-

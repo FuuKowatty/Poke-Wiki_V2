@@ -15,7 +15,7 @@ import React from 'react'
 interface PokemonTableProps {
   data: PokemonSpecs
   icons: iconTypesProps[]
-  habitat: string;
+  habitat: string
 }
 
 export function PokemonTable({ data, icons, habitat }: PokemonTableProps) {
@@ -41,10 +41,6 @@ export function PokemonTable({ data, icons, habitat }: PokemonTableProps) {
               <TableRow>
                 <TableHeaderCell>{item.header}</TableHeaderCell>
                 <TableCell>{item.data}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableHeaderCell></TableHeaderCell>
-                <TableCell></TableCell>
               </TableRow>
             </React.Fragment>
           ))}

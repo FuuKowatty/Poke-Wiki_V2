@@ -1,7 +1,7 @@
 import alternativeImg from 'assets/default_image.svg'
 import { CardContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
 import { CardInterface } from 'components/CardInterface/CardInterface'
-import { useFavorites } from 'hooks/useFavorites'
+import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
 interface flavor {
@@ -118,7 +118,7 @@ export function BerryCard({ url }: { url: string }) {
     }
   }
 
-  const { handleAddFavorite } = useFavorites()
+  const { handleAddFavorite } = useFavoriteContext()
   const handleAddFavoriteBerry = () => handleAddFavorite('berry', url)
 
   return (

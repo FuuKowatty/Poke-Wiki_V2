@@ -1,6 +1,6 @@
 import { Name, Options, OptionsItem } from 'components/CardInterface/CardInterface.styled'
-import { useAppContext } from 'hooks/useAppContext'
-import { useViewport } from 'hooks/useViewport'
+import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
+import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { animated, useSpring } from '@react-spring/web'
 import { HiViewfinderCircle } from 'react-icons/hi2'
 import { MdFavoriteBorder } from 'react-icons/md'
@@ -29,8 +29,8 @@ export function CardInterface({
   name: string
   url?: string
 }) {
-  const { isTablet } = useViewport()
-  const { favorites } = useAppContext()
+  const { isTablet, isMobile } = useViewportContext()
+  const { favorites } = useFavoriteContext()
 
   const props = useSpring({
     opacity: isHovered ? 1 : 0,
@@ -43,7 +43,7 @@ export function CardInterface({
 
   return (
     <>
-      {isTablet ? (
+      {isTablet || isMobile ? (
         <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name} />
       ) : (
         <animated.div style={props}>

@@ -1,7 +1,7 @@
 import { SkeletonLoading, CardContainer, PokemonCardImage } from '../Card.styled'
 import alternativeImg from 'assets/default_image.svg'
 import { CardInterface } from 'components/CardInterface/CardInterface'
-import { useFavorites } from 'hooks/useFavorites'
+import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
 interface PokemonType {
@@ -107,7 +107,7 @@ export function PokemonCard({ name }: { name: string }) {
     }
   }
 
-  const { handleAddFavorite } = useFavorites()
+  const { handleAddFavorite } = useFavoriteContext()
   const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)
 
   return (
