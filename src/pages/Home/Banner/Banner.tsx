@@ -10,11 +10,11 @@ import {
 } from './Banner.styled'
 import banner from 'assets/banner2.png'
 import bannerMobile from 'assets/bannerMobile.png'
-import { useAppContext } from 'hooks/useAppContext'
+import { useViewport } from 'hooks/useViewport'
 import { useNavigate } from 'react-router-dom'
 
 export function Banner() {
-  const { isMobile } = useAppContext()
+  const { isMobile } = useViewport()
   const navigate = useNavigate()
 
   return (

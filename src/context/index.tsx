@@ -1,9 +1,6 @@
-import { useViewport } from 'hooks/useViewport'
 import { useState, createContext, ReactNode } from 'react'
 
 interface ContextProps {
-  browserWidth: number
-  isMobile: boolean
   favorites: FavoritesProps[] | []
   setFavorites: React.Dispatch<React.SetStateAction<FavoritesProps[] | []>>
   favoriteItemsLimit: number
@@ -15,8 +12,6 @@ export interface FavoritesProps {
 }
 
 export const Context = createContext<ContextProps>({
-  browserWidth: 0,
-  isMobile: false,
   favorites: [],
   setFavorites: () => {
     console.log('milego')
@@ -25,16 +20,14 @@ export const Context = createContext<ContextProps>({
 })
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [favorites, setFavorites] = useState<FavoritesProps[] | []>([])
-  const favoriteItemsLimit = 20
-  const browserWidth = useViewport()
-  const isMobile = browserWidth < 620
+
+  // czy w tej apce jest mi potrzebny kontekst w ogole? jak zrobic zeby stan sie dynamicznie aktualizował? bo przeciez useViewport tez mi nie aktualizowalo szerokosci bez stanu tutaj.
+  const [favorites, setFavorites] = useState<FavoritesProps[] | []>([]) // czy da rade w hooku aby sie aktualizował dac favorite?
+  const favoriteItemsLimit = 20 // przenies
 
   return (
     <Context.Provider
       value={{
-        browserWidth,
-        isMobile,
         favorites,
         setFavorites,
         favoriteItemsLimit,

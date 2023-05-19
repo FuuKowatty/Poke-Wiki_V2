@@ -1,8 +1,8 @@
 import { useFetch } from 'hooks/useFetch'
-import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'
 import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
+import { useViewport } from 'hooks/useViewport'
 import { useLocation } from 'react-router-dom'
 
 interface Berry {
@@ -25,8 +25,7 @@ export function BerriesSearch() {
   const fetchUrl = 'https://pokeapi.co/api/v2/berry/?limit=20000'
   const { data = { results: [] }, error, isLoading } = useFetch<PokemonList>(fetchUrl)
 
-  const { browserWidth } = useAppContext()
-  const contentPerPage = browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
+  const { contentPerPage } = useViewport()
   const filteredData = data.results.filter((berry) =>
     berry.name.toLowerCase().startsWith(query?.toLowerCase() as string),
   )

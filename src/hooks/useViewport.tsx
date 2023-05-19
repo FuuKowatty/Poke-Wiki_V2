@@ -1,3 +1,4 @@
+import { calculateContentPerPage } from 'utils/calculateMeasures'
 import { useEffect, useState } from 'react'
 
 export const useViewport = () => {
@@ -9,5 +10,7 @@ export const useViewport = () => {
     return () => window.removeEventListener('resize', handleWindowResize)
   }, [])
 
-  return width
+  const contentPerPage = calculateContentPerPage(width);
+
+  return { browserWidth: width, isMobile: width < 620, isTablet: width<1024, contentPerPage }
 }

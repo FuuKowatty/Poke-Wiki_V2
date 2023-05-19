@@ -1,4 +1,4 @@
-import { useAppContext } from './useAppContext'
+import { useViewport } from './useViewport'
 import { useCallback, useMemo, useState } from 'react'
 
 const DOTS = '...'
@@ -39,7 +39,7 @@ export function usePagination<T>({
 }: UsePaginationParams<T>): UsePaginationReturn<T> {
   const [currentPage, setCurrentPage] = useState(1)
   const totalPageCount = Math.ceil(data.length / pageSize)
-  const { isMobile } = useAppContext()
+  const { isMobile } = useViewport()
   const siblingCount = isMobile ? 0 : 2
 
   const paginationRange = useMemo(() => {

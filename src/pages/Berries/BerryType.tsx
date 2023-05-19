@@ -1,8 +1,8 @@
 import { useFetch } from 'hooks/useFetch'
-import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'
 import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
+import { useViewport } from 'hooks/useViewport'
 import { useParams } from 'react-router-dom'
 
 interface berry {
@@ -20,8 +20,7 @@ export function BerryType() {
   const fetchUrl = `https://pokeapi.co/api/v2/berry-firmness/${typeName}`
   const { data = { berries: [] }, error, isLoading } = useFetch<TypeList>(fetchUrl)
 
-  const { browserWidth } = useAppContext()
-  const contentPerPage = browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
+  const { contentPerPage } = useViewport()
   const {
     paginationRange,
     currentPage,

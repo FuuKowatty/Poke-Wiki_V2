@@ -1,8 +1,8 @@
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { useFetch } from 'hooks/useFetch'
-import { useAppContext } from 'hooks/useAppContext'
 import { usePagination } from 'hooks/usePagination'
 import { PokemonBuildPage } from 'pages/BuildGridPage'
+import { useViewport } from 'hooks/useViewport'
 import { useParams } from 'react-router-dom'
 
 interface Pokemon {
@@ -23,8 +23,7 @@ export function PokemonType() {
   const fetchUrl = `https://pokeapi.co/api/v2/type/${typeName}`
   const { data = { pokemon: [] }, error, isLoading } = useFetch<TypeList>(fetchUrl)
 
-  const { browserWidth } = useAppContext()
-  const contentPerPage = browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
+  const { contentPerPage } = useViewport()
   const {
     paginationRange,
     currentPage,

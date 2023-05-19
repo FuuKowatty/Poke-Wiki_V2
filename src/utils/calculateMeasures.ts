@@ -12,6 +12,14 @@ export function calculateHeight(decimeters: number) {
   return convertToMeters(decimeters) + '/' + convertToFeet(decimeters)
 }
 
+export function calculateProgressWidth(width: number) {
+  return (width / 255) * 100 + '%'
+}
+
+export function calculateContentPerPage(browserWidth: number) {
+  return browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20;
+}
+
 function convertToKilograms(hectograms: number) {
   return hectograms / 10 + 'kg'
 }
