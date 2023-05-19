@@ -1,5 +1,5 @@
 import { MobileMenuContainer, MobileMenuIconContainer, StyledLink } from './Navbar.styled'
-import { useAppContext } from 'hooks/useAppContext'
+import { useViewport } from 'hooks/useViewport'
 import { AiFillHome } from 'react-icons/ai'
 import { MdCatchingPokemon, MdFavorite } from 'react-icons/md'
 import { GiStrawberry } from 'react-icons/gi'
@@ -30,8 +30,7 @@ const MenuItems = [
 
 export function MobileMenu() {
   const pathname = useLocation().pathname
-  const { browserWidth } = useAppContext()
-  const isDesktopMenu = browserWidth >= 1024
+  const { isTablet } = useViewport()
 
   const checkIsActive = (path: string) => {
     // It returns for example /pokemons/all => /pokemons
@@ -50,7 +49,7 @@ export function MobileMenu() {
       {MenuItems.map((item) => (
         <StyledLink to={item.path} key={item.title}>
           <MobileMenuIconContainer isActive={checkIsActive(item.path)}>
-            {isDesktopMenu ? item.title.toUpperCase() : item.icon}
+            {isTablet? item.icon : item.title.toUpperCase()}
           </MobileMenuIconContainer>
         </StyledLink>
       ))}

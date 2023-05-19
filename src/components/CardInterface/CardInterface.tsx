@@ -1,5 +1,6 @@
 import { Name, Options, OptionsItem } from 'components/CardInterface/CardInterface.styled'
 import { useAppContext } from 'hooks/useAppContext'
+import { useViewport } from 'hooks/useViewport'
 import { animated, useSpring } from '@react-spring/web'
 import { HiViewfinderCircle } from 'react-icons/hi2'
 import { MdFavoriteBorder } from 'react-icons/md'
@@ -28,8 +29,7 @@ export function CardInterface({
   name: string
   url?: string
 }) {
-  const { browserWidth } = useAppContext()
-  const isMobile = browserWidth < 1024
+  const { isTablet } = useViewport()
   const { favorites } = useAppContext()
 
   const props = useSpring({
@@ -43,7 +43,7 @@ export function CardInterface({
 
   return (
     <>
-      {isMobile ? (
+      {isTablet ? (
         <CardItems handleAddFavorite={handleAddFavorite} isFav={isFav} name={name} />
       ) : (
         <animated.div style={props}>
