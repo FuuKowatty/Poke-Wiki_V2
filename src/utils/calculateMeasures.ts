@@ -17,7 +17,7 @@ export function calculateProgressWidth(width: number) {
 }
 
 export function calculateContentPerPage(browserWidth: number) {
-  return browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20;
+  return browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
 }
 
 function convertToKilograms(hectograms: number) {
