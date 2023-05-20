@@ -1,14 +1,6 @@
-import { PokemonSpecs } from './Card/PokemonCard/PokemonCard'
-import {
-  TableHeaderCell,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  DetailsTypeImage,
-} from 'pages/Pokemons/PokemonDetail.styled'
-import { iconTypesProps } from 'pages/Pokemons/PokemonDetail'
+import { DetailsTypeImage, Table, TableBody, TableContainer, TableHeaderCell, TableRow, TableCell } from 'pages/Details/Pokemons/Table/Table.styled';
+import { PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
+import { iconTypesProps } from 'pages/Details/Pokemons/PokemonDetail'
 import { calculateHeight, calculateWeight } from 'utils/calculateMeasures'
 import React from 'react'
 

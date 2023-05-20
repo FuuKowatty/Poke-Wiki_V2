@@ -1,10 +1,5 @@
-import { statsInfo } from './Card/PokemonCard/PokemonCard'
-import {
-  BarContainer,
-  BarStats,
-  InfoStatContainer,
-  ProgressBar,
-} from 'pages/Pokemons/PokemonDetail.styled'
+import { BarContainer, BarStats, InfoStatContainer, ProgressBar, StatsContainer } from './Stats.styled'
+import { statsInfo } from '../../../../components/Card/PokemonCard/PokemonCard'
 import { calculateProgressWidth, calculateTotalStats } from 'utils/calculateMeasures'
 import { GiRabbit } from 'react-icons/gi'
 import { AiOutlineHeart } from 'react-icons/ai'
@@ -52,7 +47,8 @@ export function PokemonStats({ stats }: { stats: statsInfo[] }) {
   }
 
   return (
-    <>
+    <StatsContainer>
+      <h2>STATS</h2>
       {stats.map((stat) => {
         const statAccessories = getStatAccessories(stat.stat.name)
         if (!statAccessories) {
@@ -74,6 +70,6 @@ export function PokemonStats({ stats }: { stats: statsInfo[] }) {
         )
       })}
       <p>Total: {calculateTotalStats(stats)}</p>
-    </>
+    </StatsContainer>
   )
 }

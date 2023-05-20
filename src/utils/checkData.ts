@@ -1,4 +1,4 @@
-import { flavorText } from 'pages/Pokemons/PokemonDetail'
+import { flavorText } from 'pages/Details/Pokemons/PokemonDetail'
 
 export function checkDescription(descriptionsArr: flavorText[]) {
   const description = descriptionsArr.find((desc) => desc.language.name === 'en')

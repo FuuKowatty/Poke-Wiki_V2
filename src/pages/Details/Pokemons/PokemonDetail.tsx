@@ -1,14 +1,15 @@
 import {
+  DetailsName,
+  ImageContainer,
   PokemonDetailImage,
-  PokemonDetailsContainer,
-  PokemonStatsContainer,
-  DetailsHeader,
+  DetailsContainer,
+  DescContainer,
 } from './PokemonDetail.styled'
 import { MoveData, PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
-import { PokemonMoves } from 'components/PokemonMoves'
-import { PokemonStats } from 'components/PokemonStats'
-import { PokemonTable } from 'components/PokemonTable'
+import { PokemonMoves } from 'pages/Details/Pokemons/Moves/PokemonMoves'
+import { PokemonStats } from 'pages/Details/Pokemons/Stats/PokemonStats'
+import { PokemonTable } from 'pages/Details/Pokemons/Table/PokemonTable'
 import { checkDescription, checkHabitat } from 'utils/checkData'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -98,26 +99,22 @@ export function PokemonDetail() {
 
   return (
     <LoadingState isLoading={isLoading}>
-      <PokemonDetailsContainer>
-        <PokemonDetailImage src={pokemonData?.sprites.other.dream_world.front_default} />
-        <DetailsHeader>{pokemonData?.name}</DetailsHeader>
-        <PokemonStatsContainer>
-          {pokemonData && (
-            <>
-              <PokemonStats stats={pokemonData.stats} />
-              {iconTypes && pokemonSpecies && (
-                <PokemonTable
-                  data={pokemonData}
-                  icons={iconTypes}
-                  habitat={checkHabitat(pokemonSpecies.habitat)}
-                />
-              )}
-            </>
-          )}
-        </PokemonStatsContainer>
-        {pokemonData && <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />}
-        {pokemonSpecies && <>desc: {checkDescription(pokemonSpecies.flavor_text_entries)}</>}
-      </PokemonDetailsContainer>
+      {!isLoading && pokemonData && pokemonSpecies && iconTypes && (
+        <DetailsContainer>
+          <ImageContainer>
+            <PokemonDetailImage src={pokemonData.sprites.other.dream_world.front_default} />
+            <DetailsName>{pokemonData.name}</DetailsName>
+          </ImageContainer>
+          <PokemonStats stats={pokemonData.stats} />
+          <PokemonTable
+            data={pokemonData}
+            icons={iconTypes}
+            habitat={checkHabitat(pokemonSpecies.habitat)}
+          />
+          <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />
+          <DescContainer>{checkDescription(pokemonSpecies.flavor_text_entries)}</DescContainer>
+        </DetailsContainer>
+      )}
     </LoadingState>
   )
 }
