@@ -21,7 +21,7 @@ export function Favorites() {
   const filteredFavorites =
     acutallFilters === 'all'
       ? favorites
-      : favorites.filter((fav: favItem) => fav.type === acutallFilters)
+      : favorites.filter((fav: favItem) => acutallFilters.startsWith(fav.type))
 
   const handleFilter = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const target = event.target as HTMLButtonElement
