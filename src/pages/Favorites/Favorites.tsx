@@ -16,17 +16,23 @@ const filtersButtonText = ['all', 'pokemons', 'berries']
 
 export function Favorites() {
   const { favorites, handleClearItems, favoriteItemsLimit } = useFavoriteContext()
-  const [acutallFilters, setAcutallFilters] = useState('all')
+  const [actualFilters, setActualFilters] = useState('all')
 
   const filteredFavorites =
-    acutallFilters === 'all'
+    actualFilters === 'all'
       ? favorites
-      : favorites.filter((fav: favItem) => acutallFilters.startsWith(fav.type))
+      : favorites.filter((fav: favItem) => {
+          if (actualFilters === 'berries') {
+            return fav.type === 'berry'
+          } else {
+            return fav.type === 'pokemon'
+          }
+        })
 
   const handleFilter = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const target = event.target as HTMLButtonElement
     const value = target.getAttribute('data-value') as string
-    setAcutallFilters(value)
+    setActualFilters(value)
   }
 
   return (
@@ -38,7 +44,7 @@ export function Favorites() {
               key={text}
               data-value={text}
               onClick={handleFilter}
-              isActive={text === acutallFilters}
+              isActive={text === actualFilters}
             >
               {text}
             </FilterButton>
