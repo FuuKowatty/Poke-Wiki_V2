@@ -22,12 +22,8 @@ export function Favorites() {
     actualFilters === 'all'
       ? favorites
       : favorites.filter((fav: favItem) => {
-          if (actualFilters === 'berries') {
-            return fav.type === 'berry'
-          } else {
-            return fav.type === 'pokemon'
-          }
-        })
+        return actualFilters === 'berries' ? fav.type === 'berry' : fav.type === 'pokemon';
+      })
 
   const handleFilter = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const target = event.target as HTMLButtonElement

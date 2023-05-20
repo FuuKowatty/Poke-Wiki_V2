@@ -24,19 +24,25 @@ export const useFavorites = () => {
 
   function handleAddFavorite(type: string, name: string) {
     if (favorites.length === favoriteItemsLimit) return
-    const favArr = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY) as string) || []
-    const favNames = favArr.map((fav: favItem) => fav.name)
-    if (favNames.indexOf(name) === -1) {
+
+    const favNames = favorites.map((fav: favItem) => fav.name)
+    const favIndex = favNames.indexOf(name)
+
+    if (favIndex === -1) {
       const newFav = {
         type: type,
         name: name,
       }
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify([...favArr, newFav]))
-      setFavorites([...favArr, newFav])
+
+      const updatedFavorites = [...favorites, newFav]
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(updatedFavorites))
+      setFavorites(updatedFavorites)
     } else {
-      const filteredFavArr = favArr.filter((fav: favItem) => fav.name !== name)
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(filteredFavArr))
-      setFavorites(filteredFavArr)
+      const updatedFavorites = [...favorites]
+      updatedFavorites.splice(favIndex, 1)
+
+      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(updatedFavorites))
+      setFavorites(updatedFavorites)
     }
   }
 
