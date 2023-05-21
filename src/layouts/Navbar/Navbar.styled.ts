@@ -35,7 +35,7 @@ export const LogoImage = styled.img`
   height: 48px;
 `
 
-export const MobileMenuContainer = styled.div`
+export const MenuContainer = styled.div`
   border-top: 1px solid ${theme.colors['darkBlue']};
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -55,7 +55,7 @@ export const MobileMenuContainer = styled.div`
   }
 `
 
-export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
+export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
   font-family: 'Golos Text', sans-serif;
   font-size: ${theme.size['xl']};
