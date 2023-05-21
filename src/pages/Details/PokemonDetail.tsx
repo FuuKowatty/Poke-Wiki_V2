@@ -4,13 +4,15 @@ import {
   PokemonDetailImage,
   DetailsContainer,
   DescContainer,
+  DetailsHeader,
+  EvolutionsContainer,
 } from './PokemonDetail.styled'
 import { MoveData, PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
-import { PokemonMoves } from 'pages/Details/Pokemons/Moves/PokemonMoves'
-import { PokemonStats } from 'pages/Details/Pokemons/Stats/PokemonStats'
-import { PokemonTable } from 'pages/Details/Pokemons/Table/PokemonTable'
 import { checkDescription, checkHabitat } from 'utils/checkData'
+import { PokemonMoves } from 'pages/Details/Moves/PokemonMoves'
+import { PokemonStats } from 'pages/Details/Stats/PokemonStats'
+import { PokemonTable } from 'pages/Details/Table/PokemonTable'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -111,8 +113,12 @@ export function PokemonDetail() {
             icons={iconTypes}
             habitat={checkHabitat(pokemonSpecies.habitat)}
           />
-          <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />
-          <DescContainer>{checkDescription(pokemonSpecies.flavor_text_entries)}</DescContainer>
+          <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />  
+          <DescContainer>
+            <DetailsHeader>Description</DetailsHeader>
+            {checkDescription(pokemonSpecies.flavor_text_entries)}
+          </DescContainer>
+          <EvolutionsContainer />
         </DetailsContainer>
       )}
     </LoadingState>

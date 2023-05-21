@@ -7,6 +7,7 @@ export const theme = {
     darkBlue: '#003367',
     standsOut: '#FAD61D',
     bannerColor: 'linear-gradient(45deg, #003367, #123049)',
+    grayGradient: 'linear-gradient(to bottom, #e0e0e0, #808080)',
   },
   size: {
     '4xl': '3.5em',

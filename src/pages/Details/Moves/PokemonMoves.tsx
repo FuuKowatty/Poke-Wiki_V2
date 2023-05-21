@@ -1,8 +1,6 @@
-import { MovesContainer, MovesList, MovesListItem } from './Moves.styled'
-import { moveDetailsProps } from 'pages/Details/Pokemons/PokemonDetail'
-import {
-  DetailsHeader,
-} from 'pages/Details/Pokemons/PokemonDetail.styled'
+import { MovesList, MovesListItem } from './Moves.styled'
+import { DetailsHeader, MovesContainer } from '../PokemonDetail.styled'
+import { moveDetailsProps } from 'pages/Details/PokemonDetail'
 import { useEffect, useState } from 'react'
 
 interface props {
@@ -26,7 +24,7 @@ export function PokemonMoves({ linksArr }: props) {
 
   return (
     <MovesContainer>
-      <DetailsHeader>TOP MOVES</DetailsHeader>
+      <DetailsHeader>Moves</DetailsHeader>
       <MovesList>
         {moveDetails &&
           moveDetails.map((move) => <MovesListItem key={move.name}>{move.name}</MovesListItem>)}

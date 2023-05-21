@@ -13,7 +13,7 @@ export const useViewport = () => {
   const contentPerPage = calculateContentPerPage(width)
   const browserWidth = width
   const isMobile = width < 620
-  const isTablet = width < 1024 && width > 620
+  const isTablet = width < 1024 && width >= 620
 
   return { browserWidth, isMobile, isTablet, contentPerPage }
 }

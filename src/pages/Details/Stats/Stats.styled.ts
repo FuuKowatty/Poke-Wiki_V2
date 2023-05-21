@@ -1,14 +1,6 @@
 import { theme } from 'styles/theme';
 import styled from 'styled-components';
 
-export const StatsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: ${theme.spacing['2']};
-`
-
 export const BarContainer = styled.div`
   display: flex;
   gap: ${theme.spacing['1']};
@@ -34,4 +26,18 @@ export const ProgressBar = styled.span<{ width: string; color: string }>`
 
 export const InfoStatContainer = styled.div`
   min-width: 90px;
+`
+
+
+export const TotalDivider = styled.span`
+  height: 3px;
+  width: 100%;
+  background: ${theme.colors['darkerBlue']}
+`
+
+export const TotalParagraph = styled.p`
+  text-align: left;
+  margin: 0;
+  width: 100%;
+  font-size: ${theme.size['lg']};
 `

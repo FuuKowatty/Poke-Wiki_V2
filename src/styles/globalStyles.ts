@@ -3,14 +3,19 @@ import { device } from 'utils/breakpoints'
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
         color: ${theme.colors['primary']};
         background: ${theme.colors['bodyBg']};
         font-family: Roboto, sans-serif;
         font-size: ${theme.size['md']};
-        padding: 0;
         padding-bottom: 50px;
-        margin: 0;
 
         @media ${device.laptop} {
             padding-bottom: 0;
