@@ -53,8 +53,8 @@ export const FlavorsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
-  padding: ${theme.spacing[3]};
+  justify-content: center;
+  padding: 0 ${theme.spacing[3]};
   height: 100%;
   gap: ${theme.spacing['1']};
 `

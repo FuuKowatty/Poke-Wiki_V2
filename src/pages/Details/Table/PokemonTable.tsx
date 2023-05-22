@@ -2,7 +2,6 @@ import { DetailsHeader, TableContainer } from '../PokemonDetail.styled'
 import {
   DetailsTypeImage,
   Table,
-  TableBody,
   TableHeaderCell,
   TableRow,
   TableCell,
@@ -35,7 +34,7 @@ export function PokemonTable({ data, icons, habitat }: PokemonTableProps) {
   return (
     <TableContainer>
       <Table>
-        <TableBody>
+        <tbody>
           {dataTable.map((item) => (
             <React.Fragment key={item.id}>
               <TableRow>
@@ -44,7 +43,7 @@ export function PokemonTable({ data, icons, habitat }: PokemonTableProps) {
               </TableRow>
             </React.Fragment>
           ))}
-        </TableBody>
+        </tbody>
       </Table>
     </TableContainer>
   )

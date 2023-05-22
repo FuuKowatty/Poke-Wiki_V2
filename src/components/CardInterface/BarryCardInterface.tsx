@@ -17,6 +17,8 @@ import {
   ProgressBar,
 } from 'pages/Details/Stats/Stats.styled'
 import { category, firmness, flavor } from 'components/Card/BerryCard/BerryCard'
+import { calculateProgressWidth } from 'utils/calculateMeasures'
+import { Table, TableRow } from 'pages/Details/Table/Table.styled'
 import { animated, useSpring } from '@react-spring/web'
 import { HiViewfinderCircle } from 'react-icons/hi2'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -26,7 +28,6 @@ import { GiWrappedSweet } from 'react-icons/gi'
 import { CiCoffeeBean } from 'react-icons/ci'
 import { BiLemon } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
-import { calculateProgressWidth } from 'utils/calculateMeasures'
 
 interface CardInterfaceProps {
   isHovered: boolean
@@ -34,7 +35,7 @@ interface CardInterfaceProps {
   name: string
   url: string
   flavors: flavor[]
-  firmness: firmness
+  firmness: firmness;
   growthTime: number
   size: number
   smoothness: number
@@ -151,7 +152,26 @@ export function BerryCardInterface({
 function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps) {
   const [isFavActive, setisFavActive] = useState(isFav)
   const [isDetailsActive, setIsDetailsActive] = useState(false)
-  const { flavors, firmness, growthTime, size, smoothness, category, cost } = cardItems
+  const { flavors, firmness, size, category, cost } = cardItems
+
+  const cardItemsValues = [
+    {
+      name: 'firmness',
+      value: firmness.name
+    },
+    {
+      name: 'size',
+      value: size
+    },
+    {
+      name: 'category',
+      value: category.name
+    },
+    {
+      name: 'cost',
+      value: cost
+    },
+  ]
 
   useEffect(() => {
     setisFavActive(isFav)
@@ -193,7 +213,22 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
               <AiOutlineClose />
             </CloseDetailsItem>
           </Options>
+
           <FlavorsContainer>
+          <Table>
+            <tbody>
+              <TableRow isSmaller>
+                <th>Property</th>
+                <th>Value</th>
+              </TableRow>
+              {cardItemsValues.map(cardItem => (
+              <TableRow key={cardItem.name} isSmaller>
+                <td>{cardItem.name}</td>
+                <td>{cardItem.value}</td>
+              </TableRow>
+              ))}
+            </tbody>
+          </Table>
             {flavors.map((flavor) => {
               const statAccessories = getStatAccessories(Stats, flavor.flavor.name)
               if (!statAccessories) {
