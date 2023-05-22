@@ -1,5 +1,5 @@
-import { theme } from 'styles/theme';
-import styled from 'styled-components';
+import { theme } from 'styles/theme'
+import styled from 'styled-components'
 
 export const BarContainer = styled.div`
   display: flex;
@@ -21,18 +21,17 @@ export const ProgressBar = styled.span<{ width: string; color: string }>`
   background: ${({ color }) => color};
   width: ${({ width }) => width};
   height: 100%;
-  z-index: -1;
+  z-index: 1;
 `
 
 export const InfoStatContainer = styled.div`
   min-width: 90px;
 `
 
-
 export const TotalDivider = styled.span`
   height: 3px;
   width: 100%;
-  background: ${theme.colors['darkerBlue']}
+  background: ${theme.colors['darkerBlue']};
 `
 
 export const TotalParagraph = styled.p`

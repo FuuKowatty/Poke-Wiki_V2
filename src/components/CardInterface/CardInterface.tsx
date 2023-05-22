@@ -22,12 +22,10 @@ export function CardInterface({
   isHovered,
   handleAddFavorite,
   name,
-  url,
 }: {
   isHovered: boolean
   handleAddFavorite: () => void
   name: string
-  url?: string
 }) {
   const { isTablet, isMobile } = useViewportContext()
   const { favorites } = useFavoriteContext()
@@ -37,9 +35,9 @@ export function CardInterface({
   })
 
   // check if card is favorite
-  const itemName = url || name
+  // const itemName = url || name
   const favNames = favorites.map((fav: favItem) => fav.name)
-  const isFav = favNames.indexOf(itemName) === -1 ? false : true
+  const isFav = favNames.indexOf(name) === -1 ? false : true
 
   return (
     <>
@@ -56,16 +54,16 @@ export function CardInterface({
 }
 
 function CardItems({ handleAddFavorite, isFav, name }: CardItemsProps) {
-  const [active, setActive] = useState(isFav)
+  const [isFavActive, setisFavActive] = useState(isFav)
   const navigate = useNavigate()
 
   useEffect(() => {
-    setActive(isFav)
+    setisFavActive(isFav)
   }, [isFav])
 
   const onAddFavorite = () => {
     handleAddFavorite()
-    setActive(!active)
+    setisFavActive(!isFavActive)
   }
 
   const onViewDetails = () => {
@@ -74,7 +72,7 @@ function CardItems({ handleAddFavorite, isFav, name }: CardItemsProps) {
 
   return (
     <Options>
-      <OptionsItem onClick={onAddFavorite} isActive={active}>
+      <OptionsItem onClick={onAddFavorite} isActive={isFavActive}>
         <MdFavoriteBorder />
       </OptionsItem>
       <OptionsItem onClick={onViewDetails}>

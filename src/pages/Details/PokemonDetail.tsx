@@ -113,7 +113,7 @@ export function PokemonDetail() {
             icons={iconTypes}
             habitat={checkHabitat(pokemonSpecies.habitat)}
           />
-          <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />  
+          <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />
           <DescContainer>
             <DetailsHeader>Description</DetailsHeader>
             {checkDescription(pokemonSpecies.flavor_text_entries)}

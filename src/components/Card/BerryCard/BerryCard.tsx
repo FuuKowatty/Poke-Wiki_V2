@@ -1,45 +1,44 @@
 import alternativeImg from 'assets/default_image.svg'
 import { CardContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
-import { CardInterface } from 'components/CardInterface/CardInterface'
+import { BerryCardInterface } from 'components/CardInterface/BarryCardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
-interface flavor {
-  name: string
-  url: string
+export interface flavor {
+  flavor: {
+    name: string
+    url: string
+  }
   potency: number
 }
 
-interface firmness {
+export interface firmness {
   name: string
   url: string
 }
 
-interface item {
-  name: string
-  url: string
-}
-
-interface giftType {
-  name: string
-  url: string
-}
-
-interface BerrySpecs {
-  name: string
-  flavors: flavor[]
+interface BerryProps {
   firmness: firmness
+  flavors: flavor[]
   growth_time: number
   id: number
-  item: item
+  item: {
+    name: string
+    url: string
+  }
+  max_harvest: number
+  name: string
   natural_gift_power: number
-  natural_gift_type: giftType
+  natural_gift_type: {
+    name: string
+    url: string
+  }
   size: number
   smoothness: number
   soil_dryness: number
 }
 
-interface category {
+export interface category {
   name: string
 }
 
@@ -65,7 +64,7 @@ interface BerryItemSpec {
 }
 
 export function BerryCard({ url }: { url: string }) {
-  const [dataSpec, setDataSpec] = useState<null | BerrySpecs>(null)
+  const [dataSpec, setDataSpec] = useState<null | BerryProps>(null)
   const [dataItemSpec, setDataItemSpec] = useState<null | BerryItemSpec>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -131,12 +130,19 @@ export function BerryCard({ url }: { url: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
-      {dataItemSpec && !isLoading && (
-        <CardInterface
+      {dataItemSpec && dataSpec && !isLoading && (
+        <BerryCardInterface
           isHovered={isHovered}
           handleAddFavorite={handleAddFavoriteBerry}
           name={dataItemSpec?.name}
           url={url}
+          flavors={dataSpec.flavors}
+          firmness={dataSpec.firmness}
+          growthTime={dataSpec.growth_time}
+          size={dataSpec.size}
+          smoothness={dataSpec.smoothness}
+          category={dataItemSpec.category}
+          cost={dataItemSpec.cost}
         />
       )}
     </CardContainer>

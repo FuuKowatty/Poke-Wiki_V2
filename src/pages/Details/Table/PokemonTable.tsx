@@ -1,5 +1,12 @@
-import { DetailsHeader, TableContainer } from '../PokemonDetail.styled';
-import { DetailsTypeImage, Table, TableBody, TableHeaderCell, TableRow, TableCell } from 'pages/Details/Table/Table.styled';
+import { DetailsHeader, TableContainer } from '../PokemonDetail.styled'
+import {
+  DetailsTypeImage,
+  Table,
+  TableBody,
+  TableHeaderCell,
+  TableRow,
+  TableCell,
+} from 'pages/Details/Table/Table.styled'
 import { PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { iconTypesProps } from 'pages/Details/PokemonDetail'
 import { calculateHeight, calculateWeight } from 'utils/calculateMeasures'

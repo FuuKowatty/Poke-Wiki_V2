@@ -12,8 +12,8 @@ export function calculateHeight(decimeters: number) {
   return convertToMeters(decimeters) + '/' + convertToFeet(decimeters)
 }
 
-export function calculateProgressWidth(width: number) {
-  return (width / 255) * 100 + '%'
+export function calculateProgressWidth(limit: number, width: number) {
+  return (width / limit) * 100 + '%'
 }
 
 export function calculateContentPerPage(browserWidth: number) {

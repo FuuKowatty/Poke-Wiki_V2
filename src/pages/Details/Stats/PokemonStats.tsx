@@ -1,4 +1,11 @@
-import { BarContainer, BarStats, InfoStatContainer, ProgressBar, TotalDivider, TotalParagraph } from './Stats.styled'
+import {
+  BarContainer,
+  BarStats,
+  InfoStatContainer,
+  ProgressBar,
+  TotalDivider,
+  TotalParagraph,
+} from './Stats.styled'
 import { DetailsHeader, StatsContainer } from '../PokemonDetail.styled'
 import { statsInfo } from 'components/Card/PokemonCard/PokemonCard'
 import { calculateProgressWidth, calculateTotalStats } from 'utils/calculateMeasures'
@@ -8,6 +15,12 @@ import { TbSword } from 'react-icons/tb'
 import { FiShield } from 'react-icons/fi'
 import { SlMagicWand } from 'react-icons/sl'
 import { RiEyeOffLine } from 'react-icons/ri'
+
+interface StatsProps {
+  name: string
+  color: string
+  icon: JSX.Element
+}
 
 const Stats = [
   {
@@ -42,15 +55,15 @@ const Stats = [
   },
 ]
 
-export function PokemonStats({ stats }: { stats: statsInfo[] }) {
-  const getStatAccessories = (name: string) => {
-    return Stats.find((accessory) => accessory.name === name)
-  }
+export const getStatAccessories = (arr: StatsProps[], name: string) => {
+  return arr.find((accessory) => accessory.name === name)
+}
 
+export function PokemonStats({ stats }: { stats: statsInfo[] }) {
   return (
     <StatsContainer>
       {stats.map((stat) => {
-        const statAccessories = getStatAccessories(stat.stat.name)
+        const statAccessories = getStatAccessories(Stats, stat.stat.name)
         if (!statAccessories) {
           return null
         }
@@ -62,7 +75,7 @@ export function PokemonStats({ stats }: { stats: statsInfo[] }) {
             </InfoStatContainer>
             <BarStats>
               <ProgressBar
-                width={calculateProgressWidth(stat.base_stat)}
+                width={calculateProgressWidth(255, stat.base_stat)}
                 color={statAccessories.color}
               />
             </BarStats>
