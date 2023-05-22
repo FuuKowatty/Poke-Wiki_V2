@@ -37,8 +37,6 @@ interface CardInterfaceProps {
   flavors: flavor[]
   firmness: firmness;
   growthTime: number
-  size: number
-  smoothness: number
   category: category
   cost: number
 }
@@ -50,8 +48,6 @@ interface CardItemsProps {
     flavors: flavor[]
     firmness: firmness
     growthTime: number
-    size: number
-    smoothness: number
     category: category
     cost: number
   }
@@ -99,8 +95,6 @@ export function BerryCardInterface({
   flavors,
   firmness,
   growthTime,
-  size,
-  smoothness,
   category,
   cost,
 }: CardInterfaceProps) {
@@ -120,8 +114,6 @@ export function BerryCardInterface({
     flavors,
     firmness,
     growthTime,
-    size,
-    smoothness,
     category,
     cost,
   }
@@ -152,7 +144,7 @@ export function BerryCardInterface({
 function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps) {
   const [isFavActive, setisFavActive] = useState(isFav)
   const [isDetailsActive, setIsDetailsActive] = useState(false)
-  const { flavors, firmness, size, category, cost } = cardItems
+  const { flavors, firmness, category, cost, growthTime } = cardItems
   console.log(name)
   const cardItemsValues = [
     {
@@ -160,8 +152,8 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
       value: firmness.name
     },
     {
-      name: 'size',
-      value: size
+      name: 'grow time',
+      value: growthTime + 'days'
     },
     {
       name: 'category',
@@ -169,7 +161,7 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
     },
     {
       name: 'cost',
-      value: cost
+      value: cost + '¥'
     },
   ]
 

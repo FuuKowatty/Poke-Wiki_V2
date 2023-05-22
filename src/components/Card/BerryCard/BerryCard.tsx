@@ -7,47 +7,25 @@ import { useEffect, useState } from 'react'
 export interface flavor {
   flavor: {
     name: string
-    url: string
   }
   potency: number
 }
 
 export interface firmness {
   name: string
-  url: string
 }
 
 interface BerryProps {
   firmness: firmness
   flavors: flavor[]
   growth_time: number
-  id: number
   item: {
-    name: string
     url: string
   }
-  max_harvest: number
-  name: string
-  natural_gift_power: number
-  natural_gift_type: {
-    name: string
-    url: string
-  }
-  size: number
-  smoothness: number
-  soil_dryness: number
 }
 
 export interface category {
   name: string
-}
-
-interface language {
-  short_effect: string
-}
-
-interface effect_entries {
-  language: language
 }
 
 interface sprites {
@@ -57,8 +35,6 @@ interface sprites {
 interface BerryItemSpec {
   category: category
   cost: number
-  effect_entries: effect_entries[]
-  id: number
   name: string
   sprites: sprites
 }
@@ -139,8 +115,6 @@ export function BerryCard({ url }: { url: string }) {
           flavors={dataSpec.flavors}
           firmness={dataSpec.firmness}
           growthTime={dataSpec.growth_time}
-          size={dataSpec.size}
-          smoothness={dataSpec.smoothness}
           category={dataItemSpec.category}
           cost={dataItemSpec.cost}
         />
