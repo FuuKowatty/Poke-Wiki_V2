@@ -213,7 +213,6 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
               <AiOutlineClose />
             </CloseDetailsItem>
           </Options>
-
           <FlavorsContainer>
           <Table>
             <tbody>
