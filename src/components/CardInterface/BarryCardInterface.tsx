@@ -153,7 +153,7 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
   const [isFavActive, setisFavActive] = useState(isFav)
   const [isDetailsActive, setIsDetailsActive] = useState(false)
   const { flavors, firmness, size, category, cost } = cardItems
-
+  console.log(name)
   const cardItemsValues = [
     {
       name: 'firmness',
@@ -241,7 +241,7 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
                   </InfoStatContainer>
                   <BarStats>
                     <ProgressBar
-                      width={calculateProgressWidth(10, flavor.potency)}
+                      width={calculateProgressWidth(40, flavor.potency)}
                       color={statAccessories.color}
                     />
                   </BarStats>
