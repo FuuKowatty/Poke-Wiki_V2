@@ -53,11 +53,12 @@ export function PokemonBuildPage({
     totalPageCount,
   } = pagination
 
+  // calculate min height of grid container to put pagination on bottom
   const gridContainerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (gridContainerRef.current) {
       const { offsetTop } = gridContainerRef.current
-      gridContainerRef.current.style.minHeight = `calc(100vh - ${offsetTop}px - 120px)`
+      gridContainerRef.current.style.minHeight = `calc(100vh - ${offsetTop}px - 100px)`
     }
   }, [])
 

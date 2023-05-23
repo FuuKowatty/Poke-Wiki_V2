@@ -12,7 +12,7 @@ export const CardContainer = styled.div`
 
 
   @media ${device['desktop']} {
-
+    max-height: 399px;
   }
 `
 
