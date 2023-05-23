@@ -13,6 +13,7 @@ import { checkDescription, checkHabitat } from 'utils/checkData'
 import { PokemonMoves } from 'pages/Details/Moves/PokemonMoves'
 import { PokemonStats } from 'pages/Details/Stats/PokemonStats'
 import { PokemonTable } from 'pages/Details/Table/PokemonTable'
+import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -94,7 +95,7 @@ export function PokemonDetail() {
       {!isLoading && pokemonData && pokemonSpecies && (
         <DetailsContainer>
           <ImageContainer>
-            <PokemonDetailImage src={pokemonData.sprites.other.dream_world.front_default} />
+            <PokemonDetailImage src={checkImage(pokemonData.sprites.other.dream_world.front_default)} onError={setAlternativeImg} />
             <DetailsName>{pokemonData.name}</DetailsName>
           </ImageContainer>
           <PokemonStats stats={pokemonData.stats} />

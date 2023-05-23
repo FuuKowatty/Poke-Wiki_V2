@@ -1,7 +1,7 @@
 import { SkeletonLoading, CardContainer, PokemonCardImage } from '../Card.styled'
-import alternativeImg from 'assets/default_image.svg'
 import { CardInterface } from 'components/CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
+import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { useEffect, useState } from 'react'
 
 export interface PokemonType {
@@ -70,6 +70,8 @@ export interface PokemonSpecs {
   moves: MoveData[]
 }
 
+
+
 export function PokemonCard({ name }: { name: string }) {
   const [data, setData] = useState<null | PokemonSpecs>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -94,18 +96,7 @@ export function PokemonCard({ name }: { name: string }) {
     setIsLoading(false)
   }
 
-  const setAlternativeImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const img = e.currentTarget
-    img.src = alternativeImg
-  }
 
-  const checkImage = () => {
-    if (data?.sprites.other.dream_world.front_default === null) {
-      return alternativeImg
-    } else {
-      return data?.sprites.other.dream_world.front_default
-    }
-  }
 
   const { handleAddFavorite } = useFavoriteContext()
   const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)
@@ -114,7 +105,7 @@ export function PokemonCard({ name }: { name: string }) {
     <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
       <PokemonCardImage
-        src={checkImage()}
+        src={checkImage(data?.sprites.other.dream_world.front_default)}
         alt={name}
         onLoad={handleImageLoad}
         onError={setAlternativeImg}

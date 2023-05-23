@@ -145,7 +145,6 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
   const [isFavActive, setisFavActive] = useState(isFav)
   const [isDetailsActive, setIsDetailsActive] = useState(false)
   const { flavors, firmness, category, cost, growthTime } = cardItems
-  console.log(name)
   const cardItemsValues = [
     {
       name: 'firmness',
