@@ -5,9 +5,7 @@ import styled from 'styled-components'
 
 export const SliderContainer = styled.div`
   width: 100%;
-  background: -webkit-linear-gradient(45deg, #003367, #123049); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(45deg, #003367, #123049);
-
+  background: ${theme.colors['bannerColor']};
   padding: ${theme.spacing[4]} 0;
   margin-top: ${theme.spacing[3]};
   text-align: center;
@@ -18,9 +16,10 @@ export const SliderContainer = styled.div`
   overflow: hidden;
   cursor: default;
 
-  @media ${device['desktop']} {
+  @media ${device['laptop']} {
     padding: ${theme.spacing[5]} 0;
   }
+
 `
 
 export const SliderItem = styled(animated.div)`

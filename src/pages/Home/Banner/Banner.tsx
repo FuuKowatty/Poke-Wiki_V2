@@ -14,12 +14,12 @@ import { useViewport } from 'hooks/useViewport'
 import { useNavigate } from 'react-router-dom'
 
 export function Banner() {
-  const { isMobile } = useViewport()
+  const { isMobile, isTablet } = useViewport()
   const navigate = useNavigate()
 
   return (
     <BannerContainer>
-      <BannerImage src={isMobile ? bannerMobile : banner} alt='banner-image' />
+      <BannerImage src={isMobile || isTablet ? bannerMobile : banner} alt='banner-image' />
       <BannerContent>
         <BannerTitle>
           <BannerTitleTextYellow>THE WIKIPEDIA OF</BannerTitleTextYellow>
