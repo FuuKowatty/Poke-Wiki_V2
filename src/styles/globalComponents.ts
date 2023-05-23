@@ -10,28 +10,26 @@ export const Container = styled.div`
   width: 1440px;
   max-width: 100%;
 `
-
 export const GridContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  padding: 0 ${theme.spacing[3]};
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  justify-items: center;
+  grid-template-columns: minmax(250px, 350px);
+  width: 100%;
+  justify-content: center;
   gap: ${theme.spacing[3]};
   position: relative;
 
   @media ${device['tablet']} {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 620px;
-  }
-
-  @media ${device['laptop']} {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1024px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: ${theme.spacing[4]};
   }
 
+  @media ${device['laptop']} {
+    grid-template-columns: repeat(3, minmax(300px, 380px));
+  }
+
   @media ${device['desktop']} {
+    padding: 0;
     grid-template-columns: repeat(4, 1fr);
     max-width: 1440px;
   }

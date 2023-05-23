@@ -5,22 +5,14 @@ import styled, { keyframes } from 'styled-components'
 export const CardContainer = styled.div`
   width: 100%;
   position: relative;
-  max-width: 320px;
   aspect-ratio: 32/38;
   background: ${theme.colors['bannerColor']};
   display: flex;
   align-items: center;
 
-  @media ${device['tablet']} {
-    max-width: 300px;
-  }
-
-  @media ${device['laptop']} {
-    max-width: 320px;
-  }
 
   @media ${device['desktop']} {
-    max-width: 100%;
+
   }
 `
 
@@ -31,7 +23,7 @@ export const PokemonCardImage = styled.img`
   padding: ${theme.spacing[4]};
   box-sizing: border-box;
 
-  @media ${device['laptop']} {
+  @media ${device['tablet']} {
     padding: ${theme.spacing[5]};
   }
 `

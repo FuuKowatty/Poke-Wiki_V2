@@ -1,31 +1,25 @@
-import { DetailsHeader, TableContainer } from '../PokemonDetail.styled'
+import { TableContainer } from '../PokemonDetail.styled'
 import {
-  DetailsTypeImage,
   Table,
   TableHeaderCell,
   TableRow,
   TableCell,
 } from 'pages/Details/Table/Table.styled'
-import { PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
-import { iconTypesProps } from 'pages/Details/PokemonDetail'
+import { PokemonSpecs, PokemonType } from 'components/Card/PokemonCard/PokemonCard'
 import { calculateHeight, calculateWeight } from 'utils/calculateMeasures'
 import React from 'react'
 
 interface PokemonTableProps {
   data: PokemonSpecs
-  icons: iconTypesProps[]
   habitat: string
+  types: PokemonType[]
 }
 
-export function PokemonTable({ data, icons, habitat }: PokemonTableProps) {
-  const { weight, height, types } = data
-  const typeNames = types.map((type) => type.type.name)
-  const filteredIconComponents = icons
-    .filter((iconType) => typeNames.includes(iconType.name))
-    .map((icon) => <DetailsTypeImage src={icon.url} alt={icon.name} key={icon.name} />)
-
+export function PokemonTable({ data, habitat, types }: PokemonTableProps) {
+  const { weight, height } = data
+  const typeNames = types.map(type => type.type.name).join(' / ')
   const dataTable = [
-    { id: 1, header: 'Types', data: filteredIconComponents },
+    { id: 1, header: 'Types', data: typeNames },
     { id: 2, header: 'Height', data: calculateHeight(height) },
     { id: 3, header: 'Weight', data: calculateWeight(weight) },
     { id: 4, header: 'Habitat', data: habitat },
@@ -48,3 +42,4 @@ export function PokemonTable({ data, icons, habitat }: PokemonTableProps) {
     </TableContainer>
   )
 }
+

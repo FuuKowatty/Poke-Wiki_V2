@@ -33,11 +33,6 @@ export interface moveDetailsProps {
   name: string
 }
 
-export interface iconTypesProps {
-  name: string
-  url: string
-}
-
 export interface flavorText {
   flavor_text: string
   language: {
@@ -57,12 +52,10 @@ export function PokemonDetail() {
   const { name } = useParams()
   const pokemonLink = `https://pokeapi.co/api/v2/pokemon/${name}`
   const pokemonSpeciesLink = `https://pokeapi.co/api/v2/pokemon-species/${name}`
-  const iconsUrl = 'http://localhost:3000/results'
   const [pokemonData, setPokemonData] = useState<PokemonSpecs | null>(null)
   const [pokemonSpecies, setPokemonSpecies] = useState<pokemonSpeciesProps | null>(null)
-  const [iconTypes, setIconTypes] = useState<iconTypesProps[] | null>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [, setError] = useState('')
 
   const sliceArray = (arr: MoveData[]) => {
     const linksArr = arr.map((move) => move.move.url)
@@ -74,19 +67,16 @@ export function PokemonDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response1, response2, response3] = await Promise.all([
+        const [response1, response2] = await Promise.all([
           fetch(pokemonLink),
           fetch(pokemonSpeciesLink),
-          fetch(iconsUrl),
         ])
-        const [data1, data2, data3] = await Promise.all([
+        const [data1, data2] = await Promise.all([
           response1.json(),
           response2.json(),
-          response3.json(),
         ])
         await setPokemonData(data1)
         await setPokemonSpecies(data2)
-        await setIconTypes(data3)
         setIsLoading(false)
       } catch (err) {
         console.error(err)
@@ -101,7 +91,7 @@ export function PokemonDetail() {
 
   return (
     <LoadingState isLoading={isLoading}>
-      {!isLoading && pokemonData && pokemonSpecies && iconTypes && (
+      {!isLoading && pokemonData && pokemonSpecies && (
         <DetailsContainer>
           <ImageContainer>
             <PokemonDetailImage src={pokemonData.sprites.other.dream_world.front_default} />
@@ -110,8 +100,8 @@ export function PokemonDetail() {
           <PokemonStats stats={pokemonData.stats} />
           <PokemonTable
             data={pokemonData}
-            icons={iconTypes}
             habitat={checkHabitat(pokemonSpecies.habitat)}
+            types={pokemonData.types}
           />
           <PokemonMoves linksArr={sliceArray(pokemonData.moves)} />
           <DescContainer>

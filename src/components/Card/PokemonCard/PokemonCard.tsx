@@ -4,7 +4,7 @@ import { CardInterface } from 'components/CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
-interface PokemonType {
+export interface PokemonType {
   slot: number
   type: {
     name: string
