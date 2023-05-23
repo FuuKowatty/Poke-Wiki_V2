@@ -78,7 +78,7 @@ export function PokemonBuildPage({
         />
       )}
       <GridContainer ref={gridContainerRef}>
-        <LoadingState isLoading={isLoading}>{children}</LoadingState>
+        {isLoading ? <LoadingState /> : children}
         {error && <FetchError />}
       </GridContainer>
       {isPaginationVisible &&

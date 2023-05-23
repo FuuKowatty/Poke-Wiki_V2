@@ -14,6 +14,7 @@ import { PokemonMoves } from 'pages/Details/Moves/PokemonMoves'
 import { PokemonStats } from 'pages/Details/Stats/PokemonStats'
 import { PokemonTable } from 'pages/Details/Table/PokemonTable'
 import { checkImage, setAlternativeImg } from 'utils/imageUtils'
+import { FetchError } from 'components/common/FetchErrors/FetchError'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -56,7 +57,7 @@ export function PokemonDetail() {
   const [pokemonData, setPokemonData] = useState<PokemonSpecs | null>(null)
   const [pokemonSpecies, setPokemonSpecies] = useState<pokemonSpeciesProps | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [, setError] = useState('')
+  const [error, setError] = useState<string | null>(null)
 
   const sliceArray = (arr: MoveData[]) => {
     const linksArr = arr.map((move) => move.move.url)
@@ -91,7 +92,9 @@ export function PokemonDetail() {
   }, [])
 
   return (
-    <LoadingState isLoading={isLoading}>
+    <>
+    {error && <FetchError />}
+    {isLoading && <LoadingState />} 
       {!isLoading && pokemonData && pokemonSpecies && (
         <DetailsContainer>
           <ImageContainer>
@@ -112,6 +115,6 @@ export function PokemonDetail() {
           <EvolutionsContainer />
         </DetailsContainer>
       )}
-    </LoadingState>
+    </>
   )
 }
