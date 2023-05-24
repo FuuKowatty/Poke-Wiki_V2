@@ -2,6 +2,7 @@ import { PokemonCardImage } from 'components/Card/Card.styled'
 import { theme } from 'styles/theme'
 import { Name } from 'components/CardInterface/CardInterface.styled'
 import { device, size } from 'utils/breakpoints'
+import { IconButton } from 'styles/globalComponents'
 import styled from 'styled-components'
 
 export const DetailsContainer = styled.div`
@@ -137,4 +138,10 @@ export const EvolutionsContainer = styled.div`
     grid-column: 9 / span 4;
     grid-row: 6 / span 3;
   }
+`
+
+export const BackIconDetails = styled(IconButton)`
+  font-size: ${theme.size['2xl']};
+  grid-column: 1/ span 1;
+  grid-row: 1/ span 1;
 `

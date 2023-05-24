@@ -6,6 +6,7 @@ import {
   DescContainer,
   DetailsHeader,
   EvolutionsContainer,
+  BackIconDetails,
 } from './PokemonDetail.styled'
 import { MoveData, PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
@@ -15,8 +16,9 @@ import { PokemonStats } from 'pages/Details/Stats/PokemonStats'
 import { PokemonTable } from 'pages/Details/Table/PokemonTable'
 import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { FetchError } from 'components/common/FetchErrors/FetchError'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import {BiArrowBack} from 'react-icons/bi'
 
 export interface moveDetailsProps {
   accuracy: number | null
@@ -58,6 +60,7 @@ export function PokemonDetail() {
   const [pokemonSpecies, setPokemonSpecies] = useState<pokemonSpeciesProps | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate()
 
   const sliceArray = (arr: MoveData[]) => {
     const linksArr = arr.map((move) => move.move.url)
@@ -94,6 +97,9 @@ export function PokemonDetail() {
       {isLoading && <LoadingState />}
       {!isLoading && pokemonData && pokemonSpecies && (
         <DetailsContainer>
+          <BackIconDetails onClick={() => navigate(-1)}>
+            <BiArrowBack />
+          </BackIconDetails>
           <ImageContainer>
             <PokemonDetailImage
               src={checkImage(pokemonData.sprites.other.dream_world.front_default)}
