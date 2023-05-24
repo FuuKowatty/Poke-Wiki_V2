@@ -3,6 +3,7 @@ import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 import { GridContainer } from 'styles/globalComponents'
 import { FavoriteFilters } from 'components/Filters/FavoriteFilters/FavoriteFilters'
+import { NoDataInfo } from 'components/common/NoDataInfo/NoDataInfo'
 import { useState } from 'react'
 
 export function Favorites() {
@@ -25,6 +26,7 @@ export function Favorites() {
         handleSelectFilters={handleSelectFilters}
       />
       <GridContainer>
+        {!filteredFavorites.length && <NoDataInfo />}
         {filteredFavorites.map((fav: favItem) => {
           const { name, type } = fav
           if (type === 'pokemon') {
