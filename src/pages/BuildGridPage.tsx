@@ -50,20 +50,10 @@ export function PokemonBuildPage({
 
   return (
     <>
-      {isBerryPage ? (
-        <Filters
-          queryRoute='/berries/search?query='
-          typeRoute='/berries'
-          apiEndpoint='https://pokeapi.co/api/v2/berry-firmness/'
-        />
-      ) : (
-        <Filters
-          queryRoute='/pokemons/search?query='
-          typeRoute='/pokemons'
-          apiEndpoint='https://pokeapi.co/api/v2/type/'
-        />
-      )}
-      <GridContainer ref={gridContainerRef}>{children}</GridContainer>
+      <Filters isBerryPage={isBerryPage}/>
+      <GridContainer ref={gridContainerRef}>
+        {children}
+      </GridContainer>
       {isPaginationVisible && (
         <Pagination
           paginationRange={paginationRange}
