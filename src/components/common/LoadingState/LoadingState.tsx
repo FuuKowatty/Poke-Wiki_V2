@@ -14,12 +14,10 @@ export function LoadingState() {
     return () => clearInterval(timer)
   }, [])
 
-    return (
-      <CenteredContainer>
-            <LoadingIcon />
-            <InfoParagraph>{loadingText}</InfoParagraph>
-      </CenteredContainer>
-    )
-  }
-
-
+  return (
+    <CenteredContainer>
+      <LoadingIcon />
+      <InfoParagraph>{loadingText}</InfoParagraph>
+    </CenteredContainer>
+  )
+}

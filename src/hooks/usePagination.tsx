@@ -3,11 +3,6 @@ import { useCallback, useMemo, useState } from 'react'
 
 const DOTS = '...'
 
-interface UsePaginationParams<T> {
-  data: T[]
-  pageSize: number
-}
-
 interface PaginationRangeItem {
   id: string
   pageNumber: number | string
@@ -21,6 +16,7 @@ interface UsePaginationReturn<T> {
   onNext: () => void
   onPrevious: () => void
   totalPageCount: number
+  isPaginationVisible: boolean
 }
 
 function generateUniqueId(): string {
@@ -33,10 +29,9 @@ const range = (start: number, end: number): number[] => {
   return Array.from({ length }, (_, idx) => idx + start)
 }
 
-export const usePagination = <T,>({
-  data,
-  pageSize,
-}: UsePaginationParams<T>): UsePaginationReturn<T> => {
+export const usePagination = <T,>(data: T[]): UsePaginationReturn<T> => {
+  const pageSize = 20
+  const isPaginationVisible = data.length > pageSize
   const [currentPage, setCurrentPage] = useState(1)
   const totalPageCount = Math.ceil(data.length / pageSize)
   const { isMobile } = useViewportContext()
@@ -136,5 +131,6 @@ export const usePagination = <T,>({
     onNext,
     onPrevious,
     totalPageCount,
+    isPaginationVisible,
   }
 }

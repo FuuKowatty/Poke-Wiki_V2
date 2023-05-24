@@ -70,8 +70,6 @@ export interface PokemonSpecs {
   moves: MoveData[]
 }
 
-
-
 export function PokemonCard({ name }: { name: string }) {
   const [data, setData] = useState<null | PokemonSpecs>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -95,8 +93,6 @@ export function PokemonCard({ name }: { name: string }) {
   const handleImageLoad = () => {
     setIsLoading(false)
   }
-
-
 
   const { handleAddFavorite } = useFavoriteContext()
   const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)

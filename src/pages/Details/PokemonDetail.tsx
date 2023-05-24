@@ -73,10 +73,7 @@ export function PokemonDetail() {
           fetch(pokemonLink),
           fetch(pokemonSpeciesLink),
         ])
-        const [data1, data2] = await Promise.all([
-          response1.json(),
-          response2.json(),
-        ])
+        const [data1, data2] = await Promise.all([response1.json(), response2.json()])
         await setPokemonData(data1)
         await setPokemonSpecies(data2)
         setIsLoading(false)
@@ -93,12 +90,15 @@ export function PokemonDetail() {
 
   return (
     <>
-    {error && <FetchError />}
-    {isLoading && <LoadingState />} 
+      {error && <FetchError />}
+      {isLoading && <LoadingState />}
       {!isLoading && pokemonData && pokemonSpecies && (
         <DetailsContainer>
           <ImageContainer>
-            <PokemonDetailImage src={checkImage(pokemonData.sprites.other.dream_world.front_default)} onError={setAlternativeImg} />
+            <PokemonDetailImage
+              src={checkImage(pokemonData.sprites.other.dream_world.front_default)}
+              onError={setAlternativeImg}
+            />
             <DetailsName>{pokemonData.name}</DetailsName>
           </ImageContainer>
           <PokemonStats stats={pokemonData.stats} />

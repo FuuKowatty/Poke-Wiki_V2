@@ -21,8 +21,8 @@ export const Table = styled.table`
   color: ${theme.colors['primary']};
 `
 
-export const TableRow = styled.tr<{isSmaller?: boolean}>`
-  height: ${props => props.isSmaller ? '30px' : '50px'};
+export const TableRow = styled.tr<{ isSmaller?: boolean }>`
+  height: ${(props) => (props.isSmaller ? '30px' : '50px')};
   border-bottom: 1px solid ${theme.colors['primary']};
   &:last-child {
     border-bottom: none;

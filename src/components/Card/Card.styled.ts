@@ -10,7 +10,6 @@ export const CardContainer = styled.div`
   display: flex;
   align-items: center;
 
-
   @media ${device['desktop']} {
     max-height: 399px;
   }

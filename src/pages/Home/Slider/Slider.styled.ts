@@ -19,7 +19,6 @@ export const SliderContainer = styled.div`
   @media ${device['laptop']} {
     padding: ${theme.spacing[5]} 0;
   }
-
 `
 
 export const SliderItem = styled(animated.div)`

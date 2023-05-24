@@ -19,7 +19,6 @@ export const BannerContainer = styled.div`
 
   @media ${device['desktop']} {
     gap: ${theme.spacing[3]};
-
   }
 `
 export const BannerContent = styled.div`
@@ -70,7 +69,6 @@ export const BannerTitle = styled.div`
   }
 
   @media ${device['laptop']} {
-
   }
 `
 
@@ -78,7 +76,7 @@ export const BannerTitleTextYellow = styled.span`
   color: ${theme.colors['standsOut']};
   display: block;
   font-size: ${theme.size['xl']};
-  
+
   @media ${device['tablet']} {
     font-size: ${theme.size['2xl']};
   }
@@ -120,7 +118,6 @@ export const BannerButton = styled(Button)`
   padding: ${theme.spacing[3]} ${theme.spacing[5]};
   margin: auto;
   @media ${device['tablet']} {
-
     font-size: ${theme.size['xl']};
   }
 

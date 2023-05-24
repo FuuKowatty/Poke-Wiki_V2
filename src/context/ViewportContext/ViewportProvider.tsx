@@ -5,14 +5,12 @@ interface ContextProps {
   browserWidth: number | null
   isMobile: boolean | null
   isTablet: boolean | null
-  contentPerPage: number | null
 }
 
 export const ViewportContext = createContext<ContextProps>({
   browserWidth: null,
   isMobile: null,
   isTablet: null,
-  contentPerPage: null,
 })
 
 export const ViewportProvider = ({ children }: { children: React.ReactNode }) => {

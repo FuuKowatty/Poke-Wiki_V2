@@ -35,7 +35,7 @@ interface CardInterfaceProps {
   name: string
   url: string
   flavors: flavor[]
-  firmness: firmness;
+  firmness: firmness
   growthTime: number
   category: category
   cost: number
@@ -148,19 +148,19 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
   const cardItemsValues = [
     {
       name: 'firmness',
-      value: firmness.name
+      value: firmness.name,
     },
     {
       name: 'grow time',
-      value: growthTime + 'days'
+      value: growthTime + 'days',
     },
     {
       name: 'category',
-      value: category.name
+      value: category.name,
     },
     {
       name: 'cost',
-      value: cost + '¥'
+      value: cost + '¥',
     },
   ]
 
@@ -205,20 +205,20 @@ function CardItems({ handleAddFavorite, isFav, cardItems, name }: CardItemsProps
             </CloseDetailsItem>
           </Options>
           <FlavorsContainer>
-          <Table>
-            <tbody>
-              <TableRow isSmaller>
-                <th>Property</th>
-                <th>Value</th>
-              </TableRow>
-              {cardItemsValues.map(cardItem => (
-              <TableRow key={cardItem.name} isSmaller>
-                <td>{cardItem.name}</td>
-                <td>{cardItem.value}</td>
-              </TableRow>
-              ))}
-            </tbody>
-          </Table>
+            <Table>
+              <tbody>
+                <TableRow isSmaller>
+                  <th>Property</th>
+                  <th>Value</th>
+                </TableRow>
+                {cardItemsValues.map((cardItem) => (
+                  <TableRow key={cardItem.name} isSmaller>
+                    <td>{cardItem.name}</td>
+                    <td>{cardItem.value}</td>
+                  </TableRow>
+                ))}
+              </tbody>
+            </Table>
             {flavors.map((flavor) => {
               const statAccessories = getStatAccessories(Stats, flavor.flavor.name)
               if (!statAccessories) {

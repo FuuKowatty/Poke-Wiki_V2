@@ -1,8 +1,8 @@
 import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { useFetch } from 'hooks/useFetch'
-import { usePagination } from 'hooks/usePagination'
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
-import { useViewport } from 'hooks/useViewport'
+import { usePagination } from 'hooks/usePagination'
+import { PageContent } from 'pages/PageContent'
 
 export interface Pokemon {
   name: string
@@ -20,31 +20,15 @@ export function PokemonList() {
   const fetchUrl = 'https://pokeapi.co/api/v2/pokemon-species/?limit=20000'
   const { data = { results: [] }, error, isLoading } = useFetch<PokemonListProps>(fetchUrl)
 
-  const { contentPerPage } = useViewport()
-  const {
-    paginationRange,
-    currentPage,
-    currentData,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  } = usePagination({ data: data.results || [], pageSize: contentPerPage })
-
-  const state = { data, error, isLoading }
-  const pagination = {
-    currentData,
-    currentPage,
-    paginationRange,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  }
+  const { currentData, ...pagination } = usePagination(data.results)
+  const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage state={state} pagination={pagination}>
-      {data && currentData.map((pokemon) => <PokemonCard key={pokemon.name} name={pokemon.name} />)}
+    <PokemonBuildPage pagination={pagination}>
+      <PageContent state={state}>
+        {data &&
+          currentData.map((pokemon) => <PokemonCard key={pokemon.name} name={pokemon.name} />)}
+      </PageContent>
     </PokemonBuildPage>
   )
 }

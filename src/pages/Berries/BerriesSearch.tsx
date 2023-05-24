@@ -1,8 +1,8 @@
 import { useFetch } from 'hooks/useFetch'
-import { usePagination } from 'hooks/usePagination'
 import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
-import { useViewport } from 'hooks/useViewport'
+import { usePagination } from 'hooks/usePagination'
+import { PageContent } from 'pages/PageContent'
 import { useLocation } from 'react-router-dom'
 
 interface Berry {
@@ -25,44 +25,18 @@ export function BerriesSearch() {
   const fetchUrl = 'https://pokeapi.co/api/v2/berry/?limit=20000'
   const { data = { results: [] }, error, isLoading } = useFetch<PokemonList>(fetchUrl)
 
-  const { contentPerPage } = useViewport()
   const filteredData = data.results.filter((berry) =>
     berry.name.toLowerCase().startsWith(query?.toLowerCase() as string),
   )
 
-  const isPaginationVisible = filteredData.length > 20
-
-  const {
-    paginationRange,
-    currentPage,
-    currentData,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  } = usePagination({ data: filteredData || [], pageSize: contentPerPage })
-
-  const state = { data, error, isLoading }
-  const pagination = {
-    currentData,
-    currentPage,
-    paginationRange,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  }
-
-  console.log(filteredData)
+  const { currentData, ...pagination } = usePagination(filteredData)
+  const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage
-      state={state}
-      pagination={pagination}
-      isPaginationVisible={isPaginationVisible}
-      isBerryPage={true}
-    >
-      {data && currentData.map((berry) => <BerryCard key={berry.name} url={berry.url} />)}
+    <PokemonBuildPage pagination={pagination} isBerryPage={true}>
+      <PageContent state={state}>
+        {data && currentData.map((berry) => <BerryCard key={berry.name} url={berry.url} />)}
+      </PageContent>
     </PokemonBuildPage>
   )
 }
