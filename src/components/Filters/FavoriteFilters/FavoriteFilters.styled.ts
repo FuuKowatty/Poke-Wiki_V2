@@ -30,6 +30,10 @@ export const ClearItemsButton = styled(Button)`
 export const FilterFavoriteContainer = styled(FiltersContainer)`
   gap: ${theme.spacing['3']};
   padding: ${theme.spacing[3]};
+
+  @media ${device['desktop']} {
+    padding: ${theme.spacing[3]} 0;
+  }
 `
 
 export const FilterButton = styled(Button)<{ isActive: boolean }>`
