@@ -1,57 +1,31 @@
 import alternativeImg from 'assets/default_image.svg'
-import {
-  PokemonCardContainer,
-  PokemonCardImage,
-  SkeletonLoading,
-} from 'components/Card/Card.styled'
-import { CardInterface } from 'components/CardInterface/CardInterface'
+import { CardContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
+import { BerryCardInterface } from 'components/CardInterface/BarryCardInterface'
+import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
-interface flavor {
-  name: string
-  url: string
+export interface flavor {
+  flavor: {
+    name: string
+  }
   potency: number
 }
 
-interface firmness {
+export interface firmness {
   name: string
-  url: string
 }
 
-interface item {
-  name: string
-  url: string
-}
-
-interface giftType {
-  name: string
-  url: string
-}
-
-interface BerrySpecs {
-  name: string
-  flavors: flavor[]
+interface BerryProps {
   firmness: firmness
+  flavors: flavor[]
   growth_time: number
-  id: number
-  item: item
-  natural_gift_power: number
-  natural_gift_type: giftType
-  size: number
-  smoothness: number
-  soil_dryness: number
+  item: {
+    url: string
+  }
 }
 
-interface category {
+export interface category {
   name: string
-}
-
-interface language {
-  short_effect: string
-}
-
-interface effect_entries {
-  language: language
 }
 
 interface sprites {
@@ -61,14 +35,12 @@ interface sprites {
 interface BerryItemSpec {
   category: category
   cost: number
-  effect_entries: effect_entries[]
-  id: number
   name: string
   sprites: sprites
 }
 
 export function BerryCard({ url }: { url: string }) {
-  const [dataSpec, setDataSpec] = useState<null | BerrySpecs>(null)
+  const [dataSpec, setDataSpec] = useState<null | BerryProps>(null)
   const [dataItemSpec, setDataItemSpec] = useState<null | BerryItemSpec>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -121,11 +93,11 @@ export function BerryCard({ url }: { url: string }) {
     }
   }
 
+  const { handleAddFavorite } = useFavoriteContext()
+  const handleAddFavoriteBerry = () => handleAddFavorite('berry', url)
+
   return (
-    <PokemonCardContainer
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
       <PokemonCardImage
         src={checkImage()}
@@ -134,7 +106,19 @@ export function BerryCard({ url }: { url: string }) {
         onError={setAlternativeImg}
         style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
-      {dataSpec && !isLoading && <CardInterface isHovered={isHovered} name={dataItemSpec?.name} />}
-    </PokemonCardContainer>
+      {dataItemSpec && dataSpec && !isLoading && (
+        <BerryCardInterface
+          isHovered={isHovered}
+          handleAddFavorite={handleAddFavoriteBerry}
+          name={dataItemSpec?.name}
+          url={url}
+          flavors={dataSpec.flavors}
+          firmness={dataSpec.firmness}
+          growthTime={dataSpec.growth_time}
+          category={dataItemSpec.category}
+          cost={dataItemSpec.cost}
+        />
+      )}
+    </CardContainer>
   )
 }

@@ -35,7 +35,7 @@ export const LogoImage = styled.img`
   height: 48px;
 `
 
-export const MobileMenuContainer = styled.div`
+export const MenuContainer = styled.div`
   border-top: 1px solid ${theme.colors['darkBlue']};
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -55,7 +55,7 @@ export const MobileMenuContainer = styled.div`
   }
 `
 
-export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
+export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
   font-family: 'Golos Text', sans-serif;
   font-size: ${theme.size['xl']};
@@ -69,7 +69,6 @@ export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
     props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg']};
   color: ${(props) => (props.isActive ? theme.colors['darkBlue'] : theme.colors['primary'])};
 
-
   @media ${device['laptop']} {
     font-size: ${theme.size['lg']};
     background-color: ${theme.colors['bodyBg']};
@@ -79,7 +78,7 @@ export const MobileMenuIconContainer = styled.span<{ isActive: boolean }>`
 
     &:hover {
       background: ${theme.colors['darkerBlue']};
-    };
+    }
   }
 `
 

@@ -1,8 +1,8 @@
 import { PokemonBuildPage } from 'pages/BuildGridPage'
 import { useFetch } from 'hooks/useFetch'
-import { usePagination } from 'hooks/usePagination'
-import { useAppContext } from 'hooks/useAppContext'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
+import { usePagination } from 'hooks/usePagination'
+import { PageContent } from 'pages/PageContent'
 
 interface Pokemon {
   name: string
@@ -20,32 +20,14 @@ export function BerriesList() {
   const fetchUrl = 'https://pokeapi.co/api/v2/berry/?limit=20000'
   const { data = { results: [] }, error, isLoading } = useFetch<BerriesListProps>(fetchUrl)
 
-  const { browserWidth } = useAppContext()
-  const contentPerPage = browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
-  const {
-    paginationRange,
-    currentPage,
-    currentData,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  } = usePagination({ data: data.results || [], pageSize: contentPerPage })
-
-  const state = { data, error, isLoading }
-  const pagination = {
-    currentData,
-    currentPage,
-    paginationRange,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  }
+  const { currentData, ...pagination } = usePagination(data.results)
+  const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage state={state} pagination={pagination} isBerryPage={true}>
-      {data && currentData.map((berry) => <BerryCard key={berry.name} url={berry.url} />)}
+    <PokemonBuildPage pagination={pagination} isBerryPage={true}>
+      <PageContent state={state}>
+        {data && currentData.map((berry) => <BerryCard key={berry.name} url={berry.url} />)}
+      </PageContent>
     </PokemonBuildPage>
   )
 }

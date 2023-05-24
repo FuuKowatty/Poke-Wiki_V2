@@ -1,6 +1,6 @@
 import { SliderItem, SliderContainer } from 'pages/Home/Slider/Slider.styled'
-import { useAppContext } from 'hooks/useAppContext'
 import { size } from 'utils/breakpoints'
+import { useViewport } from 'hooks/useViewport'
 import { useTransition } from '@react-spring/web'
 import { useState, useEffect } from 'react'
 
@@ -13,14 +13,14 @@ const slides = [
 
 export function Slider() {
   const [messageIndex, setMessageIndex] = useState(0)
-  const { browserWidth } = useAppContext()
+  const { browserWidth } = useViewport()
   const maxSize = parseInt(size.desktop)
-  const width = browserWidth > maxSize ? maxSize : browserWidth
+  const maxWidth = browserWidth > maxSize ? maxSize : browserWidth
 
   const transitions = useTransition(slides[messageIndex], {
-    from: { x: -width, opacity: 0 },
+    from: { x: -maxWidth, opacity: 0 },
     enter: { x: 0, opacity: 1 },
-    leave: { x: width, opacity: 0 },
+    leave: { x: maxWidth, opacity: 0 },
   })
 
   useEffect(() => {

@@ -2,27 +2,24 @@ import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import styled, { keyframes } from 'styled-components'
 
-export const PokemonCardContainer = styled.div`
+export const CardContainer = styled.div`
   width: 100%;
   position: relative;
-  max-width: 320px;
   aspect-ratio: 32/38;
   background: ${theme.colors['bannerColor']};
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 12px 8px rgba(0, 0, 0, 0.1);
 
-  @media ${device['tablet']} {
-    max-width: 300px;
-  }
-
-  @media ${device['laptop']} {
-    max-width: 320px;
-  }
 
   @media ${device['desktop']} {
-    max-width: 100%;
+    max-height: 399px;
   }
 `
+
+
 
 export const PokemonCardImage = styled.img`
   width: 100%;
@@ -31,7 +28,7 @@ export const PokemonCardImage = styled.img`
   padding: ${theme.spacing[4]};
   box-sizing: border-box;
 
-  @media ${device['laptop']} {
+  @media ${device['tablet']} {
     padding: ${theme.spacing[5]};
   }
 `

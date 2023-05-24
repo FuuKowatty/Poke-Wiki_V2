@@ -1,8 +1,8 @@
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { useFetch } from 'hooks/useFetch'
-import { useAppContext } from 'hooks/useAppContext'
-import { usePagination } from 'hooks/usePagination'
 import { PokemonBuildPage } from 'pages/BuildGridPage'
+import { usePagination } from 'hooks/usePagination'
+import { PageContent } from 'pages/PageContent'
 import { useParams } from 'react-router-dom'
 
 interface Pokemon {
@@ -23,40 +23,17 @@ export function PokemonType() {
   const fetchUrl = `https://pokeapi.co/api/v2/type/${typeName}`
   const { data = { pokemon: [] }, error, isLoading } = useFetch<TypeList>(fetchUrl)
 
-  const { browserWidth } = useAppContext()
-  const contentPerPage = browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
-  const {
-    paginationRange,
-    currentPage,
-    currentData,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  } = usePagination({ data: data.pokemon, pageSize: contentPerPage })
-
-  const isPaginationVisible = data.pokemon.length > 20
-  const state = { data, error, isLoading }
-  const pagination = {
-    currentData,
-    currentPage,
-    paginationRange,
-    onPageChange,
-    onNext,
-    onPrevious,
-    totalPageCount,
-  }
+  const { currentData, ...pagination } = usePagination(data.pokemon)
+  const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage
-      state={state}
-      pagination={pagination}
-      isPaginationVisible={isPaginationVisible}
-    >
-      {data &&
-        currentData.map((dataElement) => {
-          return <PokemonCard key={dataElement.pokemon.name} name={dataElement.pokemon.name} />
-        })}
+    <PokemonBuildPage pagination={pagination}>
+      <PageContent state={state}>
+        {data &&
+          currentData.map((dataElement) => {
+            return <PokemonCard key={dataElement.pokemon.name} name={dataElement.pokemon.name} />
+          })}
+      </PageContent>
     </PokemonBuildPage>
   )
 }
