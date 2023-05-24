@@ -50,10 +50,8 @@ export function PokemonBuildPage({
 
   return (
     <>
-      <Filters isBerryPage={isBerryPage}/>
-      <GridContainer ref={gridContainerRef}>
-        {children}
-      </GridContainer>
+      <Filters isBerryPage={isBerryPage} />
+      <GridContainer ref={gridContainerRef}>{children}</GridContainer>
       {isPaginationVisible && (
         <Pagination
           paginationRange={paginationRange}

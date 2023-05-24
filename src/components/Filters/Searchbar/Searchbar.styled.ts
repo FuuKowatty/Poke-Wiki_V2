@@ -1,13 +1,24 @@
 import { IconButton } from 'styles/globalComponents'
 import { theme } from 'styles/theme'
+import { device } from 'utils/breakpoints'
 import styled from 'styled-components'
 
 export const SearchbarForm = styled.form`
   position: relative;
   display: flex;
-  min-width: 280px;
+  width: 100%;
   gap: ${theme.spacing[1]};
-  height: 35px;
+  height: 40px;
+
+  @media ${device['tablet']} {
+    width: 280px;
+  }
+
+  @media ${device['laptop']} {
+    width: 350px;
+    height: 45px;
+  }
+
 `
 
 export const SearchbarInput = styled.input`
@@ -18,8 +29,8 @@ export const SearchbarInput = styled.input`
   background: none;
   border: none;
   background: ${theme.colors['primary']};
-  border-top-left-radius: ${theme.spacing[1]};
-  border-bottom-left-radius: ${theme.spacing[1]};
+  border-top-left-radius: 8px;;
+  border-bottom-left-radius: 8px;
 `
 
 export const SearchIcon = styled(IconButton)`
@@ -31,6 +42,6 @@ export const SearchIcon = styled(IconButton)`
   background: ${theme.colors['standsOut']};
   height: 100%;
   color: ${theme.colors['darkerBlue']};
-  border-top-right-radius: ${theme.spacing[1]};
-  border-bottom-right-radius: ${theme.spacing[1]};
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 `

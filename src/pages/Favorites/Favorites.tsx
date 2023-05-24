@@ -5,28 +5,23 @@ import { GridContainer } from 'styles/globalComponents'
 import { FavoriteFilters } from 'components/Filters/FavoriteFilters/FavoriteFilters'
 import { useState } from 'react'
 
-
-
 export function Favorites() {
-
   const [actualFilters, setActualFilters] = useState('all')
   const [filteredFavorites, setfilteredFavorites] = useState<favItem[]>([])
 
-  const handleActualFilters = (buttonValue:string) => {
+  const handleActualFilters = (buttonValue: string) => {
     setActualFilters(buttonValue)
   }
 
   const handleSelectFilters = (filteredType: favItem[]) => {
     setfilteredFavorites(filteredType)
-  } 
-
-
+  }
 
   return (
     <>
-      <FavoriteFilters 
-        actualFilters={actualFilters} 
-        handleActualFilters={handleActualFilters} 
+      <FavoriteFilters
+        actualFilters={actualFilters}
+        handleActualFilters={handleActualFilters}
         handleSelectFilters={handleSelectFilters}
       />
       <GridContainer>
