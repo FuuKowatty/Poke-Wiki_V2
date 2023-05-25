@@ -11,9 +11,10 @@ interface pokemonType {
 interface SelectInputProps {
   options: pokemonType[]
   typeRoute: string
+  onPageChange: (pageNumber: number) => void
 }
 
-export const SelectInput = ({ options, typeRoute }: SelectInputProps) => {
+export const SelectInput = ({ options, typeRoute, onPageChange }: SelectInputProps) => {
   const [selectedType, setSelectedType] = useState('')
 
   const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -21,6 +22,7 @@ export const SelectInput = ({ options, typeRoute }: SelectInputProps) => {
     if (value === 'all') {
       navigate(`${typeRoute}/all`)
     } else {
+      onPageChange(1);
       navigate(`${typeRoute}/type/${value}`)
     }
     setSelectedType(value)
