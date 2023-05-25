@@ -69,6 +69,7 @@ export const BannerTitle = styled.div`
   }
 
   @media ${device['laptop']} {
+    text-align: left;
   }
 `
 
