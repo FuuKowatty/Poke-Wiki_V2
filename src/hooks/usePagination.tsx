@@ -112,6 +112,7 @@ export const usePagination = <T,>(data: T[]): UsePaginationReturn<T> => {
   }, [currentPage, data, pageSize])
 
   const onPageChange = useCallback((pageNumber: number) => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     setCurrentPage(pageNumber)
   }, [])
 

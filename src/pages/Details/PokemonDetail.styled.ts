@@ -1,6 +1,5 @@
-import { PokemonCardImage } from 'components/Card/Card.styled'
-import { theme } from 'styles/theme'
-import { Name } from 'components/CardInterface/CardInterface.styled'
+import { CardImage } from 'components/Card/Card.styled'
+import { Name } from 'components/Card/CardInterface/CardInterface.styled'
 import { device, size } from 'utils/breakpoints'
 import { IconButton } from 'styles/globalComponents'
 import styled from 'styled-components'
@@ -8,8 +7,9 @@ import styled from 'styled-components'
 export const DetailsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: ${theme.spacing['5']};
-  padding: 0 ${theme.spacing['4']};
+  gap: ${(props) => props.theme.spacing[5]};
+  padding: 0 ${(props) => props.theme.spacing[4]};
+
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
@@ -21,54 +21,21 @@ export const DetailsContainer = styled.div`
   @media ${device['laptop']} {
     grid-template-columns: repeat(2, 1fr);
     max-width: ${size['laptop']};
-    padding: 0 ${theme.spacing['5']};
+    padding: 0 ${(props) => props.theme.spacing[5]};
   }
 
   @media ${device['desktop']} {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(9, 90px);
     max-width: ${size['desktop']};
-    gap: ${theme.spacing['2']};
-  }
-`
-
-export const StatsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: ${theme.spacing['2']};
-
-  @media ${device['desktop']} {
-    grid-column: 7 / span 6;
-    grid-row: 2 / span 3;
-  }
-`
-
-export const TableContainer = styled.div`
-  width: 100%;
-  background: ${theme.colors['bannerColor']};
-  box-sizing: border-box;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: ${theme.spacing['3']};
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  @media ${device['laptop']} {
-  }
-
-  @media ${device['desktop']} {
-    grid-column: 2 / span 3;
-    grid-row: 6 / span 3;
+    gap: ${(props) => props.theme.spacing[2]};
   }
 `
 
 export const ImageContainer = styled.div`
   position: relative;
-  background: ${theme.colors['bannerColor']};
-  border: 5px solid ${theme.colors['standsOut']};
+  background: ${(props) => props.theme.colors.bannerColor};
+  border: 5px solid ${(props) => props.theme.colors.standsOut};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,24 +51,12 @@ export const ImageContainer = styled.div`
   }
 `
 
-export const MovesContainer = styled.div`
-  background: ${theme.colors['grayGradient']};
-  padding: ${theme.spacing['3']};
-  border-radius: 8px;
-  color: ${theme.colors['darkerBlue']};
-
-  @media ${device['desktop']} {
-    grid-column: 5 / span 2;
-    grid-row: 6 / span 3;
-  }
-`
-
 export const DescContainer = styled.div`
   width: 100%;
-  background: ${theme.colors['bannerColor']};
+  background: ${(props) => props.theme.colors.bannerColor};
   box-sizing: border-box;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: ${theme.spacing['3']};
+  padding: ${(props) => props.theme.spacing[3]};
   border-radius: 8px;
 
   @media ${device['desktop']} {
@@ -110,10 +65,10 @@ export const DescContainer = styled.div`
   }
 `
 
-export const PokemonDetailImage = styled(PokemonCardImage)`
+export const PokemonDetailImage = styled(CardImage)`
   @media ${device['tablet']} {
     width: 80%;
-    padding: ${theme.spacing[2]};
+    padding: ${(props) => props.theme.spacing[2]};
   }
 
   @media ${device['desktop']} {
@@ -122,7 +77,7 @@ export const PokemonDetailImage = styled(PokemonCardImage)`
 `
 
 export const DetailsHeader = styled.h1`
-  font-size: ${theme.size['xl']};
+  font-size: ${(props) => props.theme.size['xl']};
   text-align: center;
 `
 
@@ -132,8 +87,7 @@ export const DetailsName = styled(Name)`
 `
 
 export const EvolutionsContainer = styled.div`
-  background: ${theme.colors['grayGradient']};
-
+  background: ${(props) => props.theme.colors.grayGradient};
   @media ${device['desktop']} {
     grid-column: 9 / span 4;
     grid-row: 6 / span 3;
@@ -141,7 +95,9 @@ export const EvolutionsContainer = styled.div`
 `
 
 export const BackIconDetails = styled(IconButton)`
-  font-size: ${theme.size['2xl']};
-  grid-column: 1/ span 1;
-  grid-row: 1/ span 1;
+  font-size: ${(props) => props.theme.size['2xl']};
+  padding: ${(props) => props.theme.spacing[3]};
+  @media ${device['laptop']} {
+    position: absolute;
+  }
 `

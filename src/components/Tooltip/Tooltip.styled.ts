@@ -1,5 +1,4 @@
-import { theme } from 'styles/theme';
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
   display: ${({ children }) => (children ? 'block' : 'none')};
@@ -7,8 +6,8 @@ export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
   left: 50%;
   transform: translateX(-50%);
   padding: 8px;
-  background-color: ${theme.colors.secondary};
-  color: ${theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.primary};
   border-radius: 4px;
   z-index: 1;
   opacity: 1;
@@ -22,4 +21,4 @@ export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
       : `
     top: calc(100% + 8px);
   `}
-`;
+`

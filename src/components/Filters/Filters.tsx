@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 interface FiltersProps {
   isBerryPage: boolean
+  onPageChange: (pageNumber: number) => void
 }
 
 interface PokemonType {
@@ -16,7 +17,7 @@ interface TypesResponse {
   results: PokemonType[]
 }
 
-export function Filters({ isBerryPage }: FiltersProps) {
+export function Filters({ isBerryPage, onPageChange }: FiltersProps) {
   const [types, setTypes] = useState<PokemonType[]>([])
 
   const queryRoute = isBerryPage ? '/berries/search?query=' : '/pokemons/search?query='
@@ -43,7 +44,11 @@ export function Filters({ isBerryPage }: FiltersProps) {
     <FiltersContainer>
       <Searchbar queryRoute={queryRoute} />
       {types.length > 0 && (
-        <SelectInput options={[{ name: 'all', url: '' }, ...types]} typeRoute={typeRoute} />
+        <SelectInput
+          options={[{ name: 'all', url: '' }, ...types]}
+          typeRoute={typeRoute}
+          onPageChange={onPageChange}
+        />
       )}
     </FiltersContainer>
   )

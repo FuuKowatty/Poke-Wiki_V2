@@ -5,7 +5,7 @@ import {
   Name,
   Options,
   OptionsItem,
-} from 'components/CardInterface/CardInterface.styled'
+} from 'components/Card/CardInterface/CardInterface.styled'
 import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 
