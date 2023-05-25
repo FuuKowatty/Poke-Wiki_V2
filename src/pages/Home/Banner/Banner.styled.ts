@@ -1,4 +1,3 @@
-import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import { Button } from 'styles/globalComponents'
 import styled from 'styled-components'
@@ -8,7 +7,7 @@ export const BannerContainer = styled.div`
   align-items: center;
   width: 100%;
   flex-direction: column;
-  background: ${theme.colors['bannerColor']};
+  background: ${(props) => props.theme.colors.bannerColor};
   min-height: 565px;
 
   @media ${device['laptop']} {
@@ -18,7 +17,7 @@ export const BannerContainer = styled.div`
   }
 
   @media ${device['desktop']} {
-    gap: ${theme.spacing[3]};
+    gap: ${(props) => props.theme.spacing[3]};
   }
 `
 export const BannerContent = styled.div`
@@ -27,7 +26,7 @@ export const BannerContent = styled.div`
   align-items: center;
   max-width: 420px;
   width: 100%;
-  padding: ${theme.spacing[3]} 0;
+  padding: ${(props) => props.theme.spacing[3]}; 0;
 
   @media ${device['tablet']} {
     align-items: start;
@@ -42,7 +41,7 @@ export const BannerContent = styled.div`
 export const BannerImage = styled.img`
   max-width: 350px;
   width: 90%;
-  padding-top: ${theme.spacing[3]};
+  padding-top: ${(props) => props.theme.spacing[3]};
 
   @media ${device['tablet']} {
     max-width: 450px;
@@ -74,61 +73,62 @@ export const BannerTitle = styled.div`
 `
 
 export const BannerTitleTextYellow = styled.span`
-  color: ${theme.colors['standsOut']};
+  color: ${(props) => props.theme.colors.standsOut};
   display: block;
-  font-size: ${theme.size['xl']};
+  font-size: ${(props) => props.theme.size['xl']};
 
   @media ${device['tablet']} {
-    font-size: ${theme.size['2xl']};
+    font-size: ${(props) => props.theme.size['2xl']};
   }
 
   @media ${device['laptop']} {
-    font-size: ${theme.size['2xl']};
+    font-size: ${(props) => props.theme.size['2xl']};
   }
 `
 
 export const BannerTitleTextWhite = styled.span`
-  color: ${theme.colors['primary']};
-  font-size: ${theme.size['3xl']};
+  color: ${(props) => props.theme.colors.primary};
+  font-size: ${(props) => props.theme.size['3xl']};
 
   @media ${device['tablet']} {
-    font-size: ${theme.size['4xl']};
+    font-size: ${(props) => props.theme.size['4xl']};
   }
 
   @media ${device['laptop']} {
-    font-size: ${theme.size['4xl']};
+    font-size: ${(props) => props.theme.size['4xl']};
   }
 `
 
 export const BannerDescription = styled.div`
-  padding: ${theme.spacing[3]} ${theme.spacing[5]};
+  padding: ${(props) => props.theme.spacing[3]} ${(props) => props.theme.spacing[5]};
   text-align: left;
 
   @media ${device['tablet']} {
-    padding: ${theme.spacing[3]} 0;
-    font-size: ${theme.size['lg']};
+    padding: ${(props) => props.theme.spacing[3]} 0;
+    font-size: ${(props) => props.theme.size['lg']};
   }
 
   @media ${device['laptop']} {
-    font-size: ${theme.size['lg']};
+    font-size: ${(props) => props.theme.size['lg']};
     max-width: 350px;
   }
 `
 
 export const BannerButton = styled(Button)`
-  padding: ${theme.spacing[3]} ${theme.spacing[5]};
+  padding: ${(props) => props.theme.spacing[3]} ${(props) => props.theme.spacing[5]};
+
   margin: auto;
   @media ${device['tablet']} {
-    font-size: ${theme.size['xl']};
+    font-size: ${(props) => props.theme.size['xl']};
   }
 
   @media ${device['laptop']} {
-    font-size: ${theme.size['lg']};
+    font-size: ${(props) => props.theme.size['lg']};
     max-width: 350px;
     width: 100%;
   }
 
   @media ${device['desktop']} {
-    padding: ${theme.spacing[3]};
+    padding: ${(props) => props.theme.spacing[3]};
   }
 `

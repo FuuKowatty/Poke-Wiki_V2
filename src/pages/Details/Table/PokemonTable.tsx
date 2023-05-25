@@ -1,8 +1,13 @@
-import { TableContainer, Table, TableHeaderCell, TableRow, TableCell } from 'pages/Details/Table/Table.styled'
+import {
+  TableContainer,
+  Table,
+  TableHeaderCell,
+  TableRow,
+  TableCell,
+} from 'pages/Details/Table/Table.styled'
 import { PokemonSpecs, PokemonType } from 'components/Card/PokemonCard/PokemonCard'
 import { calculateHeight, calculateWeight } from 'utils/calculateMeasures'
 import React from 'react'
-
 
 interface PokemonTableProps {
   data: PokemonSpecs

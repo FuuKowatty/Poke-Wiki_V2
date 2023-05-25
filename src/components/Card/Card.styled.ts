@@ -1,4 +1,3 @@
-import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import styled, { keyframes } from 'styled-components'
 
@@ -6,7 +5,7 @@ export const CardContainer = styled.div`
   width: 100%;
   position: relative;
   aspect-ratio: 32/38;
-  background: ${theme.colors['bannerColor']};
+  background: ${(props) => props.theme.colors.bannerColor};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,11 +26,11 @@ export const CardImage = styled.img`
   width: 100%;
   max-height: 100%;
   object-fit: contain;
-  padding: ${theme.spacing[4]};
+  padding: ${(props) => props.theme.spacing[4]};
   box-sizing: border-box;
 
   @media ${device['tablet']} {
-    padding: ${theme.spacing[5]};
+    padding: ${(props) => props.theme.spacing[5]};
   }
 `
 

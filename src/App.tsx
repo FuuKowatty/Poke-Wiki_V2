@@ -13,35 +13,39 @@ import { Favorites } from 'pages/Favorites/Favorites'
 import { PokemonDetail } from 'pages/Details/PokemonDetail'
 import { FavoritesProvider } from 'context/FavoriteContext/FavoritesProvider'
 import { ViewportProvider } from 'context/ViewportContext/ViewportProvider'
+import { theme } from 'styles/theme'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 
 export function App() {
   return (
-    <BrowserRouter>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Container>
         <ViewportProvider>
           <FavoritesProvider>
-            <Navbar />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='pokemons/*'>
-                <Route path='all' element={<PokemonList />} />
-                <Route path='type/:typeName' element={<PokemonType />} />
-                <Route path='search' element={<PokemonSearch />} />
-                <Route path=':name/details' element={<PokemonDetail />} />
-              </Route>
-              <Route path='berries/*'>
-                <Route path='all' element={<BerriesList />} />
-                <Route path='type/:typeName' element={<BerryType />} />
-                <Route path='search' element={<BerriesSearch />} />
-              </Route>
-              <Route path='/favorites' element={<Favorites />} />
-              <Route path='*' element={<FetchError />} />
-            </Routes>
+            <BrowserRouter>
+              <Navbar />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='pokemons/*'>
+                  <Route path='all' element={<PokemonList />} />
+                  <Route path='type/:typeName' element={<PokemonType />} />
+                  <Route path='search' element={<PokemonSearch />} />
+                  <Route path=':name/details' element={<PokemonDetail />} />
+                </Route>
+                <Route path='berries/*'>
+                  <Route path='all' element={<BerriesList />} />
+                  <Route path='type/:typeName' element={<BerryType />} />
+                  <Route path='search' element={<BerriesSearch />} />
+                </Route>
+                <Route path='/favorites' element={<Favorites />} />
+                <Route path='*' element={<FetchError />} />
+              </Routes>
+            </BrowserRouter>
           </FavoritesProvider>
         </ViewportProvider>
       </Container>
-    </BrowserRouter>
+    </ThemeProvider>
   )
 }

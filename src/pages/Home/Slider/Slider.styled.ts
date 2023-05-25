@@ -1,13 +1,12 @@
-import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import { animated } from '@react-spring/web'
 import styled from 'styled-components'
 
 export const SliderContainer = styled.div`
   width: 100%;
-  background: ${theme.colors['bannerColor']};
-  padding: ${theme.spacing[4]} 0;
-  margin-top: ${theme.spacing[3]};
+  background: ${(props) => props.theme.colors.bannerColor};
+  padding: ${(props) => props.theme.spacing[4]} 0;
+  margin-top: ${(props) => props.theme.spacing[3]};
   text-align: center;
   display: flex;
   justify-content: center;
@@ -17,21 +16,21 @@ export const SliderContainer = styled.div`
   cursor: default;
 
   @media ${device['laptop']} {
-    padding: ${theme.spacing[5]} 0;
+    padding: ${(props) => props.theme.spacing[5]} 0;
   }
 `
 
 export const SliderItem = styled(animated.div)`
   position: absolute;
-  font-size: ${theme.size['lg']};
+  font-size: ${(props) => props.theme.size['lg']};
   font-family: 'Golos text';
 
   @media ${device['tablet']} {
     transition-duration: 100ms;
-    font-size: ${theme.size['xl']};
+    font-size: ${(props) => props.theme.size['xl']};
   }
 
   @media ${device['desktop']} {
-    font-size: ${theme.size['2xl']};
+    font-size: ${(props) => props.theme.size['2xl']};
   }
 `

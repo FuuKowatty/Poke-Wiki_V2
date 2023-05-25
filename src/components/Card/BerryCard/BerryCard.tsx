@@ -1,5 +1,10 @@
 import alternativeImg from 'assets/default_image.svg'
-import { CardContainer, ErrorMessageContainer, CardImage, SkeletonLoading } from 'components/Card/Card.styled'
+import {
+  CardContainer,
+  ErrorMessageContainer,
+  CardImage,
+  SkeletonLoading,
+} from 'components/Card/Card.styled'
 import { BerryCardInterface } from 'components/Card/CardInterface/BarryCardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
@@ -53,9 +58,9 @@ export function BerryCard({ url }: { url: string }) {
         const BerriesSpecs = await fetch(url)
         const BerriesSpecsJson = await BerriesSpecs.json()
         setDataSpec(BerriesSpecsJson)
-      } catch(error) {
+      } catch (error) {
         setIsLoading(false)
-        if(error instanceof Error) setError(error.message)
+        if (error instanceof Error) setError(error.message)
       }
     }
 
@@ -69,9 +74,9 @@ export function BerryCard({ url }: { url: string }) {
           const BerriesSpecs = await fetch(dataSpec.item.url)
           const BerriesSpecsJson = await BerriesSpecs.json()
           setDataItemSpec(BerriesSpecsJson)
-        } catch(error) {
+        } catch (error) {
           setIsLoading(false)
-          if(error instanceof Error) setError(error.message)
+          if (error instanceof Error) setError(error.message)
         }
       }
 
@@ -104,16 +109,16 @@ export function BerryCard({ url }: { url: string }) {
       {isLoading && <SkeletonLoading />}
       {!error ? (
         <CardImage
-        src={checkImage()}
-        alt={dataItemSpec?.name}
-        onLoad={handleImageLoad}
-        onError={setAlternativeImg}
-        style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
-      />
+          src={checkImage()}
+          alt={dataItemSpec?.name}
+          onLoad={handleImageLoad}
+          onError={setAlternativeImg}
+          style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
+        />
       ) : (
         <ErrorMessageContainer>
-        <p>Sry We could not download data: </p>
-      </ErrorMessageContainer>
+          <p>Sry We could not download data: </p>
+        </ErrorMessageContainer>
       )}
 
       {dataItemSpec && dataSpec && !isLoading && (

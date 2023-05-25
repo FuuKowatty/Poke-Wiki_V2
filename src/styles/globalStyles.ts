@@ -1,4 +1,3 @@
-import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import { createGlobalStyle } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
@@ -10,10 +9,10 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        color: ${theme.colors['primary']};
-        background: ${theme.colors['bodyBg']};
+        color: ${(props) => props.theme.colors.primary};
+        background: ${(props) => props.theme.colors.bodyBg};
         font-family: Roboto, sans-serif;
-        font-size: ${theme.size['md']};
+        font-size: ${(props) => props.theme.size['md']};
         padding-bottom: 50px;
 
         @media ${device.laptop} {

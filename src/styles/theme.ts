@@ -26,4 +26,4 @@ export const theme = {
     '2': '0.75em',
     '1': '0.25em',
   },
-}
+} as const

@@ -1,4 +1,3 @@
-import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import styled from 'styled-components'
 
@@ -7,7 +6,7 @@ export const StatsContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: ${theme.spacing['2']};
+  gap: ${(props) => props.theme.spacing[2]};
 
   @media ${device['desktop']} {
     grid-column: 7 / span 6;
@@ -17,15 +16,15 @@ export const StatsContainer = styled.div`
 
 export const BarContainer = styled.div`
   display: flex;
-  gap: ${theme.spacing['1']};
-  font-size: ${theme.size['xl']};
+  gap: ${(props) => props.theme.spacing[1]};
+  font-size: ${(props) => props.theme.size['xl']};
   width: 100%;
 `
 
 export const BarStats = styled.div`
-    position relative;
-    flex: 1;
-    border: 1px solid ${theme.colors['primary']};
+  position relative;
+  flex: 1;
+  border: 1px solid ${(props) => props.theme.colors['primary']};
 `
 
 export const ProgressBar = styled.span<{ width: string; color: string }>`
@@ -45,12 +44,12 @@ export const InfoStatContainer = styled.div`
 export const TotalDivider = styled.span`
   height: 3px;
   width: 100%;
-  background: ${theme.colors['darkerBlue']};
+  background: ${(props) => props.theme.colors['darkerBlue']};
 `
 
 export const TotalParagraph = styled.p`
   text-align: left;
   margin: 0;
   width: 100%;
-  font-size: ${theme.size['lg']};
+  font-size: ${(props) => props.theme.size['lg']};
 `

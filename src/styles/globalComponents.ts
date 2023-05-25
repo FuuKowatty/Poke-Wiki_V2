@@ -1,4 +1,3 @@
-import { theme } from './theme'
 import { device } from 'utils/breakpoints'
 import styled from 'styled-components'
 
@@ -11,17 +10,17 @@ export const Container = styled.div`
   max-width: 100%;
 `
 export const GridContainer = styled.div`
-  padding: 0 ${theme.spacing[3]};
+  padding: 0 ${(props) => props.theme.spacing[3]};
   display: grid;
   grid-template-columns: minmax(250px, 350px);
   width: 100%;
   justify-content: center;
-  gap: ${theme.spacing[3]};
+  gap: ${(props) => props.theme.spacing[3]};
   position: relative;
 
   @media ${device['tablet']} {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: ${theme.spacing[4]};
+    gap: ${(props) => props.theme.spacing[4]};
   }
 
   @media ${device['laptop']} {
@@ -44,30 +43,30 @@ export const CenteredContainer = styled.div`
 `
 
 export const IconButton = styled.button`
-  color: ${theme.colors['primary']};
+  color: ${(props) => props.theme.colors.primary};
   cursor: pointer;
   border: none;
   background: none;
-  font-size: ${theme.size['xl']};
+  font-size: ${(props) => props.theme.size['xl']};
 `
 
 export const InfoParagraph = styled.p`
   margin: 10px 0;
-  font-size: ${theme.size['lg']};
+  font-size: ${(props) => props.theme.size['lg']};
 `
 
 export const Button = styled.button`
   border: none;
-  background: ${theme.colors['standsOut']};
-  padding: ${theme.spacing['2']} ${theme.spacing['4']};
+  background: ${(props) => props.theme.colors.standsOut};
+  padding: ${(props) => props.theme.spacing[2]} ${(props) => props.theme.spacing[4]};
   text-transform: uppercase;
-  border-radius: ${theme.spacing[1]};
+  border-radius: ${(props) => props.theme.spacing[1]};
   cursor: pointer;
-  color: ${theme.colors['darkBlue']};
+  color: ${(props) => props.theme.colors.darkBlue};
   font-weight: bold;
 
   &:hover {
-    background: ${theme.colors['primary']};
-    color: ${theme.colors['darkBlue']};
+    background: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.darkBlue};
   }
 `

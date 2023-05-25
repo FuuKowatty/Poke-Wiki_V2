@@ -1,4 +1,3 @@
-import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -8,11 +7,11 @@ export const NavbarContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: ${theme.spacing[2]} ${theme.spacing[4]};
-  border-bottom: 1px solid ${theme.colors['darkBlue']};
+  padding: ${(props) => props.theme.spacing[2]} ${(props) => props.theme.spacing[4]};
+  border-bottom: 1px solid ${(props) => props.theme.colors.darkBlue};
 
   @media ${device['tablet']} {
-    padding: ${theme.spacing[4]};
+    padding: ${(props) => props.theme.spacing[4]};
   }
 
   @media ${device['laptop']} {
@@ -20,14 +19,14 @@ export const NavbarContainer = styled.div`
   }
 
   @media ${device['desktop']} {
-    padding: ${theme.spacing[4]};
+    padding: ${(props) => props.theme.spacing[4]};
   }
 `
 
 export const LogoTypography = styled.div`
   font-weight: 900;
   font-family: 'Golos Text', sans-serif;
-  font-size: ${theme.size['2xl']};
+  font-size: ${(props) => props.theme.size['2xl']};
 `
 
 export const LogoImage = styled.img`
@@ -36,11 +35,11 @@ export const LogoImage = styled.img`
 `
 
 export const MenuContainer = styled.div`
-  border-top: 1px solid ${theme.colors['darkBlue']};
+  border-top: 1px solid ${(props) => props.theme.colors.darkBlue};
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: ${theme.spacing['5']};
-  background-color: ${theme.colors['bodyBg']};
+  grid-template-rows: ${(props) => props.theme.spacing[5]};
+  background-color: ${(props) => props.theme.colors.bodyBg};
   justify-items: center;
   position: fixed;
   bottom: 0;
@@ -58,7 +57,7 @@ export const MenuContainer = styled.div`
 export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
   font-family: 'Golos Text', sans-serif;
-  font-size: ${theme.size['xl']};
+  ${(props) => props.theme.size['xl']};
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -66,18 +65,18 @@ export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   justify-content: center;
   align-items: center;
   background-color: ${(props) =>
-    props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg']};
-  color: ${(props) => (props.isActive ? theme.colors['darkBlue'] : theme.colors['primary'])};
+    props.isActive ? props.theme.colors.standsOut : props.theme.colors.bodyBg};
+  color: ${(props) => (props.isActive ? props.theme.colors.primary : props.theme.colors.primary)};
 
   @media ${device['laptop']} {
-    font-size: ${theme.size['lg']};
-    background-color: ${theme.colors['bodyBg']};
-    color: ${theme.colors['primary']};
+    font-size: ${(props) => props.theme.size['lg']};
+    background-color: ${(props) => props.theme.colors.bodyBg};
+    color: ${(props) => props.theme.colors.primary};
     border-bottom: 3px solid
-      ${(props) => (props.isActive ? theme.colors['standsOut'] : theme.colors['bodyBg'])};
+      ${(props) => (props.isActive ? props.theme.colors.standsOut : props.theme.colors.bodyBg)};
 
     &:hover {
-      background: ${theme.colors['darkerBlue']};
+      background: ${(props) => props.theme.colors.darkerBlue};
     }
   }
 `
