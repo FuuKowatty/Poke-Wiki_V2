@@ -18,7 +18,7 @@ import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { FetchError } from 'components/common/FetchErrors/FetchError'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import {BiArrowBack} from 'react-icons/bi'
+import { BiArrowBack } from 'react-icons/bi'
 
 export interface moveDetailsProps {
   accuracy: number | null
@@ -96,8 +96,8 @@ export function PokemonDetail() {
       {error && <FetchError />}
       {isLoading && <LoadingState />}
       <BackIconDetails onClick={() => navigate(-1)}>
-            <BiArrowBack />
-          </BackIconDetails>
+        <BiArrowBack />
+      </BackIconDetails>
       {!isLoading && pokemonData && pokemonSpecies && (
         <DetailsContainer>
           <ImageContainer>

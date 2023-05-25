@@ -44,7 +44,11 @@ export function Filters({ isBerryPage, onPageChange }: FiltersProps) {
     <FiltersContainer>
       <Searchbar queryRoute={queryRoute} />
       {types.length > 0 && (
-        <SelectInput options={[{ name: 'all', url: '' }, ...types]} typeRoute={typeRoute} onPageChange={onPageChange}/>
+        <SelectInput
+          options={[{ name: 'all', url: '' }, ...types]}
+          typeRoute={typeRoute}
+          onPageChange={onPageChange}
+        />
       )}
     </FiltersContainer>
   )

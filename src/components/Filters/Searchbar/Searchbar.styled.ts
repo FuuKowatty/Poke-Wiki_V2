@@ -18,7 +18,6 @@ export const SearchbarForm = styled.form`
     width: 350px;
     height: 45px;
   }
-
 `
 
 export const SearchbarInput = styled.input`
@@ -29,7 +28,7 @@ export const SearchbarInput = styled.input`
   background: none;
   border: none;
   background: ${theme.colors['primary']};
-  border-top-left-radius: 8px;;
+  border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 `
 

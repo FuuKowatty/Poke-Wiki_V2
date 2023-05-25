@@ -1,5 +1,5 @@
-import { theme } from 'styles/theme';
-import styled from 'styled-components';
+import { theme } from 'styles/theme'
+import styled from 'styled-components'
 
 export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
   display: ${({ children }) => (children ? 'block' : 'none')};
@@ -22,4 +22,4 @@ export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
       : `
     top: calc(100% + 8px);
   `}
-`;
+`

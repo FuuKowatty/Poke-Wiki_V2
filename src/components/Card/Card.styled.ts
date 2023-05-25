@@ -13,13 +13,15 @@ export const CardContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 12px 8px rgba(0, 0, 0, 0.1);
 
-
   @media ${device['desktop']} {
     max-height: 399px;
   }
 `
 
-
+export const ErrorMessageContainer = styled.div`
+  width: 80%;
+  margin: auto;
+`
 
 export const PokemonCardImage = styled.img`
   width: 100%;

@@ -9,11 +9,11 @@ export const SelectInputContainer = styled.div`
 
   @media ${device['tablet']} {
     width: 280px;
-  };
+  }
 
   @media ${device['laptop']} {
     width: 350px;
-  };
+  }
 `
 
 export const SelectInputStyled = styled.select`
@@ -32,9 +32,6 @@ export const SelectInputStyled = styled.select`
   &:hover {
     cursor: pointer;
   }
-
-  
-
 
   @media ${device['desktop']} {
     height: 45px;

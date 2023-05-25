@@ -1,5 +1,5 @@
 import alternativeImg from 'assets/default_image.svg'
-import { CardContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
+import { CardContainer, ErrorMessageContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
 import { BerryCardInterface } from 'components/CardInterface/BarryCardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
@@ -43,6 +43,7 @@ export function BerryCard({ url }: { url: string }) {
   const [dataSpec, setDataSpec] = useState<null | BerryProps>(null)
   const [dataItemSpec, setDataItemSpec] = useState<null | BerryItemSpec>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<null | string>(null)
   const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
@@ -52,8 +53,9 @@ export function BerryCard({ url }: { url: string }) {
         const BerriesSpecs = await fetch(url)
         const BerriesSpecsJson = await BerriesSpecs.json()
         setDataSpec(BerriesSpecsJson)
-      } catch {
-        console.log('blad BerrySpec')
+      } catch(error) {
+        setIsLoading(false)
+        if(error instanceof Error) setError(error.message)
       }
     }
 
@@ -67,8 +69,9 @@ export function BerryCard({ url }: { url: string }) {
           const BerriesSpecs = await fetch(dataSpec.item.url)
           const BerriesSpecsJson = await BerriesSpecs.json()
           setDataItemSpec(BerriesSpecsJson)
-        } catch {
-          console.log('blad pokemonSpec')
+        } catch(error) {
+          setIsLoading(false)
+          if(error instanceof Error) setError(error.message)
         }
       }
 
@@ -99,13 +102,20 @@ export function BerryCard({ url }: { url: string }) {
   return (
     <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
-      <PokemonCardImage
+      {!error ? (
+        <PokemonCardImage
         src={checkImage()}
         alt={dataItemSpec?.name}
         onLoad={handleImageLoad}
         onError={setAlternativeImg}
         style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
       />
+      ) : (
+        <ErrorMessageContainer>
+        <p>Sry We could not download data: </p>
+      </ErrorMessageContainer>
+      )}
+
       {dataItemSpec && dataSpec && !isLoading && (
         <BerryCardInterface
           isHovered={isHovered}
