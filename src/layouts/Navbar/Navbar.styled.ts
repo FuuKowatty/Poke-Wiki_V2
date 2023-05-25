@@ -82,7 +82,8 @@ export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   }
 `
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)<{isActive: boolean}>`
+  pointer-events: ${props => props.isActive ? 'none' : 'auto'};
   display: flex;
   align-items: center;
   justify-content: center;

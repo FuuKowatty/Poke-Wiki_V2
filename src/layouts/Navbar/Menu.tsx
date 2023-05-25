@@ -47,7 +47,7 @@ export function Menu() {
   return (
     <MenuContainer>
       {MenuItems.map((item) => (
-        <StyledLink to={item.path} key={item.title}>
+        <StyledLink to={item.path} key={item.title} isActive={checkIsActive(item.path)}>
           <MenuIconContainer isActive={checkIsActive(item.path)}>
             {isTablet || isMobile ? item.icon : item.title.toUpperCase()}
           </MenuIconContainer>
