@@ -1,8 +1,6 @@
 import { theme } from 'styles/theme'
 import { device } from 'utils/breakpoints'
 import { createGlobalStyle } from 'styled-components'
-import 'styles/fonts.css'
-
 export const GlobalStyles = createGlobalStyle`
 
     * {
@@ -27,6 +25,4 @@ export const GlobalStyles = createGlobalStyle`
         color: inherit;
         text-decoration: none;
       }
-
-      @import url('./fonts.css);
 `
