@@ -95,11 +95,11 @@ export function PokemonDetail() {
     <>
       {error && <FetchError />}
       {isLoading && <LoadingState />}
-      {!isLoading && pokemonData && pokemonSpecies && (
-        <DetailsContainer>
-          <BackIconDetails onClick={() => navigate(-1)}>
+      <BackIconDetails onClick={() => navigate(-1)}>
             <BiArrowBack />
           </BackIconDetails>
+      {!isLoading && pokemonData && pokemonSpecies && (
+        <DetailsContainer>
           <ImageContainer>
             <PokemonDetailImage
               src={checkImage(pokemonData.sprites.other.dream_world.front_default)}

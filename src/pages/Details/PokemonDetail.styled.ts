@@ -142,6 +142,9 @@ export const EvolutionsContainer = styled.div`
 
 export const BackIconDetails = styled(IconButton)`
   font-size: ${theme.size['2xl']};
-  grid-column: 1/ span 1;
-  grid-row: 1/ span 1;
+  padding: ${theme.spacing[3]};
+
+  @media ${device['laptop']} {
+    position: absolute;
+  }
 `
