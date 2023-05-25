@@ -1,4 +1,4 @@
-import { favItem } from 'components/CardInterface/CardInterface'
+import { favItem } from 'components/Card/CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import {
   ClearItemsButton,

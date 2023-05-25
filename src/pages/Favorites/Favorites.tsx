@@ -1,4 +1,4 @@
-import { favItem } from 'components/CardInterface/CardInterface'
+import { favItem } from 'components/Card/CardInterface/CardInterface'
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 import { GridContainer } from 'styles/globalComponents'

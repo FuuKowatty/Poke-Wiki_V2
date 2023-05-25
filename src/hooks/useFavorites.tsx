@@ -1,4 +1,4 @@
-import { favItem } from 'components/CardInterface/CardInterface'
+import { favItem } from 'components/Card/CardInterface/CardInterface'
 import { useEffect, useState } from 'react'
 
 export interface FavoritesProps {

@@ -1,4 +1,5 @@
 import {
+  StatsContainer,
   BarContainer,
   BarStats,
   InfoStatContainer,
@@ -6,7 +7,6 @@ import {
   TotalDivider,
   TotalParagraph,
 } from './Stats.styled'
-import { DetailsHeader, StatsContainer } from '../PokemonDetail.styled'
 import { statsInfo } from 'components/Card/PokemonCard/PokemonCard'
 import { calculateProgressWidth, calculateTotalStats } from 'utils/calculateMeasures'
 import { GiRabbit } from 'react-icons/gi'

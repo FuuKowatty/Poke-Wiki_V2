@@ -1,5 +1,26 @@
 import { theme } from 'styles/theme'
+import { device } from 'utils/breakpoints'
 import styled from 'styled-components'
+
+export const TableContainer = styled.div`
+  width: 100%;
+  background: ${theme.colors['bannerColor']};
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: ${theme.spacing['3']};
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  @media ${device['laptop']} {
+  }
+
+  @media ${device['desktop']} {
+    grid-column: 2 / span 3;
+    grid-row: 6 / span 3;
+  }
+`
 
 export const DetailsHeader = styled.h3`
   color: ${theme.colors.standsOut};

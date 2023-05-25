@@ -1,4 +1,4 @@
-import { Name, Options, OptionsItem } from 'components/CardInterface/CardInterface.styled'
+import { Name, Options, OptionsItem } from 'components/Card/CardInterface/CardInterface.styled'
 import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { animated, useSpring } from '@react-spring/web'

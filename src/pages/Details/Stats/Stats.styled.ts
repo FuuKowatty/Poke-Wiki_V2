@@ -1,5 +1,19 @@
 import { theme } from 'styles/theme'
+import { device } from 'utils/breakpoints'
 import styled from 'styled-components'
+
+export const StatsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: ${theme.spacing['2']};
+
+  @media ${device['desktop']} {
+    grid-column: 7 / span 6;
+    grid-row: 2 / span 3;
+  }
+`
 
 export const BarContainer = styled.div`
   display: flex;

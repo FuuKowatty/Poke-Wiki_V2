@@ -1,6 +1,6 @@
 import alternativeImg from 'assets/default_image.svg'
-import { CardContainer, ErrorMessageContainer, PokemonCardImage, SkeletonLoading } from 'components/Card/Card.styled'
-import { BerryCardInterface } from 'components/CardInterface/BarryCardInterface'
+import { CardContainer, ErrorMessageContainer, CardImage, SkeletonLoading } from 'components/Card/Card.styled'
+import { BerryCardInterface } from 'components/Card/CardInterface/BarryCardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
@@ -103,7 +103,7 @@ export function BerryCard({ url }: { url: string }) {
     <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
       {!error ? (
-        <PokemonCardImage
+        <CardImage
         src={checkImage()}
         alt={dataItemSpec?.name}
         onLoad={handleImageLoad}

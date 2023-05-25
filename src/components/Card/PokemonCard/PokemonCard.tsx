@@ -1,5 +1,5 @@
-import { SkeletonLoading, CardContainer, PokemonCardImage, ErrorMessageContainer } from '../Card.styled'
-import { CardInterface } from 'components/CardInterface/CardInterface'
+import { SkeletonLoading, CardContainer, CardImage, ErrorMessageContainer } from '../Card.styled'
+import { CardInterface } from 'components/Card/CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { useEffect, useState } from 'react'
@@ -104,7 +104,7 @@ export function PokemonCard({ name }: { name: string }) {
     <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {isLoading && <SkeletonLoading />}
       {!error ? (
-        <PokemonCardImage
+        <CardImage
           src={checkImage(data?.sprites.other.dream_world.front_default)}
           alt={name}
           onLoad={handleImageLoad}

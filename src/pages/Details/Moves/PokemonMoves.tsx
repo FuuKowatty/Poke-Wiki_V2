@@ -1,5 +1,5 @@
-import { MovesList, MovesListItem } from './Moves.styled'
-import { DetailsHeader, MovesContainer } from '../PokemonDetail.styled'
+import { MovesContainer, MovesList, MovesListItem } from './Moves.styled'
+import { DetailsHeader } from '../PokemonDetail.styled'
 import { moveDetailsProps } from 'pages/Details/PokemonDetail'
 import { useEffect, useState } from 'react'
 

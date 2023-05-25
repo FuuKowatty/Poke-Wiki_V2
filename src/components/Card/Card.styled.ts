@@ -23,7 +23,7 @@ export const ErrorMessageContainer = styled.div`
   margin: auto;
 `
 
-export const PokemonCardImage = styled.img`
+export const CardImage = styled.img`
   width: 100%;
   max-height: 100%;
   object-fit: contain;
