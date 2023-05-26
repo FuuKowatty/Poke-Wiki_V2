@@ -37,7 +37,7 @@ export function Searchbar({ queryRoute }: { queryRoute: string }) {
         value={query}
         onChange={onQueryChange}
       />
-      <SearchIcon type='submit'>
+      <SearchIcon type='submit' aria-label='Search'>
         <RiSearchLine />
       </SearchIcon>
     </SearchbarForm>

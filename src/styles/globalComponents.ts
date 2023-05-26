@@ -60,7 +60,7 @@ export const Button = styled.button`
   background: ${(props) => props.theme.colors.standsOut};
   padding: ${(props) => props.theme.spacing[2]} ${(props) => props.theme.spacing[4]};
   text-transform: uppercase;
-  border-radius: ${(props) => props.theme.spacing[1]};
+  border-radius: ${(props) => props.theme.round['md']};
   cursor: pointer;
   color: ${(props) => props.theme.colors.darkBlue};
   font-weight: bold;

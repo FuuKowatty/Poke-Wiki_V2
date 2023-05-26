@@ -8,7 +8,7 @@ export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
   padding: 8px;
   background-color: ${(props) => props.theme.colors.secondary};
   color: ${(props) => props.theme.colors.primary};
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.round['md']};
   z-index: 1;
   opacity: 1;
   transition: opacity 0.2s;

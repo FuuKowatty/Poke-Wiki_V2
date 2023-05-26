@@ -26,4 +26,8 @@ export const theme = {
     '2': '0.75em',
     '1': '0.25em',
   },
+  round: {
+    lg: '1em',
+    md: '0.5em',
+  }
 } as const

@@ -34,6 +34,7 @@ export function Pagination({
         <PaginationButtonNumber
           disabled={currentPage === 1 ? true : false}
           onClick={() => onPrevious()}
+          aria-hidden='true'
         >
           <MdArrowBack />
         </PaginationButtonNumber>
@@ -42,16 +43,16 @@ export function Pagination({
         if (item.pageNumber === '...' && typeof item.pageNumber === 'string') {
           return (
             <li key={item.id}>
-              <PaginationButton disabled>&#8230;</PaginationButton>
+              <PaginationButton aria-label='' disabled>&#8230;</PaginationButton>
             </li>
           )
         } else {
           return (
             <li key={item.id}>
               {item.pageNumber === currentPage ? (
-                <PaginationButtonActive>{item.pageNumber}</PaginationButtonActive>
+                <PaginationButtonActive aria-label='current-page'>{item.pageNumber}</PaginationButtonActive>
               ) : (
-                <PaginationButtonNumber onClick={() => onPageChange(item.pageNumber as number)}>
+                <PaginationButtonNumber aria-label={`go to page number ${item.pageNumber}`} onClick={() => onPageChange(item.pageNumber as number)}>
                   {item.pageNumber}
                 </PaginationButtonNumber>
               )}
@@ -63,6 +64,7 @@ export function Pagination({
         <PaginationButtonNumber
           disabled={currentPage === totalPageCount ? true : false}
           onClick={() => onNext()}
+          aria-label='next-page'
         >
           <MdArrowForward />
         </PaginationButtonNumber>

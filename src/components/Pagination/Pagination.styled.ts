@@ -23,7 +23,7 @@ export const PaginationButtonNumber = styled(PaginationButton)`
   font-size: ${(props) => props.theme.size['md']};
   align-items: center;
   border: 1px solid ${(props) => props.theme.colors['secondary']};
-  border-radius: ${(props) => props.theme.spacing[1]};
+  border-radius: ${(props) => props.theme.round['md']};
   cursor: pointer;
   display: ${({ disabled }) => (disabled ? 'none' : 'block')};
 

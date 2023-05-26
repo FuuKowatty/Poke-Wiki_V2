@@ -4,10 +4,13 @@
     "email": "miedzio.2000@gmail.com"
   },
   "name": "pokewiki",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@react-spring/web": "^9.7.1",
+    "@tanstack/react-query": "^4.29.7",
+    "@tanstack/react-query-devtools": "^4.29.7",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

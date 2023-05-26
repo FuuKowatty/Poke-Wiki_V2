@@ -57,7 +57,7 @@ export const MenuContainer = styled.div`
 export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
   font-family: 'Golos Text', sans-serif;
-  ${(props) => props.theme.size['xl']};
+  font-size: ${(props) => props.theme.size['xl']};
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -66,7 +66,7 @@ export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   align-items: center;
   background-color: ${(props) =>
     props.isActive ? props.theme.colors.standsOut : props.theme.colors.bodyBg};
-  color: ${(props) => (props.isActive ? props.theme.colors.primary : props.theme.colors.primary)};
+  color: ${(props) => (props.isActive ? props.theme.colors.darkBlue : props.theme.colors.primary)};
 
   @media ${device['laptop']} {
     font-size: ${(props) => props.theme.size['lg']};
