@@ -64,8 +64,7 @@ export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) =>
-    props.isActive ? props.theme.colors.standsOut : props.theme.colors.bodyBg};
+  background-color: ${(props) => props.isActive ? props.theme.colors.standsOut : props.theme.colors.bodyBg};
   color: ${(props) => (props.isActive ? props.theme.colors.darkBlue : props.theme.colors.primary)};
 
   @media ${device['laptop']} {
@@ -81,8 +80,7 @@ export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   }
 `
 
-export const StyledLink = styled(Link)<{ isActive: boolean }>`
-  pointer-events: ${(props) => (props.isActive ? 'none' : 'auto')};
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
