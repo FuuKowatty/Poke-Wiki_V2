@@ -2,9 +2,6 @@
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ul>
-    <li>
-      <a href="#about-the-project">About The Project
         <ol>
           <li>
             <a href="#built-with">Built With</a>
@@ -23,7 +20,7 @@
         </ol>
       </a>
     </li>
-  </ul>
+
 </details>
 
 
