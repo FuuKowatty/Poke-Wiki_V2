@@ -28,7 +28,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "json-server --watch db.json",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
