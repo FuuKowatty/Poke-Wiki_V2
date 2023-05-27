@@ -5,10 +5,10 @@ import { useTransition } from '@react-spring/web'
 import { useState, useEffect } from 'react'
 
 const slides = [
-  { id: 0, content: '20% off on your first order!' },
-  { id: 1, content: 'Summer sale starts now' },
-  { id: 2, content: 'Visit any store.' },
-  { id: 3, content: 'Please like and subscribe' },
+  { id: 0, content: 'All About Pokémon & Berries' },
+  { id: 1, content: 'Discover Pokémon Details' },
+  { id: 2, content: 'Create Your Favorites List' },
+  { id: 3, content: 'Gotta Catch \'Em All!' },
 ]
 
 export function Slider() {
