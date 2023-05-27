@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
+  margin-top: ${(props) => props.theme.spacing[5]};
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
-  min-height: 15vh;
+  min-height: 10vh;
   max-width: 1440px;
-  margin: auto;
+
   background: ${(props) => props.theme.colors.bannerColor};
-  border-top-left-radius: ${(props) => props.theme.round['md']};
-  border-top-right-radius: ${(props) => props.theme.round['md']};
+  border-top-left-radius: ${(props) => props.theme.round['lg']};
+  border-top-right-radius: ${(props) => props.theme.round['lg']};
   text-align: center;
   display: grid;
   align-content: center;
