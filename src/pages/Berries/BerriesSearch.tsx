@@ -20,7 +20,7 @@ interface PokemonList {
 export function BerriesSearch() {
   const { search } = useLocation()
   const searchParams = new URLSearchParams(search)
-  const query = searchParams.get('query')
+  const query = searchParams.get('query') as string
 
   const fetchUrl = 'https://pokeapi.co/api/v2/berry/?limit=20000'
   const { data = { results: [] }, error, isLoading } = useFetch<PokemonList>(fetchUrl)
@@ -33,7 +33,7 @@ export function BerriesSearch() {
   const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage pagination={pagination} isBerryPage={true}>
+    <PokemonBuildPage pagination={pagination} isBerryPage={true} query={query}>
       <PageContent state={state}>
         {data && currentData.map((berry) => <BerryCard key={berry.name} url={berry.url} />)}
       </PageContent>

@@ -24,7 +24,7 @@ export function BerryType() {
   const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage pagination={pagination} isBerryPage={true}>
+    <PokemonBuildPage pagination={pagination} isBerryPage={true} type={typeName}>
       <PageContent state={state}>
         {data &&
           currentData.map((dataElement) => {
