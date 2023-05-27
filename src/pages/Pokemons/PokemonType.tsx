@@ -27,8 +27,7 @@ export function PokemonType() {
   const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage pagination={pagination}>
-      <span>You searched for <strong>{typeName}</strong> type</span>
+    <PokemonBuildPage pagination={pagination} type={typeName}>
       <PageContent state={state}>
         {data &&
           currentData.map((dataElement) => {

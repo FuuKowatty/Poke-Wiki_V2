@@ -20,7 +20,7 @@ interface PokemonList {
 export function PokemonSearch() {
   const { search } = useLocation()
   const searchParams = new URLSearchParams(search)
-  const query = searchParams.get('query')
+  const query = searchParams.get('query') as string
 
   const fetchUrl = 'https://pokeapi.co/api/v2/pokemon-species/?limit=20000'
   const { data = { results: [] }, error, isLoading } = useFetch<PokemonList>(fetchUrl)
@@ -33,8 +33,7 @@ export function PokemonSearch() {
   const state = { currentData, error, isLoading }
 
   return (
-    <PokemonBuildPage pagination={pagination}>
-      <span>You searched for <strong>{query}</strong></span>
+    <PokemonBuildPage pagination={pagination} query={query}>
       <PageContent state={state}>
         {data &&
           currentData.map((pokemon) => <PokemonCard key={pokemon.name} name={pokemon.name} />)}

@@ -71,3 +71,8 @@ export const Button = styled.button`
     color: ${(props) => props.theme.colors.darkBlue};
   }
 `
+
+export const SpanText = styled.span`
+  margin-bottom: ${(props) => props.theme.spacing[3]};
+  display: block;
+`

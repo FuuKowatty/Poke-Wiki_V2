@@ -30,7 +30,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
 
 This is a responsive web page that provides information and features related to Pokémon and berries. The page consists of four main sub-pages: Home, Pokemons, Berries, and Favorites. The application utilizes local storage to save your favorite names of Pokémon. In addition, it provides detailed information about both Pokémon and berries, allowing you to access and explore their specific details.
 

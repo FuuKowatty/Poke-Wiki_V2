@@ -1,5 +1,5 @@
 import { Pagination } from 'components/Pagination/Pagination'
-import { GridContainer } from 'styles/globalComponents'
+import { GridContainer, SpanText } from 'styles/globalComponents'
 import { Filters } from 'components/Filters/Filters'
 
 interface PaginationRangeItem {
@@ -21,12 +21,16 @@ interface PokemonBuildPageProps {
   children: React.ReactNode
   pagination: pagination
   isBerryPage?: boolean
+  query?: string
+  type?: string
 }
 
 export function PokemonBuildPage({
   children,
   pagination,
   isBerryPage = false,
+  query,
+  type,
 }: PokemonBuildPageProps) {
   const {
     currentPage,
@@ -43,6 +47,7 @@ export function PokemonBuildPage({
   return (
     <>
       <Filters isBerryPage={isBerryPage} onPageChange={pagination.onPageChange} />
+      {(query || type) && <SpanText>You searched for <strong>{query ?? (type + ' type')}</strong></SpanText>}
       <GridContainer>{children}</GridContainer>
       {isPaginationVisible && (
         <Pagination
