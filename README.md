@@ -27,7 +27,7 @@
 
 ## About The Project
 
-![pokewiki-home-page](image_url)
+![pokewiki-home-page](https://i.imgur.com/uuy5OKb.png)
 
 This is a responsive web page that provides information and features related to Pokémon and berries. The page consists of four main sub-pages: Home, Pokemons, Berries, and Favorites. The application utilizes local storage to save your favorite names of Pokémon. In addition, it provides detailed information about both Pokémon and berries, allowing you to access and explore their specific details.
 
@@ -51,18 +51,21 @@ This is a responsive web page that provides information and features related to 
 
 This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
 
+    You can install Yarn by running the following command:
 
 ## Prerequisites
 
 Make sure you have the following software installed:
-
-    Node.js
-        You can download and install Node.js from the official website: https://nodejs.org
-    Yarn Package Manager
-        You can install Yarn by running the following command:
+  <ol>
+    <li>Node.js - You can download and install Node.js from the official website: https://nodejs.org</li>
+    <li>Yarn Package Manager - you can install Yarn by running the following command</li>
+  </ol>
+  
 ```sh
    npm install -g yarn
-   ```
+```
+
+
 
 
 ## Installation
@@ -79,9 +82,9 @@ Follow these steps to set up the project:
 ```
 
 3. Install yarn packages
-   ```sh
+```sh
    yarn
-   ```
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,16 +103,17 @@ This will start the development server and the project will be accessible at htt
 The site allows users to easily navigate to dedicated pages for Pokémon or berries. By clicking on the 
 respective navigation options, users can access and explore the Pokémon or berries section of the site.
 
---ZDJECIE--
+![pokemons-page](https://i.imgur.com/ChkEIpU.png)
+
 
 
 Users have the ability to store their favorite Pokémon or berries using the site's functionality. This feature enables users to save the names of their preferred Pokémon or berries for quick access and future reference.
 
---ZDJECIE--
+![pokemons-page](https://i.imgur.com/qARI3xn.png)
 
 The site provides detailed information about each Pokémon or berry. Users can access this feature to retrieve comprehensive details about specific Pokémon or berries, including characteristics, abilities, stats, and more.
 
---ZDJECIE--
+![pokemons-page](https://i.imgur.com/0hCJtuL.png)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -151,7 +155,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-@miedzio.2022@gmail.com
+Email: <a href = "mailto: bartoszmech0@gmail.com">bartoszmech0@gmail.com</a>
 Project Link: [https://github.com/FuuKowatty/Poke-Wiki_V2](https://github.com/FuuKowatty/Poke-Wiki_V2)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
