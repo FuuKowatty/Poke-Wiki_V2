@@ -2,15 +2,15 @@
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ol>
+  <ul>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#about-the-project">About The Project
+        <ol>
+          <li>
+            <a href="#built-with">Built With</a>
+          </li>
+          <li>
+            <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#Installation">Installation</a></li>
@@ -20,21 +20,26 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
+        </ol>
+      </a>
+    </li>
+  </ul>
 </details>
 
 
-## About The Project
+# About The Project
 
 ![pokewiki-home-page](https://i.imgur.com/uuy5OKb.png)
 
 This is a responsive web page that provides information and features related to Pokémon and berries. The page consists of four main sub-pages: Home, Pokemons, Berries, and Favorites. The application utilizes local storage to save your favorite names of Pokémon. In addition, it provides detailed information about both Pokémon and berries, allowing you to access and explore their specific details.
 
+[Project Link:](https://github.com/FuuKowatty/Poke-Wiki_V2)
+[Online](http://pokewiki.bartoszmech.pl/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="built-with"></a>
-### Built With
+## Built With
 
 * [![React][React.js]][React-url]
 * Typescript
@@ -51,9 +56,7 @@ This is a responsive web page that provides information and features related to 
 
 This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
 
-    You can install Yarn by running the following command:
-
-## Prerequisites
+### Prerequisites
 
 Make sure you have the following software installed:
   <ol>
@@ -62,28 +65,28 @@ Make sure you have the following software installed:
   </ol>
   
 ```sh
-   npm install -g yarn
+  npm install -g yarn
 ```
 
 
 
 
-## Installation
+### Installation
 
 Follow these steps to set up the project:
 
 1. Clone the repo
-  ```sh
-   git clone https://github.com/FuuKowatty/Poke-Wiki_V2.git
-   ```
+```sh
+  git clone https://github.com/FuuKowatty/Poke-Wiki_V2.git
+```
 2. Navigate to your project directory
 ```sh
-    cd pokewiki
+  cd pokewiki
 ```
 
 3. Install yarn packages
 ```sh
-   yarn
+  yarn
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -96,14 +99,12 @@ Follow these steps to set up the project:
 To run the project locally, use the following command:
 
 ```sh
-    yarn start
+  yarn start
 ```
 This will start the development server and the project will be accessible at http://localhost:3000 in your web browser.
 
-The site allows users to easily navigate to dedicated pages for Pokémon or berries. By clicking on the 
-respective navigation options, users can access and explore the Pokémon or berries section of the site.
-
-![pokemons-page](https://i.imgur.com/ChkEIpU.png)
+[pokemons-page](https://i.imgur.com/ChkEIpU.png) The site allows users to easily navigate to dedicated pages for Pokémon or berries. By clicking on the 
+respective navigation options, users can access and explore the Pokémon or berries section of the site.!
 
 
 
@@ -156,7 +157,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Email: <a href = "mailto: bartoszmech0@gmail.com">bartoszmech0@gmail.com</a>
-Project Link: [https://github.com/FuuKowatty/Poke-Wiki_V2](https://github.com/FuuKowatty/Poke-Wiki_V2)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
