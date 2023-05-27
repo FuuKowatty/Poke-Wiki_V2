@@ -13,7 +13,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#install">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -21,22 +21,19 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
+![pokewiki-home-page](image_url)
 
 This is a responsive web page that provides information and features related to Pokémon and berries. The page consists of four main sub-pages: Home, Pokemons, Berries, and Favorites. The application utilizes local storage to save your favorite names of Pokémon. In addition, it provides detailed information about both Pokémon and berries, allowing you to access and explore their specific details.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+<a name="built-with"></a>
 ### Built With
 
 * [![React][React.js]][React-url]
@@ -54,7 +51,8 @@ This is a responsive web page that provides information and features related to 
 
 This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+
+## Prerequisites
 
 Make sure you have the following software installed:
 
@@ -67,12 +65,12 @@ Make sure you have the following software installed:
    ```
 
 
-### Installation
+## Installation
 
 Follow these steps to set up the project:
 
 1. Clone the repo
-```sh
+  ```sh
    git clone https://github.com/FuuKowatty/Poke-Wiki_V2.git
    ```
 2. Navigate to your project directory
@@ -89,7 +87,7 @@ Follow these steps to set up the project:
 
 
 
-<!-- USAGE EXAMPLES -->
+<a name="usage"></a>
 ## Usage
 
 To run the project locally, use the following command:
@@ -118,7 +116,6 @@ The site provides detailed information about each Pokémon or berry. Users can a
 
 
 
-<!-- ROADMAP -->
 ## Roadmap
 
 - [x] Optimazed image size
@@ -129,8 +126,6 @@ The site provides detailed information about each Pokémon or berry. Users can a
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -147,8 +142,6 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
@@ -156,9 +149,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- CONTACT -->
 ## Contact
+
 @miedzio.2022@gmail.com
 Project Link: [https://github.com/FuuKowatty/Poke-Wiki_V2](https://github.com/FuuKowatty/Poke-Wiki_V2)
 
