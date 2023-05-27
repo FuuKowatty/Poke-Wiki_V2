@@ -38,12 +38,12 @@ This is a responsive web page that provides information and features related to 
 <a name="built-with"></a>
 ## Built With
 
-  [![React][React.js]][React-url]
-  [![Typescript][Typescript.js]][Typescript-url]
-  [![Styled-components][Styled-components.js]][Styled-components-url]
-  [![React-router-dom][React-router-dom.js]][React-router-dom-url]
-  [![LRU-cache][LRU-cache.js]][LRU-cache-url]
-  [![React-spring][React-spring.js]][React-spring-url]
+  [![React][React.js]][React-url] </br>
+  [![Typescript][Typescript.js]][Typescript-url] </br>
+  [![Styled-components][Styled-components.js]][Styled-components-url] </br>
+  [![React-router-dom][React-router-dom.js]][React-router-dom-url] </br>
+  [![LRU-cache][LRU-cache.js]][LRU-cache-url] </br>
+  [![React-spring][React-spring.js]][React-spring-url] </br>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
