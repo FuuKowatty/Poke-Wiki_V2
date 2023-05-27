@@ -1,9 +1,7 @@
 {
-  "author": {
-    "name": "FuuKowatty",
-    "email": "miedzio.2000@gmail.com"
-  },
   "name": "pokewiki",
+  "author": "FuuKowatty",
+  "email": "miedzio.2000@gmail.com",
   "license": "MIT",
   "version": "0.1.0",
   "private": true,
