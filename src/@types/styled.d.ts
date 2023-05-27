@@ -14,6 +14,7 @@ declare module 'styled-components' {
       standsOut: string;
       bannerColor: string;
       grayGradient: string;
+      error: string;
     }
     size: {
       '4xl': string;
