@@ -13,7 +13,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#install">Installation</a></li>
+        <li><a href="#Installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
