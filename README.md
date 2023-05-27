@@ -38,12 +38,13 @@ This is a responsive web page that provides information and features related to 
 <a name="built-with"></a>
 ## Built With
 
-* [![React][React.js]][React-url]
-* ![Typescript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-* ![Styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
-* ![React-router-dom](https://img.shields.io/badge/react--router--dom-CA4245?style=for-the-badge&logo=react-router-dom&logoColor=white)
-* ![LRU-cache](https://img.shields.io/badge/LRU--cache-FF6C37?style=for-the-badge&logo=javascript&logoColor=white)
-* ![React-spring](https://img.shields.io/badge/react--spring-88CE02?style=for-the-badge&logo=react&logoColor=white)
+  [![React][React.js]][React-url]
+  [![Typescript][Typescript.js]][Typescript-url]
+  [![Styled-components][Styled-components.js]][Styled-components-url]
+  [![React-router-dom][React-router-dom.js]][React-router-dom-url]
+  [![LRU-cache][LRU-cache.js]][LRU-cache-url]
+  [![React-spring][React-spring.js]][React-spring-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,6 +164,16 @@ Email: <a href = "mailto: bartoszmech0@gmail.com">bartoszmech0@gmail.com</a>
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Typescript.js]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
+[Styled-components.js]: https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white
+[Styled-components-url]: https://styled-components.com/
+[React-router-dom.js]: https://img.shields.io/badge/react--router--dom-CA4245?style=for-the-badge&logo=react-router-dom&logoColor=white
+[React-router-dom-url]: https://reactrouter.com/
+[LRU-cache.js]: https://img.shields.io/badge/LRU--cache-FF6C37?style=for-the-badge&logo=javascript&logoColor=white
+[LRU-cache-url]: https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)
+[React-spring.js]: https://img.shields.io/badge/react--spring-88CE02?style=for-the-badge&logo=react&logoColor=white
+[React-spring-url]: https://www.react-spring.io/
 
 
 
