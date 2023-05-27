@@ -6,10 +6,11 @@ export const FooterContainer = styled.footer`
   max-width: 1440px;
   margin: auto;
   background: ${(props) => props.theme.colors.bannerColor};
-  padding: ${(props) => props.theme.spacing[5]};
   border-top-left-radius: ${(props) => props.theme.round['md']};
   border-top-right-radius: ${(props) => props.theme.round['md']};
   text-align: center;
+  display: grid;
+  align-content: center;
 `;
 
 export const FooterText = styled.p`
