@@ -26,15 +26,16 @@ export function Favorites() {
         handleSelectFilters={handleSelectFilters}
       />
       <GridContainer>
-        {!filteredFavorites.length && <NoDataInfo />}
-        {filteredFavorites.map((fav: favItem) => {
+        {!filteredFavorites.length ? <NoDataInfo /> : (
+        filteredFavorites.map((fav: favItem) => {
           const { name, type } = fav
           if (type === 'pokemon') {
             return <PokemonCard key={name} name={name} />
           } else if (type === 'berry') {
             return <BerryCard key={name} url={name} />
           }
-        })}
+        })
+        )}
       </GridContainer>
     </>
   )

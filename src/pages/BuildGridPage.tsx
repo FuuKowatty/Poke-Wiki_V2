@@ -1,7 +1,6 @@
 import { Pagination } from 'components/Pagination/Pagination'
 import { GridContainer } from 'styles/globalComponents'
 import { Filters } from 'components/Filters/Filters'
-import { useEffect, useRef } from 'react'
 
 interface PaginationRangeItem {
   id: string
@@ -39,19 +38,12 @@ export function PokemonBuildPage({
     isPaginationVisible,
   } = pagination
 
-  // calculate min height of grid container to put pagination on bottom
-  const gridContainerRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    if (gridContainerRef.current) {
-      const { offsetTop } = gridContainerRef.current
-      gridContainerRef.current.style.minHeight = `calc(100vh - ${offsetTop}px - 100px)`
-    }
-  }, [])
+
 
   return (
     <>
       <Filters isBerryPage={isBerryPage} onPageChange={pagination.onPageChange} />
-      <GridContainer ref={gridContainerRef}>{children}</GridContainer>
+      <GridContainer>{children}</GridContainer>
       {isPaginationVisible && (
         <Pagination
           paginationRange={paginationRange}

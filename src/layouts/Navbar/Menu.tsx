@@ -48,7 +48,7 @@ export function Menu() {
     <MenuContainer>
       {MenuItems.map((item) => (
         <StyledLink to={item.path} key={item.title}>
-          <MenuIconContainer isActive={checkIsActive(item.path)} aria-label={`${item.title} page`}>
+          <MenuIconContainer isActive={checkIsActive(item.path)} aria-label={`${item.title} navigation`}>
             {isTablet || isMobile ? item.icon : item.title.toUpperCase()}
           </MenuIconContainer>
         </StyledLink>

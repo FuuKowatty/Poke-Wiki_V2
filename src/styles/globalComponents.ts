@@ -11,6 +11,7 @@ export const Container = styled.div`
 `
 export const GridContainer = styled.div`
   padding: 0 ${(props) => props.theme.spacing[3]};
+  min-height: 50vh;
   display: grid;
   grid-template-columns: minmax(250px, 350px);
   width: 100%;
@@ -35,7 +36,7 @@ export const GridContainer = styled.div`
 `
 
 export const CenteredContainer = styled.div`
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
