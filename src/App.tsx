@@ -14,6 +14,7 @@ import { PokemonDetail } from 'pages/Details/PokemonDetail'
 import { FavoritesProvider } from 'context/FavoriteContext/FavoritesProvider'
 import { ViewportProvider } from 'context/ViewportContext/ViewportProvider'
 import { theme } from 'styles/theme'
+import { Footer } from 'layouts/Footer/Footer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
@@ -25,7 +26,7 @@ export function App() {
         <ViewportProvider>
           <FavoritesProvider>
             <BrowserRouter>
-              <Navbar />
+            <Navbar />
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='pokemons/*'>
@@ -46,6 +47,7 @@ export function App() {
           </FavoritesProvider>
         </ViewportProvider>
       </Container>
+      <Footer />
     </ThemeProvider>
   )
 }
