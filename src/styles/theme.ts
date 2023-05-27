@@ -8,6 +8,7 @@ export const theme = {
     standsOut: '#FAD61D',
     bannerColor: 'linear-gradient(45deg, #003367, #123049)',
     grayGradient: 'linear-gradient(to bottom, #e0e0e0, #808080)',
+    error: '#ED4337',
   },
   size: {
     '4xl': '3.5em',
@@ -26,4 +27,8 @@ export const theme = {
     '2': '0.75em',
     '1': '0.25em',
   },
+  round: {
+    lg: '1em',
+    md: '0.5em',
+  }
 } as const

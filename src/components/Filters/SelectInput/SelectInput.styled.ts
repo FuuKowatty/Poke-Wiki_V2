@@ -19,7 +19,7 @@ export const SelectInputStyled = styled.select`
   appearance: none;
   background-color: #fff;
   border: 1px solid #aaa;
-  border-radius: 8px;
+  border-radius: ${(props) => props.theme.round['md']};
   box-sizing: border-box;
   color: #333;
   font-size: 16px;

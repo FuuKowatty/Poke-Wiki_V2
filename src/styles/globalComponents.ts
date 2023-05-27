@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   position: relative;
-  height: 100%;
+  min-height: 85vh;
   margin-left: auto;
   margin-right: auto;
   width: 1440px;
@@ -11,6 +11,7 @@ export const Container = styled.div`
 `
 export const GridContainer = styled.div`
   padding: 0 ${(props) => props.theme.spacing[3]};
+  min-height: 50vh;
   display: grid;
   grid-template-columns: minmax(250px, 350px);
   width: 100%;
@@ -35,7 +36,7 @@ export const GridContainer = styled.div`
 `
 
 export const CenteredContainer = styled.div`
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -60,7 +61,7 @@ export const Button = styled.button`
   background: ${(props) => props.theme.colors.standsOut};
   padding: ${(props) => props.theme.spacing[2]} ${(props) => props.theme.spacing[4]};
   text-transform: uppercase;
-  border-radius: ${(props) => props.theme.spacing[1]};
+  border-radius: ${(props) => props.theme.round['md']};
   cursor: pointer;
   color: ${(props) => props.theme.colors.darkBlue};
   font-weight: bold;

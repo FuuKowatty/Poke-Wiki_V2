@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: ${(props) => props.theme.round['md']};
   box-shadow: 0 12px 8px rgba(0, 0, 0, 0.1);
 
   @media ${device['desktop']} {

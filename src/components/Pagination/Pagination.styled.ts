@@ -2,6 +2,7 @@ import { IconButton } from 'styles/globalComponents'
 import styled from 'styled-components'
 
 export const PaginationContainer = styled.ul`
+margin-top: ${(props) => props.theme.spacing[4]};
   display: flex;
   gap: ${(props) => props.theme.spacing[1]};
   align-items: center;
@@ -23,7 +24,7 @@ export const PaginationButtonNumber = styled(PaginationButton)`
   font-size: ${(props) => props.theme.size['md']};
   align-items: center;
   border: 1px solid ${(props) => props.theme.colors['secondary']};
-  border-radius: ${(props) => props.theme.spacing[1]};
+  border-radius: ${(props) => props.theme.round['md']};
   cursor: pointer;
   display: ${({ disabled }) => (disabled ? 'none' : 'block')};
 

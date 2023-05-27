@@ -19,7 +19,7 @@ export const OptionsItem = styled.div<{ isActive?: boolean }>`
   background: ${(props) =>
     props.isActive ? props.theme.colors.standsOut : props.theme.colors.bodyBg};
   z-index: -1;
-  border-radius: ${(props) => props.theme.spacing[3]};
+  border-radius: ${(props) => props.theme.round['lg']};
   margin-top: ${(props) => props.theme.spacing[1]};
 `
 
@@ -30,7 +30,7 @@ export const CloseDetailsItem = styled(OptionsItem)`
 export const Name = styled.div`
   position absolute;
   width: 80%;
-  border-radius: ${(props) => props.theme.spacing[1]};
+  border-radius: ${(props) => props.theme.round['md']};
   text-align: center;
   left: 50%;
   transform: translateX(-50%);

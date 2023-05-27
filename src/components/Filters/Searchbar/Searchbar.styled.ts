@@ -19,16 +19,16 @@ export const SearchbarForm = styled.form`
   }
 `
 
-export const SearchbarInput = styled.input`
+export const SearchbarInput = styled.input<{isError: boolean}>`
   padding: ${(props) => props.theme.spacing[2]};
   color: ${(props) => props.theme.colors['secondary']};
   width: 100%;
   height: 100%;
   background: none;
-  border: none;
+  border: ${(props) => props.isError ? `2px solid ${props.theme.colors.error} ` : `2px solid ${props.theme.colors.secondary}`};
   background: ${(props) => props.theme.colors['primary']};
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: ${(props) => props.theme.round['md']};
+  border-bottom-left-radius: ${(props) => props.theme.round['md']};
 `
 
 export const SearchIcon = styled(IconButton)`
@@ -40,6 +40,6 @@ export const SearchIcon = styled(IconButton)`
   background: ${(props) => props.theme.colors['standsOut']};
   height: 100%;
   color: ${(props) => props.theme.colors['darkerBlue']};
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: ${(props) => props.theme.round['md']};
+  border-bottom-right-radius: ${(props) => props.theme.round['md']};
 `
