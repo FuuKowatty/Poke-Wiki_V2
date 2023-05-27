@@ -30,7 +30,7 @@
 
 This is a responsive web page that provides information and features related to Pokémon and berries. The page consists of four main sub-pages: Home, Pokemons, Berries, and Favorites. The application utilizes local storage to save your favorite names of Pokémon. In addition, it provides detailed information about both Pokémon and berries, allowing you to access and explore their specific details.
 
-[Project Link:](https://github.com/FuuKowatty/Poke-Wiki_V2)
+[Project Link:](https://github.com/FuuKowatty/Poke-Wiki_V2) </br>
 [Online](http://pokewiki.bartoszmech.pl/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
