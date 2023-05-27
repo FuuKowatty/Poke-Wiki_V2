@@ -101,7 +101,8 @@ To run the project locally, use the following command:
 ```
 This will start the development server and the project will be accessible at http://localhost:3000 in your web browser.
 
-[pokemons-page](https://i.imgur.com/ChkEIpU.png) The site allows users to easily navigate to dedicated pages for Pokémon or berries. By clicking on the 
+[pokemons-page](https://i.imgur.com/ChkEIpU.png) 
+The site allows users to easily navigate to dedicated pages for Pokémon or berries. By clicking on the 
 respective navigation options, users can access and explore the Pokémon or berries section of the site.!
 
 
