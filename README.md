@@ -99,8 +99,19 @@ To run the project locally, use the following command:
 ```
 This will start the development server and the project will be accessible at http://localhost:3000 in your web browser.
 
+The site allows users to easily navigate to dedicated pages for Pokémon or berries. By clicking on the 
+respective navigation options, users can access and explore the Pokémon or berries section of the site.
+
+--ZDJECIE--
 
 
+Users have the ability to store their favorite Pokémon or berries using the site's functionality. This feature enables users to save the names of their preferred Pokémon or berries for quick access and future reference.
+
+--ZDJECIE--
+
+The site provides detailed information about each Pokémon or berry. Users can access this feature to retrieve comprehensive details about specific Pokémon or berries, including characteristics, abilities, stats, and more.
+
+--ZDJECIE--
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -110,15 +121,10 @@ This will start the development server and the project will be accessible at htt
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+- [x] Optimazed image size
+- [x] Add filtered reseult
+- [ ] Add slider with pokemons regions in Home page
+- [ ] Light Theme
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -153,28 +159,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+@miedzio.2022@gmail.com
+Project Link: [https://github.com/FuuKowatty/Poke-Wiki_V2](https://github.com/FuuKowatty/Poke-Wiki_V2)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
