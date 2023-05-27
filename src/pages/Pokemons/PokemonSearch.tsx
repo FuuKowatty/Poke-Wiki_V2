@@ -34,6 +34,7 @@ export function PokemonSearch() {
 
   return (
     <PokemonBuildPage pagination={pagination}>
+      <span>You searched for <strong>{query}</strong></span>
       <PageContent state={state}>
         {data &&
           currentData.map((pokemon) => <PokemonCard key={pokemon.name} name={pokemon.name} />)}
