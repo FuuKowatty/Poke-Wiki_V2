@@ -16,7 +16,6 @@ import {
   InfoStatContainer,
   ProgressBar,
 } from 'pages/Details/Stats/Stats.styled'
-import { category, firmness, flavor } from 'components/Card/BerryCard/BerryCard'
 import { calculateProgressWidth } from 'utils/calculateMeasures'
 import { Table, TableRow } from 'pages/Details/Table/Table.styled'
 import { animated, useSpring } from '@react-spring/web'
@@ -34,10 +33,10 @@ interface CardInterfaceProps {
   handleAddFavorite: () => void
   name: string
   url: string
-  flavors: flavor[]
-  firmness: firmness
+  flavors: Flavor[]
+  firmness: Firmness
   growthTime: number
-  category: category
+  category: Category
   cost: number
 }
 
@@ -45,19 +44,15 @@ interface CardItemsProps {
   handleAddFavorite: () => void
   isFav: boolean
   cardItems: {
-    flavors: flavor[]
-    firmness: firmness
+    flavors: Flavor[]
+    firmness: Firmness
     growthTime: number
-    category: category
+    category: Category
     cost: number
   }
   name: string
 }
 
-export interface favItem {
-  name: string
-  type: string
-}
 
 const Stats = [
   {
@@ -107,7 +102,7 @@ export function BerryCardInterface({
 
   // check if card is favorite
   const itemName = url
-  const favNames = favorites.map((fav: favItem) => fav.name)
+  const favNames = favorites.map((fav: FavItem) => fav.name)
   const isFav = favNames.indexOf(itemName) === -1 ? false : true
 
   const cardInterfaceItems = {

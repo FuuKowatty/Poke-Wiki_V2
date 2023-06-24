@@ -4,17 +4,6 @@ import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { usePagination } from 'hooks/usePagination'
 import { PageContent } from 'pages/PageContent'
 
-export interface Pokemon {
-  name: string
-  url: string
-}
-
-export interface PokemonListProps {
-  count: number
-  next: null | string
-  previous: null | string
-  results: Array<Pokemon>
-}
 
 export function PokemonList() {
   const fetchUrl = 'https://pokeapi.co/api/v2/pokemon-species/?limit=20000'

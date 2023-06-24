@@ -7,7 +7,6 @@ import {
   TotalDivider,
   TotalParagraph,
 } from './Stats.styled'
-import { statsInfo } from 'components/Card/PokemonCard/PokemonCard'
 import { calculateProgressWidth, calculateTotalStats } from 'utils/calculateMeasures'
 import { GiRabbit } from 'react-icons/gi'
 import { AiOutlineHeart } from 'react-icons/ai'
@@ -59,7 +58,7 @@ export const getStatAccessories = (arr: StatsProps[], name: string) => {
   return arr.find((accessory) => accessory.name === name)
 }
 
-export function PokemonStats({ stats }: { stats: statsInfo[] }) {
+export function PokemonStats({ stats }: { stats: StatsInfo[] }) {
   return (
     <StatsContainer>
       {stats.map((stat) => {

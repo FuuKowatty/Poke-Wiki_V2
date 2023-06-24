@@ -1,14 +1,13 @@
 import { MovesContainer, MovesList, MovesListItem } from './Moves.styled'
 import { DetailsHeader } from '../PokemonDetail.styled'
-import { moveDetailsProps } from 'pages/Details/PokemonDetail'
 import { useEffect, useState } from 'react'
 
-interface props {
+interface Props {
   linksArr: string[]
 }
 
-export function PokemonMoves({ linksArr }: props) {
-  const [moveDetails, setMoveDetails] = useState<moveDetailsProps[] | null>(null)
+export function PokemonMoves({ linksArr }: Props) {
+  const [moveDetails, setMoveDetails] = useState<MoveDetailsProps[] | null>(null)
   useEffect(() => {
     const fetchMoveDetails = async () => {
       try {

@@ -1,4 +1,3 @@
-import { favItem } from 'components/Card/CardInterface/CardInterface'
 import { PokemonCard } from 'components/Card/PokemonCard/PokemonCard'
 import { BerryCard } from 'components/Card/BerryCard/BerryCard'
 import { GridContainer } from 'styles/globalComponents'
@@ -8,13 +7,13 @@ import { useState } from 'react'
 
 export function Favorites() {
   const [actualFilters, setActualFilters] = useState('all')
-  const [filteredFavorites, setfilteredFavorites] = useState<favItem[]>([])
+  const [filteredFavorites, setfilteredFavorites] = useState<FavItem[]>([])
 
   const handleActualFilters = (buttonValue: string) => {
     setActualFilters(buttonValue)
   }
 
-  const handleSelectFilters = (filteredType: favItem[]) => {
+  const handleSelectFilters = (filteredType: FavItem[]) => {
     setfilteredFavorites(filteredType)
   }
 
@@ -27,7 +26,7 @@ export function Favorites() {
       />
       <GridContainer>
         {!filteredFavorites.length ? <NoDataInfo /> : (
-        filteredFavorites.map((fav: favItem) => {
+        filteredFavorites.map((fav: FavItem) => {
           const { name, type } = fav
           if (type === 'pokemon') {
             return <PokemonCard key={name} name={name} />

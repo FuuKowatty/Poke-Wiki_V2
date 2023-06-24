@@ -5,13 +5,13 @@ import { usePagination } from 'hooks/usePagination'
 import { PageContent } from 'pages/PageContent'
 import { useParams } from 'react-router-dom'
 
-interface berry {
+interface Berry {
   name: string
   url: string
 }
 
 interface TypeList {
-  berries: berry[]
+  berries: Berry[]
 }
 
 export function BerryType() {

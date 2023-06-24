@@ -1,74 +1,9 @@
 import { SkeletonLoading, CardContainer, CardImage, ErrorMessageContainer } from '../Card.styled'
-import { CardInterface } from 'components/Card/CardInterface/CardInterface'
+import { CardInterface } from '../CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { useEffect, useState } from 'react'
 
-export interface PokemonType {
-  slot: number
-  type: {
-    name: string
-    url: string
-  }
-}
-
-interface AbilityInfo {
-  ability: {
-    name: string
-    url: string
-  }
-  is_hidden: boolean
-  slot: number
-}
-
-export interface statsInfo {
-  base_stat: number
-  effor: number
-  stat: {
-    name: string
-  }
-}
-
-interface MoveVersionGroupDetails {
-  level_learned_at: number
-  move_learn_method: {
-    name: string
-    url: string
-  }
-  version_group: {
-    name: string
-    url: string
-  }
-}
-
-interface Move {
-  name: string
-  url: string
-}
-
-export interface MoveData {
-  move: Move
-  version_group_details: MoveVersionGroupDetails[]
-}
-
-export interface PokemonSpecs {
-  id: number
-  abilities: AbilityInfo[]
-  base_experience: number
-  height: number
-  name: string
-  types: PokemonType[]
-  weight: number
-  sprites: {
-    other: {
-      dream_world: {
-        front_default: string
-      }
-    }
-  }
-  stats: statsInfo[]
-  moves: MoveData[]
-}
 
 export function PokemonCard({ name }: { name: string }) {
   const [data, setData] = useState<null | PokemonSpecs>(null)

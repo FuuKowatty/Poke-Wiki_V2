@@ -8,7 +8,6 @@ import {
   EvolutionsContainer,
   BackIconDetails,
 } from './PokemonDetail.styled'
-import { MoveData, PokemonSpecs } from 'components/Card/PokemonCard/PokemonCard'
 import { LoadingState } from 'components/common/LoadingState/LoadingState'
 import { checkDescription, checkHabitat } from 'utils/checkData'
 import { PokemonMoves } from 'pages/Details/Moves/PokemonMoves'
@@ -20,36 +19,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi'
 
-export interface moveDetailsProps {
-  accuracy: number | null
-  damage_class: {
-    name: string | null
-  }
-  power: number | null
-  type: {
-    name: string | null
-  }
-  meta: {
-    crit_rate: number | null
-    drain: number | null
-    healing: number | null
-  }
-  name: string
-}
-
-export interface flavorText {
-  flavor_text: string
-  language: {
-    name: string
-    url: string
-  }
-}
-
 interface pokemonSpeciesProps {
   habitat: {
     name: string
   } | null
-  flavor_text_entries: flavorText[]
+  flavor_text_entries: FlavorText[]
 }
 
 export function PokemonDetail() {

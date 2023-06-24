@@ -5,7 +5,6 @@ import {
   TableRow,
   TableCell,
 } from 'pages/Details/Table/Table.styled'
-import { PokemonSpecs, PokemonType } from 'components/Card/PokemonCard/PokemonCard'
 import { calculateHeight, calculateWeight } from 'utils/calculateMeasures'
 import React from 'react'
 

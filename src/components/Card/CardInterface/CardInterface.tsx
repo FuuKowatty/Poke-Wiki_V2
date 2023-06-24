@@ -13,11 +13,6 @@ interface CardItemsProps {
   name: string
 }
 
-export interface favItem {
-  name: string
-  type: string
-}
-
 export function CardInterface({
   isHovered,
   handleAddFavorite,
@@ -36,7 +31,7 @@ export function CardInterface({
 
   // check if card is favorite
   // const itemName = url || name
-  const favNames = favorites.map((fav: favItem) => fav.name)
+  const favNames = favorites.map((fav: FavItem) => fav.name)
   const isFav = favNames.indexOf(name) === -1 ? false : true
 
   return (

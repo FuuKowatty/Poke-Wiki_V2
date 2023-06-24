@@ -1,4 +1,3 @@
-import { favItem } from 'components/Card/CardInterface/CardInterface'
 import { useEffect, useState } from 'react'
 
 export interface FavoritesProps {
@@ -25,7 +24,7 @@ export const useFavorites = () => {
   function handleAddFavorite(type: string, name: string) {
     if (favorites.length === favoriteItemsLimit) return
 
-    const favNames = favorites.map((fav: favItem) => fav.name)
+    const favNames = favorites.map((fav: FavItem) => fav.name)
     const favIndex = favNames.indexOf(name)
 
     if (favIndex === -1) {

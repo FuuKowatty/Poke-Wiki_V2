@@ -2,13 +2,13 @@ import { ArrowIcon, SelectInputContainer, SelectInputStyled } from './SelectInpu
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-interface pokemonType {
+interface PokemonType {
   name: string
   url: string
 }
 
 interface SelectInputProps {
-  options: pokemonType[]
+  options: PokemonType[]
   typeRoute: string
   onPageChange: (pageNumber: number) => void
 }

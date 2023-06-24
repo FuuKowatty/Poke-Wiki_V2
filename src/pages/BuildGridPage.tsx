@@ -7,7 +7,7 @@ interface PaginationRangeItem {
   pageNumber: number | string
 }
 
-interface pagination {
+interface Pagination {
   paginationRange: PaginationRangeItem[]
   currentPage: number
   onPageChange: (page: number) => void
@@ -19,7 +19,7 @@ interface pagination {
 
 interface PokemonBuildPageProps {
   children: React.ReactNode
-  pagination: pagination
+  pagination: Pagination
   isBerryPage?: boolean
   query?: string
   type?: string

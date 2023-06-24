@@ -1,4 +1,3 @@
-import { favItem } from 'components/Card/CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import {
   ClearItemsButton,
@@ -14,7 +13,7 @@ const filtersButtonText = ['all', 'pokemons', 'berries']
 interface FavoriteFiltersProps {
   actualFilters: string
   handleActualFilters: (buttonValue: string) => void
-  handleSelectFilters: (filteredType: favItem[]) => void
+  handleSelectFilters: (filteredType: FavItem[]) => void
 }
 
 export function FavoriteFilters({
@@ -34,7 +33,7 @@ export function FavoriteFilters({
     const filteredFavorites =
       actualFilters === 'all'
         ? favorites
-        : favorites.filter((fav: favItem) => {
+        : favorites.filter((fav: FavItem) => {
             return actualFilters === 'berries' ? fav.type === 'berry' : fav.type === 'pokemon'
           })
 

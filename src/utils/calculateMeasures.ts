@@ -1,6 +1,6 @@
-import { statsInfo } from 'components/Card/PokemonCard/PokemonCard'
 
-export function calculateTotalStats(stats: statsInfo[]) {
+
+export function calculateTotalStats(stats: StatsInfo[]) {
   return stats.reduce((acc, stat) => acc + stat.base_stat, 0)
 }
 

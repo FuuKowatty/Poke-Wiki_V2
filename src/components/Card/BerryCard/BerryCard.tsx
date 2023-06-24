@@ -9,39 +9,25 @@ import { BerryCardInterface } from 'components/Card/CardInterface/BarryCardInter
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { useEffect, useState } from 'react'
 
-export interface flavor {
-  flavor: {
-    name: string
-  }
-  potency: number
-}
-
-export interface firmness {
-  name: string
-}
 
 interface BerryProps {
-  firmness: firmness
-  flavors: flavor[]
+  firmness: Firmness
+  flavors: Flavor[]
   growth_time: number
   item: {
     url: string
   }
 }
 
-export interface category {
-  name: string
-}
-
-interface sprites {
+interface Sprites {
   default: string
 }
 
 interface BerryItemSpec {
-  category: category
+  category: Category
   cost: number
   name: string
-  sprites: sprites
+  sprites: Sprites
 }
 
 export function BerryCard({ url }: { url: string }) {
