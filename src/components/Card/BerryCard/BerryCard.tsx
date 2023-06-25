@@ -7,72 +7,12 @@ import {
 } from 'components/Card/Card.styled'
 import { BerryCardInterface } from 'components/Card/CardInterface/BarryCardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
-import { useEffect, useState } from 'react'
-
-
-interface BerryProps {
-  firmness: Firmness
-  flavors: Flavor[]
-  growth_time: number
-  item: {
-    url: string
-  }
-}
-
-interface Sprites {
-  default: string
-}
-
-interface BerryItemSpec {
-  category: Category
-  cost: number
-  name: string
-  sprites: Sprites
-}
+import { getBerryCard } from 'services/getBerryCard'
+import { useState } from 'react'
 
 export function BerryCard({ url }: { url: string }) {
-  const [dataSpec, setDataSpec] = useState<null | BerryProps>(null)
-  const [dataItemSpec, setDataItemSpec] = useState<null | BerryItemSpec>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<null | string>(null)
+  const {data, error, isLoading, handleLoad} = getBerryCard(url)
   const [isHovered, setIsHovered] = useState(false)
-
-  useEffect(() => {
-    const fetchBerrySpec = async () => {
-      setIsLoading(true)
-      try {
-        const BerriesSpecs = await fetch(url)
-        const BerriesSpecsJson = await BerriesSpecs.json()
-        setDataSpec(BerriesSpecsJson)
-      } catch (error) {
-        setIsLoading(false)
-        if (error instanceof Error) setError(error.message)
-      }
-    }
-
-    fetchBerrySpec()
-  }, [])
-
-  useEffect(() => {
-    if (dataSpec) {
-      const fetchBarryItemSpec = async () => {
-        try {
-          const BerriesSpecs = await fetch(dataSpec.item.url)
-          const BerriesSpecsJson = await BerriesSpecs.json()
-          setDataItemSpec(BerriesSpecsJson)
-        } catch (error) {
-          setIsLoading(false)
-          if (error instanceof Error) setError(error.message)
-        }
-      }
-
-      fetchBarryItemSpec()
-    }
-  }, [dataSpec])
-
-  const handleImageLoad = () => {
-    setIsLoading(false)
-  }
 
   const setAlternativeImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const img = e.currentTarget
@@ -80,10 +20,10 @@ export function BerryCard({ url }: { url: string }) {
   }
 
   const checkImage = () => {
-    if (dataItemSpec?.sprites.default === null) {
+    if (data?.sprites.default === null) {
       return alternativeImg
     } else {
-      return dataItemSpec?.sprites.default
+      return data?.sprites.default
     }
   }
 
@@ -96,10 +36,10 @@ export function BerryCard({ url }: { url: string }) {
       {!error ? (
         <CardImage
           src={checkImage()}
-          alt={dataItemSpec?.name}
-          onLoad={handleImageLoad}
+          alt={data?.name}
+          onLoad={handleLoad}
           onError={setAlternativeImg}
-          style={{ display: isLoading || !dataItemSpec ? 'none' : 'block' }}
+          style={{ display: isLoading || !data ? 'none' : 'block' }}
         />
       ) : (
         <ErrorMessageContainer>
@@ -107,17 +47,17 @@ export function BerryCard({ url }: { url: string }) {
         </ErrorMessageContainer>
       )}
 
-      {dataItemSpec && dataSpec && !isLoading && (
+      {data && !isLoading && (
         <BerryCardInterface
           isHovered={isHovered}
           handleAddFavorite={handleAddFavoriteBerry}
-          name={dataItemSpec?.name}
+          name={data?.name}
           url={url}
-          flavors={dataSpec.flavors}
-          firmness={dataSpec.firmness}
-          growthTime={dataSpec.growth_time}
-          category={dataItemSpec.category}
-          cost={dataItemSpec.cost}
+          flavors={data.flavors}
+          firmness={data.firmness}
+          growthTime={data.growth_time}
+          category={data.category}
+          cost={data.cost}
         />
       )}
     </CardContainer>

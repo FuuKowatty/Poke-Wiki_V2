@@ -2,36 +2,16 @@ import { SkeletonLoading, CardContainer, CardImage, ErrorMessageContainer } from
 import { CardInterface } from '../CardInterface/CardInterface'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { checkImage, setAlternativeImg } from 'utils/imageUtils'
-import { useEffect, useState } from 'react'
+import { getPokemonCard } from 'services/getPokemonCard'
+import { useState } from 'react'
+
 
 
 export function PokemonCard({ name }: { name: string }) {
-  const [data, setData] = useState<null | PokemonSpecs>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<null | string>(null)
+  const {data, isLoading, error, handleLoad} = getPokemonCard(name)
   const [isHovered, setIsHovered] = useState(false)
 
-  useEffect(() => {
-    const fetchPokemonSpec = async () => {
-      setIsLoading(true)
-      try {
-        const PokemonSpec = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-        const PokemonSpecJson = await PokemonSpec.json()
-        setData(PokemonSpecJson)
-      } catch (error) {
-        console.log(name)
-        setIsLoading(false)
-        if (error instanceof Error) setError(error.message)
-      }
-    }
-
-    fetchPokemonSpec()
-  }, [])
-
-  const handleImageLoad = () => {
-    setIsLoading(false)
-  }
-
+  
   const { handleAddFavorite } = useFavoriteContext()
   const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)
 
@@ -42,7 +22,7 @@ export function PokemonCard({ name }: { name: string }) {
         <CardImage
           src={checkImage(data?.sprites.other.dream_world.front_default)}
           alt={name}
-          onLoad={handleImageLoad}
+          onLoad={handleLoad}
           onError={setAlternativeImg}
           style={{ display: isLoading || !data ? 'none' : 'block' }}
         />
