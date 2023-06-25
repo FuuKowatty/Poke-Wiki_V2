@@ -12,6 +12,9 @@ export const TooltipContent = styled.div<{ position: 'top' | 'bottom' }>`
   z-index: 1;
   opacity: 1;
   transition: opacity 0.2s;
+  text: center;
+  width: max-content;
+  white-space: nowrap;
 
   ${({ position }) =>
     position === 'top'

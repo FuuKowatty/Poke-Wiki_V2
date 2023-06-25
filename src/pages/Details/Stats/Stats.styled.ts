@@ -38,6 +38,7 @@ export const ProgressBar = styled.span<{ width: string; color: string }>`
 `
 
 export const InfoStatContainer = styled.div`
+  position: relative;
   min-width: 90px;
 `
 
