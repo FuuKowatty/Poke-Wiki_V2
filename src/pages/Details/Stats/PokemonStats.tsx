@@ -8,12 +8,7 @@ import {
   TotalParagraph,
 } from './Stats.styled'
 import { calculateProgressWidth, calculateTotalStats } from 'utils/calculateMeasures'
-import { GiRabbit } from 'react-icons/gi'
-import { AiOutlineHeart } from 'react-icons/ai'
-import { TbSword } from 'react-icons/tb'
-import { FiShield } from 'react-icons/fi'
-import { SlMagicWand } from 'react-icons/sl'
-import { RiEyeOffLine } from 'react-icons/ri'
+import { PokemonStats as Stats } from 'data/data'
 
 interface StatsProps {
   name: string
@@ -21,38 +16,7 @@ interface StatsProps {
   icon: JSX.Element
 }
 
-const Stats = [
-  {
-    name: 'hp',
-    color: '#FF3E3E',
-    icon: <AiOutlineHeart />,
-  },
-  {
-    name: 'attack',
-    color: '#FFA500',
-    icon: <TbSword />,
-  },
-  {
-    name: 'defense',
-    color: '#00FF7F',
-    icon: <FiShield />,
-  },
-  {
-    name: 'special-attack',
-    color: '#9400D3',
-    icon: <SlMagicWand />,
-  },
-  {
-    name: 'special-defense',
-    color: '#0080FF',
-    icon: <RiEyeOffLine />,
-  },
-  {
-    name: 'speed',
-    color: '#FFFF00',
-    icon: <GiRabbit />,
-  },
-]
+
 
 export const getStatAccessories = (arr: StatsProps[], name: string) => {
   return arr.find((accessory) => accessory.name === name)

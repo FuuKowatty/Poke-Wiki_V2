@@ -6,9 +6,11 @@ import {
   FilterFavoriteContainer,
   TypeFiltersContainer,
 } from 'components/Filters/FavoriteFilters/FavoriteFilters.styled'
+import { FiltersButtonText } from 'data/data'
 import { useEffect } from 'react'
 
-const filtersButtonText = ['all', 'pokemons', 'berries']
+
+
 
 interface FavoriteFiltersProps {
   actualFilters: string
@@ -43,7 +45,7 @@ export function FavoriteFilters({
   return (
     <FilterFavoriteContainer>
       <TypeFiltersContainer>
-        {filtersButtonText.map((text) => (
+        {FiltersButtonText.map((text) => (
           <FilterButton
             key={text}
             data-value={text}

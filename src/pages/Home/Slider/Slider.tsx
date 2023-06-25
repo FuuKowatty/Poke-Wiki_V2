@@ -1,15 +1,11 @@
 import { SliderItem, SliderContainer } from 'pages/Home/Slider/Slider.styled'
 import { size } from 'utils/breakpoints'
 import { useViewport } from 'hooks/useViewport'
+import { slides } from 'data/data'
 import { useTransition } from '@react-spring/web'
 import { useState, useEffect } from 'react'
 
-const slides = [
-  { id: 0, content: 'All About Pokémon & Berries' },
-  { id: 1, content: 'Discover Pokémon Details' },
-  { id: 2, content: 'Create Your Favorites List' },
-  { id: 3, content: 'Gotta Catch \'Em All!' },
-]
+
 
 export function Slider() {
   const [messageIndex, setMessageIndex] = useState(0)

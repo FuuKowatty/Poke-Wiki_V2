@@ -2,16 +2,12 @@ import { useViewport } from 'hooks/useViewport'
 import { createContext, useContext } from 'react'
 
 interface ContextProps {
-  browserWidth: number | null
-  isMobile: boolean | null
-  isTablet: boolean | null
+  browserWidth: number
+  isMobile: boolean 
+  isTablet: boolean
 }
 
-export const ViewportContext = createContext<ContextProps>({
-  browserWidth: null,
-  isMobile: null,
-  isTablet: null,
-})
+export const ViewportContext = createContext<ContextProps | null>(null)
 
 export const ViewportProvider = ({ children }: { children: React.ReactNode }) => {
   const viewportContextValue = useViewport()
@@ -21,4 +17,14 @@ export const ViewportProvider = ({ children }: { children: React.ReactNode }) =>
   )
 }
 
-export const useViewportContext = () => useContext(ViewportContext)
+export const useViewportContext = () => {
+  const context = useContext(ViewportContext)
+  
+  if(!context) {
+    throw new Error('useViewportContext must be used within a ViewportProvider')
+  }
+
+  return context
+}
+
+

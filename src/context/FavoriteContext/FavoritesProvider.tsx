@@ -8,16 +8,7 @@ interface ContextProps {
   favoriteItemsLimit: number | null
 }
 
-export const FavoritesContext = createContext<ContextProps>({
-  favorites: [],
-  handleAddFavorite: () => {
-    console.warn('handleAddFavorite is not implemented in FavoritesContext')
-  },
-  handleClearItems: () => {
-    console.warn('handleClearItems is not implemented in FavoritesContext')
-  },
-  favoriteItemsLimit: null,
-})
+export const FavoritesContext = createContext<ContextProps | null>(null)
 
 export const FavoritesProvider = ({ children }: { children: React.ReactNode }) => {
   const favoriteContext = useFavorites()
@@ -25,4 +16,11 @@ export const FavoritesProvider = ({ children }: { children: React.ReactNode }) =
   return <FavoritesContext.Provider value={favoriteContext}>{children}</FavoritesContext.Provider>
 }
 
-export const useFavoriteContext = () => useContext(FavoritesContext)
+export const useFavoriteContext = () => {
+  const context = useContext(FavoritesContext)
+  if (!context) {
+    throw new Error('useFavoriteContext must be used within a FavoritesProvider')
+  }
+
+  return context
+}

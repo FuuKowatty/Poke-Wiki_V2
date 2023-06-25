@@ -18,15 +18,13 @@ import {
 } from 'pages/Details/Stats/Stats.styled'
 import { calculateProgressWidth } from 'utils/calculateMeasures'
 import { Table, TableRow } from 'pages/Details/Table/Table.styled'
+import { Stats } from 'data/data'
 import { animated, useSpring } from '@react-spring/web'
 import { HiViewfinderCircle } from 'react-icons/hi2'
 import { AiOutlineClose } from 'react-icons/ai'
-import { MdFavoriteBorder, MdGrain } from 'react-icons/md'
-import { FaHotjar } from 'react-icons/fa'
-import { GiWrappedSweet } from 'react-icons/gi'
-import { CiCoffeeBean } from 'react-icons/ci'
-import { BiLemon } from 'react-icons/bi'
+import { MdFavoriteBorder } from 'react-icons/md'
 import { useEffect, useState } from 'react'
+
 
 interface CardInterfaceProps {
   isHovered: boolean
@@ -54,33 +52,7 @@ interface CardItemsProps {
 }
 
 
-const Stats = [
-  {
-    name: 'spicy',
-    color: '#FF4500',
-    icon: <FaHotjar />,
-  },
-  {
-    name: 'dry',
-    color: '#D2B48C',
-    icon: <MdGrain />,
-  },
-  {
-    name: 'sweet',
-    color: '#FFC0CB',
-    icon: <GiWrappedSweet />,
-  },
-  {
-    name: 'bitter',
-    color: '#800080',
-    icon: <CiCoffeeBean />,
-  },
-  {
-    name: 'sour',
-    color: '#00FF00',
-    icon: <BiLemon />,
-  },
-]
+
 
 export function BerryCardInterface({
   isHovered,
