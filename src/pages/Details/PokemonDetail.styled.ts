@@ -1,5 +1,4 @@
-import { CardImage } from 'components/Card/Card.styled'
-import { Name } from 'components/Card/CardInterface/CardInterface.styled'
+import { CardImage, Name } from 'components/Card/Card.styled'
 import { device, size } from 'utils/breakpoints'
 import { IconButton } from 'styles/globalComponents'
 import styled from 'styled-components'

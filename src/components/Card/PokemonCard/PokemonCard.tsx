@@ -1,44 +1,54 @@
-import { SkeletonLoading, CardContainer, CardImage, ErrorMessageContainer } from '../Card.styled'
-import { CardInterface } from '../CardInterface/CardInterface'
+import { PokemonCardUI } from './CardInterface'
+import { CardWrapper } from '../CardWrapper'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
-import { checkImage, setAlternativeImg } from 'utils/imageUtils'
 import { getPokemonCard } from 'services/getPokemonCard'
-import { useState } from 'react'
-
-
+import { useHover } from 'hooks/useHover'
+import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
+import { useSpring, animated } from '@react-spring/web'
 
 export function PokemonCard({ name }: { name: string }) {
-  const {data, isLoading, error, handleLoad} = getPokemonCard(name)
-  const [isHovered, setIsHovered] = useState(false)
-
-  
-  const { handleAddFavorite } = useFavoriteContext()
+  const { data, isLoading, error, handleLoad } = getPokemonCard(name)
+  const { isHovered, handleHover } = useHover()
   const handleAddFavoritePokemon = () => handleAddFavorite('pokemon', name)
+  const { isMobile, isTablet } = useViewportContext()
+  const { favorites, handleAddFavorite } = useFavoriteContext()
+  // check if card is favorite
+  const favNames = favorites.map((fav) => fav.name)
+  const isFav = favNames.includes(name)
+
+  const springProps = useSpring({
+    opacity: isHovered ? 1 : 0,
+  })
+
+  const CardWrapperProps = {
+    data,
+    error,
+    isLoading,
+    isHovered,
+    handleLoad,
+    handleHover,
+    img: data?.sprites.other.dream_world.front_default,
+  }
 
   return (
-    <CardContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      {isLoading && <SkeletonLoading />}
-      {!error ? (
-        <CardImage
-          src={checkImage(data?.sprites.other.dream_world.front_default)}
-          alt={name}
-          onLoad={handleLoad}
-          onError={setAlternativeImg}
-          style={{ display: isLoading || !data ? 'none' : 'block' }}
-        />
-      ) : (
-        <ErrorMessageContainer>
-          <p>Sry We could not download data: </p>
-        </ErrorMessageContainer>
-      )}
+    <CardWrapper {...CardWrapperProps}>
+      {data &&
+        !isLoading &&
+        (() => {
+          const cardItemsProps = {
+            handleAddFavorite: handleAddFavoritePokemon,
+            isFav,
+            name: data?.name,
+          }
 
-      {data && !isLoading && (
-        <CardInterface
-          isHovered={isHovered}
-          handleAddFavorite={handleAddFavoritePokemon}
-          name={name}
-        />
-      )}
-    </CardContainer>
+          return isTablet || isMobile ? (
+            <PokemonCardUI {...cardItemsProps} />
+          ) : (
+            <animated.div style={springProps}>
+              <PokemonCardUI {...cardItemsProps} />
+            </animated.div>
+          )
+        })()}
+    </CardWrapper>
   )
 }
