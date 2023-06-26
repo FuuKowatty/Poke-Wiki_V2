@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function PokemonMoves({ linksArr }: Props) {
-  const [moveDetails, setMoveDetails] = useState<MoveDetailsProps[] | null>(null)
+  const [moveDetails, setMoveDetails] = useState<MoveDetailsProps[]>([])
   useEffect(() => {
     const fetchMoveDetails = async () => {
       try {
@@ -25,8 +25,7 @@ export function PokemonMoves({ linksArr }: Props) {
     <MovesContainer>
       <DetailsHeader>Moves</DetailsHeader>
       <MovesList>
-        {moveDetails &&
-          moveDetails.map((move) => <MovesListItem key={move.name}>{move.name}</MovesListItem>)}
+        {moveDetails.map((move) => <MovesListItem key={move.name}>{move.name}</MovesListItem>)}
       </MovesList>
     </MovesContainer>
   )

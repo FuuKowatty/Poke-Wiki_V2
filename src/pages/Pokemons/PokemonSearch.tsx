@@ -26,7 +26,7 @@ export function PokemonSearch() {
   const { data = { results: [] }, error, isLoading } = useFetch<PokemonList>(fetchUrl)
 
   const filteredData = data.results.filter((pokemon) =>
-    pokemon.name.toLowerCase().startsWith(query?.toLowerCase() as string),
+    pokemon.name.toLowerCase().startsWith(query?.toLowerCase() ),
   )
 
   const { currentData, ...pagination } = usePagination(filteredData)

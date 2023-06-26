@@ -1,3 +1,4 @@
+import { LAPTOP_WIDTH, TABLET_WIDTH } from 'utils/breakpoints'
 import { useEffect, useState } from 'react'
 
 export const useViewport = () => {
@@ -10,8 +11,8 @@ export const useViewport = () => {
   }, [])
 
   const browserWidth = width
-  const isMobile = width < 620
-  const isTablet = width < 1024 && width >= 620
+  const isMobile = width < TABLET_WIDTH
+  const isTablet = width < LAPTOP_WIDTH && width >= TABLET_WIDTH
 
   return { browserWidth, isMobile, isTablet }
 }

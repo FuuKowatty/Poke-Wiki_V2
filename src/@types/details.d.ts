@@ -55,3 +55,8 @@ interface StatsInfo {
     }
     name: string
   }
+
+  interface Favorites {
+    type: string
+    name: string
+  }

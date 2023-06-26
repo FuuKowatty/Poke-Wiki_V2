@@ -22,7 +22,7 @@ export function PokemonTable({ data, habitat, types }: PokemonTableProps) {
     { id: 2, header: 'Height', data: calculateHeight(height) },
     { id: 3, header: 'Weight', data: calculateWeight(weight) },
     { id: 4, header: 'Habitat', data: habitat },
-  ]
+  ] as const
 
   return (
     <TableContainer>

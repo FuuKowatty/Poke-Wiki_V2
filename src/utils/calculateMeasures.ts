@@ -1,3 +1,4 @@
+import { DESKTOP_WIDTH, LAPTOP_WIDTH } from './breakpoints'
 
 
 export function calculateTotalStats(stats: StatsInfo[]) {
@@ -17,7 +18,7 @@ export function calculateProgressWidth(limit: number, width: number) {
 }
 
 export function calculateContentPerPage(browserWidth: number) {
-  return browserWidth < 1440 && browserWidth >= 1024 ? 18 : 20
+  return browserWidth < DESKTOP_WIDTH && browserWidth >= LAPTOP_WIDTH ? 18 : 20
 }
 
 function convertToKilograms(hectograms: number) {
@@ -25,8 +26,8 @@ function convertToKilograms(hectograms: number) {
 }
 
 function convertToPounds(hectograms: number) {
-  const pounds = hectograms * 0.220462 // Convert hectograms to pounds
-  return pounds.toFixed(1) + 'lb' // Return the pounds value rounded to 2 decimal places
+  const pounds = hectograms * 0.220462
+  return pounds.toFixed(1) + 'lb' 
 }
 
 function convertToMeters(decimeters: number) {
@@ -34,10 +35,10 @@ function convertToMeters(decimeters: number) {
 }
 
 function convertToFeet(decimeters: number) {
-  const inches = decimeters * 3.937 // Convert decimeters to inches
-  const feet = Math.floor(inches / 12) // Calculate the whole feet
-  const remainingInches = inches % 12 // Calculate the remaining inches
-  const formattedFeet = `${feet}.${Math.floor(remainingInches)}` // Format feet without decimal places
+  const inches = decimeters * 3.937 
+  const feet = Math.floor(inches / 12) 
+  const remainingInches = inches % 12 
+  const formattedFeet = `${feet}.${Math.floor(remainingInches)}` 
 
-  return `${formattedFeet} feet` // Return the formatted feet value
+  return `${formattedFeet} feet` 
 }

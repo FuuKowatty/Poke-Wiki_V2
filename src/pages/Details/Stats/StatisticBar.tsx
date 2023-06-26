@@ -10,6 +10,7 @@ interface StatisticBarProps {
   stat: StatsInfo
 }
 
+const STATS_LIMIT = 255
 
 export function StatisticBar({name, color, icon, stat}: StatisticBarProps) {
 
@@ -23,7 +24,7 @@ export function StatisticBar({name, color, icon, stat}: StatisticBarProps) {
       </InfoStatContainer>
       <BarStats>
         <ProgressBar
-          width={calculateProgressWidth(255, stat.base_stat)}
+          width={calculateProgressWidth(STATS_LIMIT, stat.base_stat)}
           color={color}
         />
       </BarStats>

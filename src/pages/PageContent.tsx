@@ -14,16 +14,20 @@ interface PageContentProps {
 export function PageContent({ state, children }: PageContentProps) {
   const { currentData, isLoading, error } = state
 
+  let content;
+
+  if (isLoading) {
+    content = <LoadingState />;
+  } else if (currentData.length > 0) {
+    content = children;
+  } else {
+    content = <NoDataInfo />;
+  }
+
   return (
     <>
-      {isLoading ? (
-        <LoadingState />
-      ) : Array.isArray(currentData) && currentData.length > 0 ? (
-        children
-      ) : (
-        <NoDataInfo />
-      )}
+      {content}
       {error && <FetchError />}
     </>
-  )
+  );
 }

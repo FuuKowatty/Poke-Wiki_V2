@@ -1,8 +1,8 @@
-import { FavoritesProps, useFavorites } from 'hooks/useFavorites'
+import { useFavorites } from 'hooks/useFavorites'
 import { createContext, useContext } from 'react'
 
 interface ContextProps {
-  favorites: FavoritesProps[]
+  favorites: Favorites[]
   handleAddFavorite: (type: string, name: string) => void
   handleClearItems: () => void
   favoriteItemsLimit: number | null

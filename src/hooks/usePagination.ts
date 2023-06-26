@@ -1,5 +1,5 @@
 import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 const DOTS = '...'
 
@@ -19,17 +19,18 @@ interface UsePaginationReturn<T> {
   isPaginationVisible: boolean
 }
 
-function generateUniqueId(): string {
+function generateUniqueId() {
   const uniqueId = Math.random().toString(36).substring(2)
   return uniqueId
 }
 
-const range = (start: number, end: number): number[] => {
+const range = (start: number, end: number) => {
   const length = end - start + 1
   return Array.from({ length }, (_, idx) => idx + start)
 }
 
 export const usePagination = <T,>(data: T[]): UsePaginationReturn<T> => {
+  const firstPageIndex = 1; 
   const pageSize = 20
   const isPaginationVisible = data.length > pageSize
   const [currentPage, setCurrentPage] = useState(1)
@@ -38,71 +39,33 @@ export const usePagination = <T,>(data: T[]): UsePaginationReturn<T> => {
   const siblingCount = isMobile ? 0 : 2
 
   const paginationRange = useMemo(() => {
-    const totalPageNumbers = siblingCount + 5
-
+    const totalPageNumbers = siblingCount + 5;
+  
     if (totalPageNumbers >= totalPageCount) {
-      return range(1, totalPageCount).map((pageNumber) => ({
-        id: generateUniqueId(),
-        pageNumber,
-      }))
+      return generateFullRange(totalPageCount);
     }
-
-    const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
-    const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPageCount)
-
-    const shouldShowLeftDots = leftSiblingIndex > 2
-    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2
-
-    const firstPageIndex = 1
-    const lastPageIndex = totalPageCount
-
+  
+    const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
+    const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPageCount);
+  
+    const shouldShowLeftDots = leftSiblingIndex > 2;
+    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2;
+  
     if (!shouldShowLeftDots && shouldShowRightDots) {
-      const leftItemCount = 3 + 2 * siblingCount
-      const leftRange = range(1, leftItemCount).map((pageNumber) => ({
-        id: generateUniqueId(),
-        pageNumber,
-      }))
-
-      return [
-        ...leftRange,
-        { id: generateUniqueId(), pageNumber: DOTS },
-        { id: generateUniqueId(), pageNumber: totalPageCount },
-      ]
+      return generateRightDotsRange(siblingCount, totalPageCount);
     }
-
+  
     if (shouldShowLeftDots && !shouldShowRightDots) {
-      const rightItemCount = 3 + 2 * siblingCount
-      const rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount).map(
-        (pageNumber) => ({
-          id: generateUniqueId(),
-          pageNumber,
-        }),
-      )
-
-      return [
-        { id: generateUniqueId(), pageNumber: firstPageIndex },
-        { id: generateUniqueId(), pageNumber: DOTS },
-        ...rightRange,
-      ]
+      return generateLeftDotsRange(siblingCount, totalPageCount, firstPageIndex);
     }
-
+  
     if (shouldShowLeftDots && shouldShowRightDots) {
-      const middleRange = range(leftSiblingIndex, rightSiblingIndex).map((pageNumber) => ({
-        id: generateUniqueId(),
-        pageNumber,
-      }))
-
-      return [
-        { id: generateUniqueId(), pageNumber: firstPageIndex },
-        { id: generateUniqueId(), pageNumber: DOTS },
-        ...middleRange,
-        { id: generateUniqueId(), pageNumber: DOTS },
-        { id: generateUniqueId(), pageNumber: lastPageIndex },
-      ]
+      return generateMiddleRange(leftSiblingIndex, rightSiblingIndex, firstPageIndex, totalPageCount);
     }
-
-    return []
-  }, [data.length, pageSize, siblingCount, currentPage])
+  
+    return [];
+  }, [data.length, pageSize, siblingCount, currentPage]);
+  
 
   const currentData = useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize
@@ -111,18 +74,18 @@ export const usePagination = <T,>(data: T[]): UsePaginationReturn<T> => {
     return data.slice(startIndex, endIndex)
   }, [currentPage, data, pageSize])
 
-  const onPageChange = useCallback((pageNumber: number) => {
+  const onPageChange = (pageNumber: number) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     setCurrentPage(pageNumber)
-  }, [])
+  }
 
-  const onNext = useCallback(() => {
+  const onNext = () => {
     setCurrentPage((prevPage) => prevPage + 1)
-  }, [])
+  }
 
-  const onPrevious = useCallback(() => {
+  const onPrevious = () => {
     setCurrentPage((prevPage) => prevPage - 1)
-  }, [])
+  }
 
   return {
     paginationRange,
@@ -135,3 +98,55 @@ export const usePagination = <T,>(data: T[]): UsePaginationReturn<T> => {
     isPaginationVisible,
   }
 }
+
+const generateFullRange = (totalPageCount:number) => {
+  return range(1, totalPageCount).map((pageNumber) => ({
+    id: generateUniqueId(),
+    pageNumber,
+  }));
+};
+
+const generateRightDotsRange = (siblingCount:number, totalPageCount:number) => {
+  const leftItemCount = 3 + 2 * siblingCount;
+  const leftRange = range(1, leftItemCount).map((pageNumber) => ({
+    id: generateUniqueId(),
+    pageNumber,
+  }));
+
+  return [
+    ...leftRange,
+    { id: generateUniqueId(), pageNumber: DOTS },
+    { id: generateUniqueId(), pageNumber: totalPageCount },
+  ];
+};
+
+const generateLeftDotsRange = (siblingCount:number, totalPageCount:number, firstPageIndex:number) => {
+  const rightItemCount = 3 + 2 * siblingCount;
+  const rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount).map(
+    (pageNumber) => ({
+      id: generateUniqueId(),
+      pageNumber,
+    }),
+  );
+
+  return [
+    { id: generateUniqueId(), pageNumber: firstPageIndex },
+    { id: generateUniqueId(), pageNumber: DOTS },
+    ...rightRange,
+  ];
+};
+
+const generateMiddleRange = (leftSiblingIndex:number, rightSiblingIndex:number, firstPageIndex:number, lastPageIndex:number) => {
+  const middleRange = range(leftSiblingIndex, rightSiblingIndex).map((pageNumber) => ({
+    id: generateUniqueId(),
+    pageNumber,
+  }));
+
+  return [
+    { id: generateUniqueId(), pageNumber: firstPageIndex },
+    { id: generateUniqueId(), pageNumber: DOTS },
+    ...middleRange,
+    { id: generateUniqueId(), pageNumber: DOTS },
+    { id: generateUniqueId(), pageNumber: lastPageIndex },
+  ];
+};

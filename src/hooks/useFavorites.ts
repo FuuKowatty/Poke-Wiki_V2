@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react'
 
-export interface Favorites {
-  type: string
-  name: string
-}
 
 const LOCALSTORAGE_KEY = 'favorites'
 
