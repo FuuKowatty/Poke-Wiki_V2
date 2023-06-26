@@ -5,7 +5,7 @@ interface ContextProps {
   favorites: Favorites[]
   handleAddFavorite: (type: string, name: string) => void
   handleClearItems: () => void
-  favoriteItemsLimit: number | null
+  favoriteItemsLimit: number
 }
 
 export const FavoritesContext = createContext<ContextProps | null>(null)

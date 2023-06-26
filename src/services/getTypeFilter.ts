@@ -1,12 +1,9 @@
 import {useEffect, useState} from 'react'
+import axios from 'axios';
 
 interface PokemonType {
     name: string
     url: string
-  }
-  
-  interface TypesResponse {
-    results: PokemonType[]
   }
 
 export  function getTypeFilter(apiEndpoint : string) {
@@ -15,9 +12,8 @@ export  function getTypeFilter(apiEndpoint : string) {
     useEffect(() => {
         const fetchTypes = async () => {
           try {
-            const typesResponse = await fetch(apiEndpoint)
-            const typesJson: TypesResponse = await typesResponse.json()
-            setTypes(typesJson.results)
+            const typesResponse = await axios.get(apiEndpoint)
+            setTypes(typesResponse.data.results)
           } catch {
             setTypes([])
           }

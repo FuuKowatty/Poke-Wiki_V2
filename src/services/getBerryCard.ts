@@ -1,5 +1,6 @@
 import { checkErrorType } from 'utils/checkData'
 import {useEffect, useState} from 'react'
+import axios from 'axios'
 
 interface Sprites {
     default: string
@@ -32,9 +33,8 @@ export function getBerryCard(url: string) {
         const fetchBerrySpec = async () => {
           setIsLoading(true)
           try {
-            const BerriesSpecs = await fetch(url)
-            const BerriesSpecsJson = await BerriesSpecs.json()
-            setDataSpec(BerriesSpecsJson)
+            const BerriesSpecs = await axios.get<BerryProps>(url)
+            setDataSpec(BerriesSpecs.data)
           } catch (error) {
             setIsLoading(false)
             setError( checkErrorType(error).message )
@@ -48,9 +48,8 @@ export function getBerryCard(url: string) {
         if (dataSpec) {
           const fetchBarryItemSpec = async () => {
             try {
-              const BerriesSpecs = await fetch(dataSpec.item.url)
-              const BerriesSpecsJson = await BerriesSpecs.json()
-              setDataItemSpec(BerriesSpecsJson)
+              const BerriesSpecs = await axios.get(dataSpec.item.url)
+              setDataItemSpec(BerriesSpecs.data)
             } catch (error) {
               setIsLoading(false)
               if (error instanceof Error) setError(error.message)

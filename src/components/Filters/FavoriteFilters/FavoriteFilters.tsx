@@ -1,4 +1,4 @@
-import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
+
 import {
   ClearItemsButton,
   FavoriteItemsCount,
@@ -7,38 +7,31 @@ import {
   TypeFiltersContainer,
 } from 'components/Filters/FavoriteFilters/FavoriteFilters.styled'
 import { FiltersButtonText } from 'data/data'
-import { useEffect } from 'react'
 
 
 
 
 interface FavoriteFiltersProps {
   actualFilters: string
+  favorites: FavItem[]
   handleActualFilters: (buttonValue: string) => void
-  handleSelectFilters: (filteredType: FavItem[]) => void
+  handleClearItems: () => void
+  favoriteItemsLimit: number
 }
 
 export function FavoriteFilters({
   actualFilters,
+  favorites,
   handleActualFilters,
-  handleSelectFilters,
+  handleClearItems,
+  favoriteItemsLimit,
 }: FavoriteFiltersProps) {
-  const { favorites, handleClearItems, favoriteItemsLimit } = useFavoriteContext()
 
   const handleFilter = (text : string) => {
     handleActualFilters(text)
   }
 
-  useEffect(() => {
-    const filteredFavorites =
-      actualFilters === 'all'
-        ? favorites
-        : favorites.filter((fav) => {
-            return actualFilters === 'berries' ? fav.type === 'berry' : fav.type === 'pokemon'
-          })
 
-    handleSelectFilters(filteredFavorites)
-  }, [actualFilters, favorites])
 
   return (
     <FilterFavoriteContainer>

@@ -1,6 +1,7 @@
 import { checkErrorType } from 'utils/checkData'
 import { LRUCache } from 'lru-cache'
 import { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
 
 interface FetchState<TData> {
   data?: TData
@@ -12,7 +13,7 @@ export function useFetch<TData extends object = object>(url: string): FetchState
   const [state, setState] = useState<FetchState<TData>>({
     data: undefined,
     error: undefined,
-    isLoading: false,
+    isLoading: true,
   })
 
   const cache = new LRUCache<string, TData>({
@@ -33,20 +34,13 @@ export function useFetch<TData extends object = object>(url: string): FetchState
 
     setState({ data: undefined, error: undefined, isLoading: true })
 
-    const controller = new AbortController()
+    const controller = new AbortController();
 
     try {
-      const response = await fetch(url, { signal: controller.signal })
-
-      if (!response.ok) {
-        throw new Error(response.statusText)
-      }
-
-      const data: TData = await response.json()
-
+      const response = await axios.get<TData>(url, { signal: controller.signal })
       // caching data
-      cache.set(cacheKey, data)
-      setState({ data, error: undefined, isLoading: false })
+      cache.set(cacheKey, response.data)
+      setState({ data: response.data, error: undefined, isLoading: false })
     } catch (error) {
       setState({
         data: undefined,

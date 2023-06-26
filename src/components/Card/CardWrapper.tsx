@@ -1,9 +1,9 @@
 import { CardContainer, CardImage, ErrorMessageContainer, SkeletonLoading } from './Card.styled';
 import alternativeImg from 'assets/default_image.svg'
 
-interface CardWrapperProps {
+interface CardWrapperProps<T> {
     children: React.ReactNode
-    data: any
+    data: T | null
     error: string | null
     isLoading: boolean
     handleHover: (hover: boolean) => void
@@ -11,7 +11,7 @@ interface CardWrapperProps {
     img: string | undefined | null
 }
 
-export function CardWrapper({
+export function CardWrapper<T>({
   children,
   data,
   error,
@@ -19,7 +19,7 @@ export function CardWrapper({
   handleHover,
   handleLoad,
   img,
-}: CardWrapperProps) {
+}: CardWrapperProps<T>) {
 
     const setAlternativeImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
         const img = e.currentTarget

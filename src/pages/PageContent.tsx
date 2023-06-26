@@ -20,7 +20,7 @@ export function PageContent({ state, children }: PageContentProps) {
     content = <LoadingState />;
   } else if (currentData.length > 0) {
     content = children;
-  } else {
+  } else if(!currentData.length) {
     content = <NoDataInfo />;
   }
 

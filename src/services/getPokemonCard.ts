@@ -1,5 +1,6 @@
 import { checkErrorType } from 'utils/checkData'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export function getPokemonCard(name : string) {
 
@@ -11,9 +12,8 @@ export function getPokemonCard(name : string) {
         const fetchPokemonSpec = async () => {
           setIsLoading(true)
           try {
-            const PokemonSpec = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-            const PokemonSpecJson = await PokemonSpec.json()
-            setData(PokemonSpecJson)
+            const PokemonSpec = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            setData(PokemonSpec.data)
           } catch (error) {
             setIsLoading(false)
             setError(checkErrorType(error).message)

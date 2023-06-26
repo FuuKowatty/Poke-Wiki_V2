@@ -1,5 +1,6 @@
 import { checkErrorType } from 'utils/checkData';
 import {useEffect, useState} from 'react';
+import axios from 'axios'
 
 interface pokemonSpeciesProps {
     habitat: {
@@ -18,24 +19,29 @@ export function getPokemonDetails(name: string) {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
+
     useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const [response1, response2] = await Promise.all([
-              fetch(pokemonLink),
-              fetch(pokemonSpeciesLink),
-            ])
-            const [data1, data2] = await Promise.all([response1.json(), response2.json()])
-            await setPokemonData(data1)
-            await setPokemonSpecies(data2)
-            setIsLoading(false)
-          } catch (error) {
-            setIsLoading(false)
-            setError(checkErrorType(error).message)
-          }
+      const fetchData = async () => {
+        try {
+          const [response1, response2] = await Promise.all([
+            axios.get(pokemonLink),
+            axios.get(pokemonSpeciesLink),
+          ]);
+    
+          const data1 = response1.data;
+          const data2 = response2.data;
+    
+          setPokemonData(data1);
+          setPokemonSpecies(data2);
+          setIsLoading(false);
+        } catch (error) {
+          setIsLoading(false);
+          setError(checkErrorType(error).message);
         }
-        fetchData()
-      }, [])
+      };
+    
+      fetchData();
+    }, []);
 
       const data = pokemonData && pokemonSpecies ? {...pokemonData, ...pokemonSpecies} : null
 
