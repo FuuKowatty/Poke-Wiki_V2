@@ -1,10 +1,11 @@
-import { PokemonCardUI } from './CardInterface'
+import { PokemonCardUI } from './PokemonCardUI'
 import { CardWrapper } from '../CardWrapper'
 import { useFavoriteContext } from 'context/FavoriteContext/FavoritesProvider'
 import { getPokemonCard } from 'services/getPokemonCard'
 import { useHover } from 'hooks/useHover'
 import { useViewportContext } from 'context/ViewportContext/ViewportProvider'
 import { useSpring, animated } from '@react-spring/web'
+
 
 export function PokemonCard({ name }: { name: string }) {
   const { data, isLoading, error, handleLoad } = getPokemonCard(name)

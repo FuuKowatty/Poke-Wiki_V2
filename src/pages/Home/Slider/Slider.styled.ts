@@ -23,7 +23,7 @@ export const SliderContainer = styled.div`
 export const SliderItem = styled(animated.div)`
   position: absolute;
   font-size: ${(props) => props.theme.size['lg']};
-  font-family: 'Golos text';
+  font-family: 'Golos-text';
 
   @media ${device['tablet']} {
     transition-duration: 100ms;

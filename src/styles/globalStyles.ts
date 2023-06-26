@@ -1,12 +1,9 @@
 import { device } from 'utils/breakpoints'
 import { createGlobalStyle } from 'styled-components'
-export const GlobalStyles = createGlobalStyle`
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+
+
+export const GlobalStyles = createGlobalStyle`
 
     body {
         color: ${(props) => props.theme.colors.primary};

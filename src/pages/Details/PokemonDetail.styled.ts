@@ -81,6 +81,7 @@ export const DetailsHeader = styled.h1`
 `
 
 export const DetailsName = styled(Name)`
+  font-family: Golos-Text;
   top: 85%;
   width: auto;
 `

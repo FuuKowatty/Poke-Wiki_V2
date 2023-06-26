@@ -25,7 +25,7 @@ export const NavbarContainer = styled.nav`
 
 export const LogoTypography = styled.div`
   font-weight: 900;
-  font-family: 'Golos Text', sans-serif;
+  font-family: 'Golos-Text', sans-serif;
   font-size: ${(props) => props.theme.size['2xl']};
 `
 
@@ -56,7 +56,7 @@ export const MenuContainer = styled.div`
 
 export const MenuIconContainer = styled.span<{ isActive: boolean }>`
   display: flex;
-  font-family: 'Golos Text', sans-serif;
+  font-family: 'Golos-Text', sans-serif;
   font-size: ${(props) => props.theme.size['xl']};
   box-sizing: border-box;
   width: 100%;

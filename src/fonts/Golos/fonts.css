@@ -1,0 +1,16 @@
+/* Font face for Roboto 400 */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./Roboto-Regular.ttf') format('truetype');
+  }
+  
+  /* Font face for Golos Text Bold */
+  @font-face {
+    font-family: 'Golos Text Bold';
+    font-style: normal;
+    font-weight: bold;
+    src: url('./Golos-Text_Bold.ttf') format('truetype'),
+         url('./Golos-Text_Bold.woff') format('woff');
+  }

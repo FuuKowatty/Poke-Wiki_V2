@@ -20,6 +20,8 @@ interface BerryDetailsProps  {
   onCloseDetails: () => void
 }
 
+
+
 export function BerryDetails({firmness, growthTime, category, cost, flavors, onCloseDetails}: BerryDetailsProps) {
 
 
@@ -64,20 +66,23 @@ export function BerryDetails({firmness, growthTime, category, cost, flavors, onC
             ))}
           </tbody>
         </Table>
-        {flavors.map((flavor) => {
-          const statAccessories = getStatAccessories(Stats, flavor.flavor.name)
+        {flavors.map(({flavor, potency}) => {
+
+          const LIMIT_POTENCY = 40
+
+          const statAccessories = getStatAccessories(Stats, flavor.name)
           if (!statAccessories) {
             return null
           }
 
           return (
-            <BarContainer key={flavor.flavor.name}>
+            <BarContainer key={flavor.name}>
               <InfoStatContainer>
-                {statAccessories.icon} - {flavor.potency}
+                {statAccessories.icon} - {potency}
               </InfoStatContainer>
               <BarStats>
                 <ProgressBar
-                  width={calculateProgressWidth(40, flavor.potency)}
+                  width={calculateProgressWidth(LIMIT_POTENCY, potency)}
                   color={statAccessories.color}
                 />
               </BarStats>

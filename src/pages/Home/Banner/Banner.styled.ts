@@ -59,7 +59,7 @@ export const BannerImage = styled.img`
 export const BannerTitle = styled.div`
   text-align: center;
   font-weight: bold;
-  font-family: Golos Text;
+  font-family: Golos-Text;
   width: 100%;
   line-height: 0.75;
 
