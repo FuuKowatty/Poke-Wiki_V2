@@ -25,17 +25,15 @@ export function FavoriteFilters({
 }: FavoriteFiltersProps) {
   const { favorites, handleClearItems, favoriteItemsLimit } = useFavoriteContext()
 
-  const handleFilter = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const target = event.target as HTMLButtonElement
-    const value = target.getAttribute('data-value') as string
-    handleActualFilters(value)
+  const handleFilter = (text : string) => {
+    handleActualFilters(text)
   }
 
   useEffect(() => {
     const filteredFavorites =
       actualFilters === 'all'
         ? favorites
-        : favorites.filter((fav: FavItem) => {
+        : favorites.filter((fav) => {
             return actualFilters === 'berries' ? fav.type === 'berry' : fav.type === 'pokemon'
           })
 
@@ -48,8 +46,7 @@ export function FavoriteFilters({
         {FiltersButtonText.map((text) => (
           <FilterButton
             key={text}
-            data-value={text}
-            onClick={handleFilter}
+            onClick={()  => handleFilter(text)}
             isActive={text === actualFilters}
           >
             {text}

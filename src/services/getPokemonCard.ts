@@ -1,3 +1,4 @@
+import { checkErrorType } from 'utils/checkData'
 import { useEffect, useState } from 'react'
 
 export function getPokemonCard(name : string) {
@@ -15,7 +16,7 @@ export function getPokemonCard(name : string) {
             setData(PokemonSpecJson)
           } catch (error) {
             setIsLoading(false)
-            if (error instanceof Error) setError(error.message)
+            setError(checkErrorType(error).message)
           }
         }
     

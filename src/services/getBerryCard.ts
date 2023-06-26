@@ -1,5 +1,5 @@
+import { checkErrorType } from 'utils/checkData'
 import {useEffect, useState} from 'react'
-
 
 interface Sprites {
     default: string
@@ -37,7 +37,7 @@ export function getBerryCard(url: string) {
             setDataSpec(BerriesSpecsJson)
           } catch (error) {
             setIsLoading(false)
-            if (error instanceof Error) setError(error.message)
+            setError( checkErrorType(error).message )
           }
         }
     

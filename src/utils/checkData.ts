@@ -7,3 +7,7 @@ export function checkDescription(descriptionsArr: FlavorText[]) {
 export function checkHabitat(habitat: { name: string } | null) {
   return habitat ? habitat.name : 'unknown'
 }
+
+export function checkErrorType(error: unknown) {
+  return error instanceof Error ? error : new Error(String(error))
+}

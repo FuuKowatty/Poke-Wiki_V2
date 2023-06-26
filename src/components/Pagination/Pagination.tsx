@@ -28,38 +28,36 @@ export function Pagination({
   onPrevious,
   totalPageCount,
 }: PaginationProps) {
+
+  const isFirstPage = currentPage === 1
+
   return (
     <PaginationContainer>
       <li>
         <PaginationButtonNumber
-          disabled={currentPage === 1 ? true : false}
+          disabled={isFirstPage}
+          aria-label='previous-page'
           onClick={() => onPrevious()}
           aria-hidden='true'
         >
           <MdArrowBack />
         </PaginationButtonNumber>
       </li>
-      {paginationRange.map((item) => {
-        if (item.pageNumber === '...' && typeof item.pageNumber === 'string') {
-          return (
-            <li key={item.id}>
-              <PaginationButton aria-label='' disabled>&#8230;</PaginationButton>
-            </li>
-          )
-        } else {
-          return (
-            <li key={item.id}>
-              {item.pageNumber === currentPage ? (
-                <PaginationButtonActive aria-label='current-page'>{item.pageNumber}</PaginationButtonActive>
-              ) : (
-                <PaginationButtonNumber aria-label={`go to page number ${item.pageNumber}`} onClick={() => onPageChange(item.pageNumber as number)}>
-                  {item.pageNumber}
-                </PaginationButtonNumber>
-              )}
-            </li>
-          )
-        }
-      })}
+      {paginationRange.map((item) => item.pageNumber === '...' ? (
+        <li key={item.id}>
+          <PaginationButton aria-label='' disabled>&#8230;</PaginationButton>
+        </li>
+      ) : (
+        <li key={item.id}>
+          {item.pageNumber === currentPage ? (
+            <PaginationButtonActive aria-label='current-page'>{item.pageNumber}</PaginationButtonActive>
+          ) : (
+            <PaginationButtonNumber aria-label={`go to page number ${item.pageNumber}`} onClick={() => onPageChange(item.pageNumber as number)}>
+              {item.pageNumber}
+            </PaginationButtonNumber>
+          )}
+        </li>
+      ))}
       <li>
         <PaginationButtonNumber
           disabled={currentPage === totalPageCount ? true : false}

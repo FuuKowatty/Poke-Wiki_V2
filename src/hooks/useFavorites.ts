@@ -1,19 +1,30 @@
 import { useEffect, useState } from 'react'
 
-export interface FavoritesProps {
+export interface Favorites {
   type: string
   name: string
 }
 
 const LOCALSTORAGE_KEY = 'favorites'
 
+const getFavorites = () => {
+  const stringifiedFavorites = localStorage.getItem(LOCALSTORAGE_KEY)
+
+  if(!stringifiedFavorites) {
+    return []
+  }
+
+  const favorites = JSON.parse(stringifiedFavorites)
+  return favorites
+
+}
+
 export const useFavorites = () => {
-  const [favorites, setFavorites] = useState<FavoritesProps[]>([])
+  const [favorites, setFavorites] = useState<Favorites[]>([])
   const favoriteItemsLimit = 20
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY) as string) || []
-    setFavorites(storedFavorites)
+    setFavorites(getFavorites())
   }, [])
 
   function handleClearItems() {
@@ -29,20 +40,20 @@ export const useFavorites = () => {
 
     if (favIndex === -1) {
       const newFav = {
-        type: type,
-        name: name,
+        type,
+        name,
       }
 
       const updatedFavorites = [...favorites, newFav]
       localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(updatedFavorites))
       setFavorites(updatedFavorites)
-    } else {
-      const updatedFavorites = [...favorites]
-      updatedFavorites.splice(favIndex, 1)
-
-      localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(updatedFavorites))
-      setFavorites(updatedFavorites)
+      return;
     }
+    const updatedFavorites = [...favorites]
+    updatedFavorites.splice(favIndex, 1)
+
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(updatedFavorites))
+    setFavorites(updatedFavorites)
   }
 
   return { favorites, handleAddFavorite, handleClearItems, favoriteItemsLimit }

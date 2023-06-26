@@ -19,7 +19,7 @@ export  function getTypeFilter(apiEndpoint : string) {
             const typesJson: TypesResponse = await typesResponse.json()
             setTypes(typesJson.results)
           } catch {
-            console.log('Error fetching types')
+            setTypes([])
           }
         }
     

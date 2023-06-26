@@ -1,3 +1,4 @@
+import { checkErrorType } from 'utils/checkData';
 import {useEffect, useState} from 'react';
 
 interface pokemonSpeciesProps {
@@ -28,12 +29,9 @@ export function getPokemonDetails(name: string) {
             await setPokemonData(data1)
             await setPokemonSpecies(data2)
             setIsLoading(false)
-          } catch (err) {
-            console.error(err)
-            if (err instanceof Error) {
-              setError(err.message)
-            }
+          } catch (error) {
             setIsLoading(false)
+            setError(checkErrorType(error).message)
           }
         }
         fetchData()

@@ -1,3 +1,4 @@
+import { checkErrorType } from 'utils/checkData'
 import { LRUCache } from 'lru-cache'
 import { useState, useEffect, useCallback } from 'react'
 
@@ -49,13 +50,13 @@ export function useFetch<TData extends object = object>(url: string): FetchState
     } catch (error) {
       setState({
         data: undefined,
-        error: error instanceof Error ? error : new Error(String(error)),
+        error: checkErrorType(error),
         isLoading: false,
       })
     }
 
     return controller.abort()
-  }, [url, cacheKey])
+  }, [url])
 
   useEffect(() => {
     execute()

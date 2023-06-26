@@ -9,7 +9,7 @@ import { GiStrawberry, GiRabbit, GiWrappedSweet } from 'react-icons/gi'
 import { CiCoffeeBean } from 'react-icons/ci'
 import { FaHotjar } from 'react-icons/fa'
 
-export const FiltersButtonText = ['all', 'pokemons', 'berries']
+export const FiltersButtonText = ['all', 'pokemons', 'berries'] as const
 
 export const Stats = [
     {
