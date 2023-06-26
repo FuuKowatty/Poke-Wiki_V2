@@ -86,7 +86,7 @@ export const Name = styled.div`
   left: 50%;
   transform: translateX(-50%);
   top: 80%;
-  font-family: Golos text, sans-serif;
+  font-family: Golos-text, sans-serif;
   font-size: ${(props) => props.theme.size['xl']};
   background: ${(props) => props.theme.colors.bodyBg};
   padding: ${(props) => props.theme.spacing[1]};

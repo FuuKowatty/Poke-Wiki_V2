@@ -1,4 +1,4 @@
-import { Options, OptionsItem } from 'components/Card/Card.styled'
+import { Name, Options, OptionsItem } from 'components/Card/Card.styled'
 import { HiViewfinderCircle } from 'react-icons/hi2'
 import { MdFavoriteBorder } from 'react-icons/md'
 import { useEffect, useState } from 'react'
@@ -28,13 +28,16 @@ export function PokemonCardUI({ handleAddFavorite, isFav, name }: CardItemsProps
   }
 
   return (
-    <Options>
-      <OptionsItem onClick={onAddFavorite} isActive={isFavActive}>
-        <MdFavoriteBorder />
-      </OptionsItem>
-      <OptionsItem onClick={onViewDetails}>
-        <HiViewfinderCircle />
-      </OptionsItem>
-    </Options>
+    <>
+      <Options>
+        <OptionsItem onClick={onAddFavorite} isActive={isFavActive}>
+          <MdFavoriteBorder />
+        </OptionsItem>
+        <OptionsItem onClick={onViewDetails}>
+          <HiViewfinderCircle />
+        </OptionsItem>
+      </Options>
+      <Name>{name}</Name>
+    </>
   )
 }
